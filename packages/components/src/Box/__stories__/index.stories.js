@@ -3,7 +3,7 @@ import React from 'react';
 import README from './README.md';
 import Demo from './demo';
 
-storiesOf('Navbar', module)
+storiesOf('Box', module)
   .addParameters({
     notes: README
   })
