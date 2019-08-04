@@ -31,11 +31,16 @@ export const whiteSpace = style({
   prop: 'whiteSpace'
 });
 
+export const boxSizing = style({
+  prop: 'boxSizing'
+});
+
 export default compose(
   displayPrint,
   displayRaw,
   overflow,
   textOverflow,
   visibility,
-  whiteSpace
+  whiteSpace,
+  boxSizing
 );

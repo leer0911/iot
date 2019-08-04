@@ -13,6 +13,7 @@ export { default as sizing } from './sizing';
 export { default as spacing } from './spacing';
 export { default as typography } from './typography';
 
+export * from './display';
 export * from './flexbox';
 export * from './palette';
 export * from './positions';
