@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { SPACINGS, ALIGNCONTENT, ALIGNITEMS, DIRECTION, JUSTIFY, WRAP } from './constants';
+import { SPACINGS, GRID_SIZES, ALIGNCONTENT, ALIGNITEMS, DIRECTION, JUSTIFY, WRAP } from './constants';
 
 export const gridPropTypes = {
   children: PropTypes.node,
@@ -14,5 +14,6 @@ export const gridPropTypes = {
   justify: PropTypes.oneOf(JUSTIFY),
   wrap: PropTypes.oneOf(WRAP),
 
-  spacing: PropTypes.oneOf(SPACINGS)
+  spacing: PropTypes.oneOf(SPACINGS),
+  grid: PropTypes.oneOf(GRID_SIZES)
 };
