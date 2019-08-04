@@ -10,7 +10,7 @@ import {
   spacing,
   typography
 } from '@iot/ui-system';
-import { styled } from '../styles';
+import { styled } from '../../styles';
 
 export const styleFunction = css(
   compose(
