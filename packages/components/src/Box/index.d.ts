@@ -1,18 +1,5 @@
 import * as React from 'react';
-import {
-  borders,
-  ComposedStyleFunction,
-  display,
-  flexbox,
-  palette,
-  positions,
-  shadows,
-  sizing,
-  spacing,
-  typography,
-  PropsFor,
-  Omit
-} from '@iot/ui-system';
+import { borders, ComposedStyleFunction, display, flexbox, palette, positions, shadows, sizing, spacing, typography, PropsFor, Omit } from '@iot/ui-system';
 
 type BoxStyleFunction = ComposedStyleFunction<
   [
@@ -31,12 +18,8 @@ type BoxStyleFunction = ComposedStyleFunction<
 type SystemProps = PropsFor<BoxStyleFunction>;
 type ElementProps = Omit<React.HTMLAttributes<HTMLElement>, keyof SystemProps>;
 
-export interface BoxProps extends ElementProps, SystemProps {
-  // styled API
-  component?: React.ElementType;
-  clone?: boolean;
-  // workaround for https://github.com/mui-org/material-ui/pull/15611
-  css?: SystemProps;
+export interface BoxProps extends ElementProps {
+  as?: React.ElementType;
 }
 
 declare const Box: React.ComponentType<BoxProps>;

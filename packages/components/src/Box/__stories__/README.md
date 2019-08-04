@@ -1,6 +1,12 @@
 # Box
 
-内置样式函数
+## API
+
+| Name | Type              | Default | Description      |
+| :--- | :---------------- | :------ | :--------------- |
+| as   | React.ElementType | div     | tag of component |
+
+包含以下所有 ui-system 提供的属性
 
 - borders
 - display
@@ -11,9 +17,3 @@
 - sizing
 - spacing
 - typography
-
-## API
-
-| Name     | Type | Default | Description                  |
-| :------- | :--- | :------ | :--------------------------- |
-| children |      |         | Box render function or node. |
