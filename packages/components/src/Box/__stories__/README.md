@@ -6,7 +6,7 @@
 | :--- | :---------------- | :------ | :--------------- |
 | as   | React.ElementType | div     | tag of component |
 
-包含以下所有 ui-system 提供的属性
+包含以下所有 [ui-system](/story/doc--ui-system) 提供的属性
 
 - borders
 - display

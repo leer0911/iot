@@ -7,4 +7,4 @@ storiesOf('Box', module)
   .addParameters({
     notes: README
   })
-  .add('基础使用', () => <Demo />);
+  .add('demo', () => <Demo />);
