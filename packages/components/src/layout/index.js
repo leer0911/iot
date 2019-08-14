@@ -1,2 +1,2 @@
 export { default as Box } from './Box';
-export * from './Grid';
+export { default as Grid } from './Grid';

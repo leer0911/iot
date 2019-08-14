@@ -11,6 +11,14 @@ const createTheme = (options = {}) => {
     spacing: spacing => {
       const spacingInput = 8;
       return spacingInput * spacing;
+    },
+    transitions: {
+      easing: {
+        easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)'
+      },
+      duration: {
+        shorter: 200
+      }
     }
   };
   return defaultTheme;
