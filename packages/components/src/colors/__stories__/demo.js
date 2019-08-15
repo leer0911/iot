@@ -6,7 +6,7 @@ import { getContrastRatio } from '../../theme';
 const demo = () => {
   const cont = Object.keys(colors).map(type => {
     return (
-      <Box>
+      <Box p={2}>
         <Box p={2} fontWeight="600" fontSize={24}>
           {type}
         </Box>
