@@ -13,7 +13,7 @@ import warning from 'warning';
 function clamp(value, min = 0, max = 1) {
   warning(
     value >= min && value <= max,
-    `Material-UI: the value provided ${value} is out of range [${min}, ${max}].`,
+    `Material-UI: the value provided ${value} is out of range [${min}, ${max}].`
   );
 
   if (value < min) {
@@ -78,10 +78,15 @@ export function hslToRgb(color) {
   const s = values[1] / 100;
   const l = values[2] / 100;
   const a = s * Math.min(l, 1 - l);
-  const f = (n, k = (n + h / 30) % 12) => l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+  const f = (n, k = (n + h / 30) % 12) =>
+    l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
 
   let type = 'rgb';
-  const rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+  const rgb = [
+    Math.round(f(0) * 255),
+    Math.round(f(8) * 255),
+    Math.round(f(4) * 255)
+  ];
 
   if (color.type === 'hsla') {
     type += 'a';
@@ -116,8 +121,8 @@ export function decomposeColor(color) {
     throw new Error(
       [
         `Material-UI: unsupported \`${color}\` color.`,
-        'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().',
-      ].join('\n'),
+        'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().'
+      ].join('\n')
     );
   }
 
@@ -177,14 +182,19 @@ export function getContrastRatio(foreground, background) {
 export function getLuminance(color) {
   color = decomposeColor(color);
 
-  let rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
+  let rgb =
+    color.type === 'hsl'
+      ? decomposeColor(hslToRgb(color)).values
+      : color.values;
   rgb = rgb.map(val => {
     val /= 255; // normalized
     return val <= 0.03928 ? val / 12.92 : ((val + 0.055) / 1.055) ** 2.4;
   });
 
   // Truncate at 3 digits
-  return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+  return Number(
+    (0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3)
+  );
 }
 
 /**
@@ -196,7 +206,9 @@ export function getLuminance(color) {
  * @returns {string} A CSS color string. Hex input values are returned as rgb
  */
 export function emphasize(color, coefficient = 0.15) {
-  return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+  return getLuminance(color) > 0.5
+    ? darken(color, coefficient)
+    : lighten(color, coefficient);
 }
 
 /**

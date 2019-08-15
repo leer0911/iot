@@ -3,7 +3,7 @@ import { cx } from 'emotion';
 import propTypes from './propTypes';
 import ButtonBase from '../ButtonBase';
 import { useClasses } from '../../styles';
-import { fade } from '../../styles/colorManipulator';
+import { fade } from '../../theme/colorManipulator';
 import { capitalize } from '../../utils/helpers';
 
 export const styles = theme => ({
