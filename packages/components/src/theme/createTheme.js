@@ -11,7 +11,7 @@ const createTheme = (options = {}) => {
   const {
     breakpoints: breakpointsInput = {},
     palette: paletteInput = {},
-    shadows: shadowsInput = {},
+    shadows: shadowsInput,
     spacing: spacingInput = {},
     typography: typographyInput = {},
     ...restOption

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Grid } from '../../../';
-import { Box } from '../../../';
+import { Box, Grid } from '../../../';
 
 const demo = () => {
   const item = (

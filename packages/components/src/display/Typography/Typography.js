@@ -84,7 +84,7 @@ const defaultVariantMapping = {
   body2: 'p'
 };
 
-const Typography = (props, ref) => {
+const Typography = props => {
   const {
     component,
     variant = 'body1',
