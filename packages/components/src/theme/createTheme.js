@@ -4,16 +4,18 @@ import createPalette from './createPalette';
 import createSpacing from './createSpacing';
 import createTypography from './createTypography';
 import createBreakpoints from './createBreakpoints';
+import createMixins from './createMixins';
 
 import { shadows as _shadows, shape, transitions, zIndex } from './default';
 
 const createTheme = (options = {}) => {
   const {
-    breakpoints: breakpointsInput = {},
     palette: paletteInput = {},
-    shadows: shadowsInput,
     spacing: spacingInput = {},
     typography: typographyInput = {},
+    breakpoints: breakpointsInput = {},
+    mixins: mixinsInput = {},
+    shadows: shadowsInput,
     ...restOption
   } = options;
 
@@ -21,6 +23,7 @@ const createTheme = (options = {}) => {
   const spacing = createSpacing(spacingInput);
   const typography = createTypography(palette, typographyInput);
   const breakpoints = createBreakpoints(breakpointsInput);
+  const mixins = createMixins(breakpoints, spacing, mixinsInput);
 
   const shadows = shadowsInput || _shadows;
 
@@ -37,6 +40,7 @@ const createTheme = (options = {}) => {
     spacing,
     typography,
     breakpoints,
+    mixins,
     shadows,
     ...themeMerged
   };
