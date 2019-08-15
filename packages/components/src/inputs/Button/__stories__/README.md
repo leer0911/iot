@@ -2,18 +2,11 @@
 
 ## API
 
-| Name | Type              | Default | Description      |
-| :--- | :---------------- | :------ | :--------------- |
-| as   | React.ElementType | div     | tag of component |
-
-包含以下所有 [ui-system](/story/doc--ui-system) 提供的属性
-
-- borders
-- display
-- flexbox
-- palette
-- positions
-- shadows
-- sizing
-- spacing
-- typography
+| Name           | Type                                  | Default | Description      |
+| :------------- | :------------------------------------ | :------ | :--------------- |
+| variant        | `'text' | 'outlined' | 'contained'`   | `text`  | 类型             |
+| color          | `'default' | 'primary' | 'secondary'` | `text`  | 颜色             |
+| size           | `'small' | 'medium' | 'large'`        | `text`  | 大小             |
+| fullWidth      | bool                                  | false   | 是否占满容器     |
+| disabled       | bool                                  | false   | 是否禁用         |
+| disabledRipple | bool                                  | false   | 是否禁用涟漪效果 |

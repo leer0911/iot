@@ -12,7 +12,10 @@ export const styles = theme => ({
     boxSizing: 'border-box',
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
+    '&.disabled': {
+      color: theme.palette.action.disabled
+    }
   },
   label: {
     width: '100%',
@@ -35,7 +38,10 @@ export const styles = theme => ({
       theme.palette.type === 'light'
         ? 'rgba(0, 0, 0, 0.23)'
         : 'rgba(255, 255, 255, 0.23)'
-    }`
+    }`,
+    '&.disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`
+    }
   },
   outlinedPrimary: {
     color: theme.palette.primary.main,
@@ -44,7 +50,7 @@ export const styles = theme => ({
   outlinedSecondary: {
     color: theme.palette.secondary.main,
     border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
-    '&$disabled': {
+    '&.disabled': {
       border: `1px solid ${theme.palette.action.disabled}`
     }
   },
@@ -55,7 +61,7 @@ export const styles = theme => ({
     '&:active': {
       boxShadow: theme.shadows[8]
     },
-    '&$disabled': {
+    '&.disabled': {
       color: theme.palette.action.disabled,
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground
@@ -68,9 +74,6 @@ export const styles = theme => ({
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
     backgroundColor: theme.palette.secondary.main
-  },
-  disabled: {
-    color: theme.palette.action.disabled
   },
   colorInherit: {
     color: 'inherit',
@@ -121,15 +124,20 @@ const Button = props => {
       [classes.containedPrimary]: contained && primary,
       [classes.containedSecondary]: contained && secondary,
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
-      [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
-      [classes.colorInherit]: color === 'inherit'
+      [classes.colorInherit]: color === 'inherit',
+      disabled: disabled
     },
     classNameProp
   );
 
   return (
-    <ButtonBase className={className} disabled={disabled} type={type} {...rest}>
+    <ButtonBase
+      className={`${className}`}
+      disabled={disabled}
+      type={type}
+      {...rest}
+    >
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );
