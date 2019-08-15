@@ -1,10 +1,13 @@
 import React from 'react';
 import { IconButton, Box } from '../../../';
+import { Add } from '../../../icon';
 
 const demo = props => {
   return (
     <Box p={1}>
-      <IconButton>121</IconButton>
+      <IconButton>
+        <Add />
+      </IconButton>
     </Box>
   );
 };
