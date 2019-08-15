@@ -3,8 +3,8 @@ import React from 'react';
 import README from './README.md';
 import Demo from './demo';
 
-storiesOf('Box', module)
+storiesOf('Layout', module)
   .addParameters({
     notes: README
   })
-  .add('demo', () => <Demo />);
+  .add('Box', () => <Demo />);

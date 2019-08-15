@@ -3,6 +3,7 @@ import {
   compose,
   borders,
   sizing,
+  display,
   flexbox,
   positions,
   palette,
@@ -16,6 +17,7 @@ export const styleFunction = css(
   compose(
     borders,
     sizing,
+    display,
     flexbox,
     positions,
     palette,
