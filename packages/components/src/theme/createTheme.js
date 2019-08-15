@@ -11,7 +11,7 @@ import { shadows as _shadows, shape, transitions, zIndex } from './default';
 const createTheme = (options = {}) => {
   const {
     palette: paletteInput = {},
-    spacing: spacingInput = {},
+    spacing: spacingInput,
     typography: typographyInput = {},
     breakpoints: breakpointsInput = {},
     mixins: mixinsInput = {},

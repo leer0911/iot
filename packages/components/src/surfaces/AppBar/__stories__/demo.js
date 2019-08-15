@@ -1,12 +1,17 @@
 import React from 'react';
-import { AppBar, Typography } from '../../../';
+import { AppBar, Box, Typography, Toolbar, Button } from '../../../';
 
-const demo = () => {
+const Demo = () => {
   return (
-    <AppBar>
-      <Typography variant="h6">This is a sheet of paper.</Typography>
+    <AppBar position="static">
+      <Toolbar>
+        <Box flex="1">
+          <Typography variant="h6">News</Typography>
+        </Box>
+        <Button color="inherit">Login</Button>
+      </Toolbar>
     </AppBar>
   );
 };
 
-export default demo;
+export default Demo;
