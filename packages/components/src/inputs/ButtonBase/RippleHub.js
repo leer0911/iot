@@ -5,6 +5,8 @@ import { useClasses } from '../../styles';
 
 let id = 0;
 
+const DURATION = 150;
+
 const containerCls = css({
   display: 'block',
   position: 'absolute',
@@ -39,7 +41,7 @@ const RippleHub = ({ center, children }) => {
 
   const transitions = useTransition(items, item => item.key, {
     from: { opacity: 0, transform: 'scale(0)' },
-    config: { duration: 200 },
+    config: { duration: DURATION },
     enter: item => async next => {
       await next({ opacity: 0.1, transform: 'scale(0.2)' });
       await next({ opacity: 0.2, transform: 'scale(0.9)' });

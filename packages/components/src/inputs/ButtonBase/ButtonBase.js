@@ -40,6 +40,7 @@ const useEventCallback = fn => {
 
 const ButtonBase = props => {
   const {
+    className: classNameProp,
     centerRipple = false,
     disableRipple = false,
     disableTouchRipple = false,
@@ -88,10 +89,14 @@ const ButtonBase = props => {
   const handleTouchMove = useRippleHandler(onTouchMove);
   const handleClick = useRippleHandler(onClick);
 
-  const className = cx(classes.root, {
-    [classes.disabled]: disabled,
-    [classes.focusVisible]: focusVisible
-  });
+  const className = cx(
+    classes.root,
+    {
+      [classes.disabled]: disabled,
+      [classes.focusVisible]: focusVisible
+    },
+    classNameProp
+  );
 
   return (
     <button
