@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react';
 import React from 'react';
 import README from './README.md';
-import Demo from './demo';
+import Demo from './Demo';
 
 storiesOf('Layout', module)
   .addParameters({
-    notes: README
+    notes: README,
   })
   .add('Box', () => <Demo />);

@@ -2,5 +2,12 @@
   "eslint.enable": true,
   "editor.formatOnSave": true,
   "prettier.eslintIntegration": false,
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "cSpell.ignoreWords": [
+    "bgcolor",
+    "flexbox",
+    "keysframes",
+    "nowrap",
+    "sheetkey"
+  ]
 }

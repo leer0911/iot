@@ -4,6 +4,7 @@ module.exports = {
   jsxSingleQuote: false,
   bracketSpacing: true,
   arrowParens: 'avoid',
+  trailingComma: 'all',
   overrides: [
     {
       files: ['constants.js', 'propTypes.js', '*.d.ts'],

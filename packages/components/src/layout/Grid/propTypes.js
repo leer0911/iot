@@ -3,7 +3,6 @@ import { SPACINGS, GRID_SIZES, ALIGNCONTENT, ALIGNITEMS, DIRECTION, JUSTIFY, WRA
 
 export const gridPropTypes = {
   children: PropTypes.node,
-  as: PropTypes.elementType,
 
   container: PropTypes.bool, // If `true`, the component will have the flex *container* behavior.
   item: PropTypes.bool, // If `true`, the component will have the flex *item* behavior.
@@ -15,5 +14,5 @@ export const gridPropTypes = {
   wrap: PropTypes.oneOf(WRAP),
 
   spacing: PropTypes.oneOf(SPACINGS),
-  grid: PropTypes.oneOf(GRID_SIZES)
+  grid: PropTypes.oneOf(GRID_SIZES),
 };

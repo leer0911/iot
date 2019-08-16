@@ -7,7 +7,7 @@ import propTypes from './propTypes';
 
 export const styles = theme => ({
   root: {
-    margin: 0
+    margin: 0,
   },
   h1: theme.typography.h1,
   h2: theme.typography.h2,
@@ -23,52 +23,52 @@ export const styles = theme => ({
   caption: theme.typography.caption,
   overline: theme.typography.overline,
   alignLeft: {
-    textAlign: 'left'
+    textAlign: 'left',
   },
   alignCenter: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   alignRight: {
-    textAlign: 'right'
+    textAlign: 'right',
   },
   alignJustify: {
-    textAlign: 'justify'
+    textAlign: 'justify',
   },
   noWrap: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   gutterBottom: {
-    marginBottom: '0.35em'
+    marginBottom: '0.35em',
   },
   paragraph: {
-    marginBottom: 16
+    marginBottom: 16,
   },
   colorInherit: {
-    color: 'inherit'
+    color: 'inherit',
   },
   colorPrimary: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   colorSecondary: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   colorTextPrimary: {
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
   },
   colorTextSecondary: {
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   colorError: {
-    color: theme.palette.error.main
+    color: theme.palette.error.main,
   },
   displayInline: {
-    display: 'inline'
+    display: 'inline',
   },
   displayBlock: {
-    display: 'block'
-  }
+    display: 'block',
+  },
 });
 
 const defaultVariantMapping = {
@@ -81,7 +81,7 @@ const defaultVariantMapping = {
   subtitle1: 'h6',
   subtitle2: 'h6',
   body1: 'p',
-  body2: 'p'
+  body2: 'p',
 };
 
 const Typography = props => {
@@ -113,7 +113,7 @@ const Typography = props => {
     [classes[`display${capitalize(display)}`]]: display !== 'initial',
     [classes.paragraph]: paragraph,
     [classes.noWrap]: noWrap,
-    [classes.gutterBottom]: gutterBottom
+    [classes.gutterBottom]: gutterBottom,
   });
 
   return <Component className={className} {...rest} />;

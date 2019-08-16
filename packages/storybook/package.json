@@ -24,6 +24,7 @@
     "@storybook/addons": "^5.2.0-alpha.35",
     "@storybook/react": "^5.2.0-alpha.35",
     "@storybook/theming": "^5.2.0-alpha.35",
-    "storybook-addon-jsx": "^7.1.5"
+    "storybook-addon-jsx": "^7.1.5",
+    "@storybook/addon-knobs": "^5.1.11"
   }
 }

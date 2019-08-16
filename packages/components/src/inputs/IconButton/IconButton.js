@@ -17,44 +17,44 @@ export const styles = theme => ({
     overflow: 'visible',
     color: theme.palette.action.active,
     transition: theme.transitions.create('background-color', {
-      duration: theme.transitions.duration.shortest
+      duration: theme.transitions.duration.shortest,
     }),
     '& .disabled': {
       backgroundColor: 'transparent',
-      color: theme.palette.action.disabled
-    }
+      color: theme.palette.action.disabled,
+    },
   },
   edgeStart: {
     marginLeft: -12,
     '$sizeSmall&': {
-      marginLeft: -3
-    }
+      marginLeft: -3,
+    },
   },
   edgeEnd: {
     marginRight: -12,
     '$sizeSmall&': {
-      marginRight: -3
-    }
+      marginRight: -3,
+    },
   },
   colorInherit: {
-    color: 'inherit'
+    color: 'inherit',
   },
   colorPrimary: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   colorSecondary: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   sizeSmall: {
     padding: 3,
-    fontSize: theme.typography.pxToRem(18)
+    fontSize: theme.typography.pxToRem(18),
   },
   label: {
     width: '100%',
     display: 'flex',
     alignItems: 'inherit',
-    justifyContent: 'inherit'
-  }
+    justifyContent: 'inherit',
+  },
 });
 
 const IconButton = props => {
@@ -79,9 +79,9 @@ const IconButton = props => {
           [classes.disabled]: disabled,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.edgeStart]: edge === 'start',
-          [classes.edgeEnd]: edge === 'end'
+          [classes.edgeEnd]: edge === 'end',
         },
-        className
+        className,
       )}
       centerRipple
       disabled={disabled}
@@ -97,7 +97,7 @@ IconButton.propTypes = {
   edge: PropTypes.oneOf(['start', 'end', false]),
   size: PropTypes.oneOf(['small', 'medium']),
   disabled: PropTypes.bool,
-  disableRipple: PropTypes.bool
+  disableRipple: PropTypes.bool,
 };
 
 export default IconButton;

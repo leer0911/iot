@@ -132,12 +132,7 @@ const Button = props => {
   );
 
   return (
-    <ButtonBase
-      className={`${className}`}
-      disabled={disabled}
-      type={type}
-      {...rest}
-    >
+    <ButtonBase className={className} disabled={disabled} type={type} {...rest}>
       <span className={classes.label}>{children}</span>
     </ButtonBase>
   );

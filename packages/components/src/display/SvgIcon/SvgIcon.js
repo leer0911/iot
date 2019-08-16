@@ -16,33 +16,33 @@ export const styles = theme => ({
     flexShrink: 0,
     fontSize: theme.typography.pxToRem(24),
     transition: theme.transitions.create('fill', {
-      duration: theme.transitions.duration.shorter
-    })
+      duration: theme.transitions.duration.shorter,
+    }),
   },
   colorPrimary: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   colorSecondary: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   colorAction: {
-    color: theme.palette.action.active
+    color: theme.palette.action.active,
   },
   colorError: {
-    color: theme.palette.error.main
+    color: theme.palette.error.main,
   },
   colorDisabled: {
-    color: theme.palette.action.disabled
+    color: theme.palette.action.disabled,
   },
   fontSizeInherit: {
-    fontSize: 'inherit'
+    fontSize: 'inherit',
   },
   fontSizeSmall: {
-    fontSize: theme.typography.pxToRem(20)
+    fontSize: theme.typography.pxToRem(20),
   },
   fontSizeLarge: {
-    fontSize: theme.typography.pxToRem(35)
-  }
+    fontSize: theme.typography.pxToRem(35),
+  },
 });
 
 const SvgIcon = props => {
@@ -65,9 +65,9 @@ const SvgIcon = props => {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'inherit',
-          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default'
+          [classes[`fontSize${capitalize(fontSize)}`]]: fontSize !== 'default',
         },
-        className
+        className,
       )}
       focusable="false"
       viewBox={viewBox}
@@ -91,13 +91,13 @@ SvgIcon.propTypes = {
     'secondary',
     'action',
     'error',
-    'disabled'
+    'disabled',
   ]),
   fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
   htmlColor: PropTypes.string,
   shapeRendering: PropTypes.string,
   titleAccess: PropTypes.string,
-  viewBox: PropTypes.string
+  viewBox: PropTypes.string,
 };
 
 export default SvgIcon;
