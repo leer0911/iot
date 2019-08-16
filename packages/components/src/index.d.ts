@@ -7,6 +7,7 @@ export { default as SvgIcon } from './display/SvgIcon';
 export { default as Paper } from './surfaces/Paper';
 export { default as AppBar } from './surfaces/AppBar';
 export { default as Toolbar } from './surfaces/Toolbar';
+export { default as Fab } from './inputs/Fab';
 
 export { default as useClasses } from './styles/useClasses';
 
