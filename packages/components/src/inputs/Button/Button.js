@@ -13,24 +13,24 @@ export const styles = theme => ({
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
-    '&.disabled': {
-      color: theme.palette.action.disabled
-    }
+  },
+  disabled: {
+    color: theme.palette.action.disabled,
   },
   label: {
     width: '100%',
     display: 'inherit',
     alignItems: 'inherit',
-    justifyContent: 'inherit'
+    justifyContent: 'inherit',
   },
   text: {
-    padding: '6px 8px'
+    padding: '6px 8px',
   },
   textPrimary: {
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   textSecondary: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   outlined: {
     padding: '5px 16px',
@@ -39,55 +39,55 @@ export const styles = theme => ({
         ? 'rgba(0, 0, 0, 0.23)'
         : 'rgba(255, 255, 255, 0.23)'
     }`,
-    '&.disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`
-    }
+  },
+  outlinedDisabled: {
+    border: `1px solid ${theme.palette.action.disabled}`,
   },
   outlinedPrimary: {
     color: theme.palette.primary.main,
-    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`
+    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
   },
   outlinedSecondary: {
     color: theme.palette.secondary.main,
     border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
-    '&.disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`
-    }
+  },
+  outlinedSecondaryDisabled: {
+    border: `1px solid ${theme.palette.action.disabled}`,
   },
   contained: {
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
     '&:active': {
-      boxShadow: theme.shadows[8]
+      boxShadow: theme.shadows[8],
     },
-    '&.disabled': {
-      color: theme.palette.action.disabled,
-      boxShadow: theme.shadows[0],
-      backgroundColor: theme.palette.action.disabledBackground
-    }
+  },
+  containeDisabled: {
+    color: theme.palette.action.disabled,
+    boxShadow: theme.shadows[0],
+    backgroundColor: theme.palette.action.disabledBackground,
   },
   containedPrimary: {
     color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   containedSecondary: {
     color: theme.palette.secondary.contrastText,
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   colorInherit: {
     color: 'inherit',
-    borderColor: 'currentColor'
+    borderColor: 'currentColor',
   },
   sizeSmall: {
-    padding: '4px 8px'
+    padding: '4px 8px',
   },
   sizeLarge: {
-    padding: '8px 24px'
+    padding: '8px 24px',
   },
   fullWidth: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 const Button = props => {
@@ -126,9 +126,11 @@ const Button = props => {
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.fullWidth]: fullWidth,
       [classes.colorInherit]: color === 'inherit',
-      disabled: disabled
+      [classes.disabled]: disabled,
+      [classes.outlinedDisabled]: outlined && disabled,
+      [classes.containeDisabled]: contained && disabled,
     },
-    classNameProp
+    classNameProp,
   );
 
   return (

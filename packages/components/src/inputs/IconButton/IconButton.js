@@ -19,22 +19,19 @@ export const styles = theme => ({
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    '& .disabled': {
-      backgroundColor: 'transparent',
-      color: theme.palette.action.disabled,
-    },
+  },
+  disabled: {
+    backgroundColor: 'transparent',
+    color: theme.palette.action.disabled,
   },
   edgeStart: {
     marginLeft: -12,
-    '$sizeSmall&': {
-      marginLeft: -3,
-    },
   },
   edgeEnd: {
     marginRight: -12,
-    '$sizeSmall&': {
-      marginRight: -3,
-    },
+  },
+  edgeSmall: {
+    marginLeft: -3,
   },
   colorInherit: {
     color: 'inherit',
@@ -76,10 +73,11 @@ const IconButton = props => {
         classes.root,
         {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
-          [classes.disabled]: disabled,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.edgeStart]: edge === 'start',
           [classes.edgeEnd]: edge === 'end',
+          [classes.edgeSmall]: edge && size === 'small',
+          [classes.disabled]: disabled,
         },
         className,
       )}
