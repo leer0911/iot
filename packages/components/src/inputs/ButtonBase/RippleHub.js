@@ -17,13 +17,13 @@ const containerCls = css({
   left: 0,
   top: 0,
   zIndex: 0,
-  pointerEvents: 'none'
+  pointerEvents: 'none',
 });
 
 export const styles = theme => ({
   ripple: {
     opacity: 0,
-    position: 'absolute'
+    position: 'absolute',
   },
   child: {
     opacity: 1,
@@ -31,8 +31,8 @@ export const styles = theme => ({
     width: '100%',
     height: '100%',
     borderRadius: '50%',
-    backgroundColor: 'currentColor'
-  }
+    backgroundColor: 'currentColor',
+  },
 });
 
 const RippleHub = ({ center, children }) => {
@@ -48,13 +48,17 @@ const RippleHub = ({ center, children }) => {
       next({ opacity: 0.3, transform: 'scale(1)' });
       next({ opacity: 0 });
       setItems(state => state.filter(i => i.key !== item.key));
-    }
+    },
   });
 
   useEffect(
     () =>
-      children(event => setItems(state => [...state, { key: id++, event }])),
-    [children]
+      children(event => {
+        if (event) {
+          setItems(state => [...state, { key: id++, event }]);
+        }
+      }),
+    [children],
   );
 
   const containerRef = useRef(null);
@@ -93,10 +97,10 @@ const RippleHub = ({ center, children }) => {
         width: rippleSize,
         height: rippleSize,
         top: -(rippleSize / 2) + rippleY,
-        left: -(rippleSize / 2) + rippleX
+        left: -(rippleSize / 2) + rippleX,
       };
     },
-    [center]
+    [center],
   );
 
   return (
