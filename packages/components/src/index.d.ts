@@ -7,6 +7,7 @@ export { default as Fab } from './inputs/Fab';
 export { default as SwitchBase } from './inputs/SwitchBase';
 export { default as Radio } from './inputs/Radio';
 export { default as RadioGroup } from './inputs/RadioGroup';
+export { default as Switch } from './inputs/Switch';
 
 export { default as Typography } from './display/Typography';
 export { default as SvgIcon } from './display/SvgIcon';

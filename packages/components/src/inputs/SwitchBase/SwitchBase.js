@@ -26,6 +26,7 @@ export const styles = {
 const SwitchBase = props => {
   const {
     className: classNameProp,
+    classes: classesProp,
     autoFocus,
     checked: checkedProp,
     checkedIcon,
@@ -46,7 +47,7 @@ const SwitchBase = props => {
     ...rest
   } = props;
 
-  const classes = useClasses(styles);
+  const classes = useClasses(styles, { classes: classesProp });
 
   const { current: isControlled } = React.useRef(checkedProp != null);
   const [checkedState, setCheckedState] = React.useState(

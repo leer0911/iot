@@ -1,12 +1,20 @@
 import { keyframes, css } from 'emotion';
 import { useTheme } from '../theme';
+import deepmerge from 'deepmerge';
 
-const useClasses = classes => {
+const useClasses = (classes, props = {}) => {
   const theme = useTheme() || {};
   let originClasses = classes;
+
   if (typeof classes === 'function') {
-    originClasses = classes(theme);
+    originClasses = classes(theme, props);
   }
+
+  // 模拟样式嵌套覆盖
+  if (typeof props.classes === 'function') {
+    originClasses = deepmerge(originClasses, props.classes(theme, props));
+  }
+
   const finalClasses = {};
   const keys = Object.keys(originClasses);
   const animationNames = keys.filter(key => key.indexOf('@keyframes') !== -1);
