@@ -25,6 +25,8 @@ export { default as Toolbar } from './surfaces/Toolbar';
 export { default as BottomNavigation } from './navigation/BottomNavigation';
 export { default as BottomNavigationAction } from './navigation/BottomNavigationAction';
 
+export { default as CircularProgress } from './feedback/CircularProgress';
+
 export { default as useClasses } from './styles/useClasses';
 
 export namespace PropTypes {
