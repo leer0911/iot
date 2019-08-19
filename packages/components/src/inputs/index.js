@@ -6,4 +6,5 @@ export { default as SwitchBase } from './SwitchBase';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export { default as Switch } from './Switch';
+export { default as Checkbox } from './Checkbox';
 export { default as InputBase } from './InputBase';
