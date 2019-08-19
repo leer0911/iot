@@ -13,6 +13,8 @@ export { default as InputBase } from './inputs/InputBase';
 
 export { default as Typography } from './display/Typography';
 export { default as SvgIcon } from './display/SvgIcon';
+export { default as List } from './display/List';
+export { default as ListItem } from './display/ListItem';
 
 export { default as Paper } from './surfaces/Paper';
 export { default as AppBar } from './surfaces/AppBar';

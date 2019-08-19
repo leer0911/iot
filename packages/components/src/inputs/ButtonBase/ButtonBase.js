@@ -22,12 +22,12 @@ export const styles = {
     verticalAlign: 'middle',
     appearance: 'none',
     textDecoration: 'none',
-    color: 'inherit'
+    color: 'inherit',
   },
   disabled: {
     pointerEvents: 'none',
-    cursor: 'default'
-  }
+    cursor: 'default',
+  },
 };
 
 const useEventCallback = fn => {
@@ -54,6 +54,7 @@ const ButtonBase = props => {
     onTouchStart,
     onDragLeave,
     TouchRippleProps,
+    component: Component = 'button',
     ...rest
   } = props;
 
@@ -68,7 +69,7 @@ const ButtonBase = props => {
 
   const useRippleHandler = (
     eventCallback,
-    skipRippleAction = disableTouchRipple
+    skipRippleAction = disableTouchRipple,
   ) => {
     return useEventCallback(event => {
       if (eventCallback) {
@@ -93,13 +94,13 @@ const ButtonBase = props => {
     classes.root,
     {
       [classes.disabled]: disabled,
-      [classes.focusVisible]: focusVisible
+      [classes.focusVisible]: focusVisible,
     },
-    classNameProp
+    classNameProp,
   );
 
   return (
-    <button
+    <Component
       className={className}
       onClick={handleClick}
       onDragLeave={handleDragLeave}
@@ -116,7 +117,7 @@ const ButtonBase = props => {
           children={add => (ref.current = add)}
         />
       ) : null}
-    </button>
+    </Component>
   );
 };
 
