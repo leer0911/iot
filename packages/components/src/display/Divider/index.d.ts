@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export interface DividerProps {
   absolute?: boolean;
   light?: boolean;
