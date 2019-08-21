@@ -5,6 +5,7 @@
   "eslint.autoFixOnSave": true,
   "cSpell.ignoreWords": [
     "bgcolor",
+    "deletable",
     "flexbox",
     "keysframes",
     "nowrap",
