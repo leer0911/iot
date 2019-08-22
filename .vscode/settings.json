@@ -9,6 +9,8 @@
     "flexbox",
     "keysframes",
     "nowrap",
+    "scrollable",
+    "scroller",
     "sheetkey"
   ]
 }
