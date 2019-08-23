@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
-import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import ButtonBase from '../../inputs/ButtonBase';
+import { capitalize } from '../../utils/helpers';
 
 export const styles = theme => ({
   root: {
@@ -38,33 +38,28 @@ export const styles = theme => ({
   textColorInherit: {
     color: 'inherit',
     opacity: 0.7,
-    '&$selected': {
-      opacity: 1,
-    },
-    '&$disabled': {
-      opacity: 0.4,
-    },
+  },
+  textColorInheritSelected: {
+    opacity: 1,
+  },
+  textColorInheritDisabled: {
+    opacity: 0.4,
   },
   textColorPrimary: {
     color: theme.palette.text.secondary,
-    '&$selected': {
-      color: theme.palette.primary.main,
-    },
-    '&$disabled': {
-      color: theme.palette.text.disabled,
-    },
+  },
+  textColorPrimarySelected: {
+    color: theme.palette.primary.main,
   },
   textColorSecondary: {
     color: theme.palette.text.secondary,
-    '&$selected': {
-      color: theme.palette.secondary.main,
-    },
-    '&$disabled': {
-      color: theme.palette.text.disabled,
-    },
   },
-  selected: {},
-  disabled: {},
+  textColorSecondarySelected: {
+    color: theme.palette.secondary.main,
+  },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
   fullWidth: {
     flexShrink: 1,
     flexGrow: 1,
@@ -88,7 +83,6 @@ const Tab = props => {
   const {
     className,
     disabled = false,
-    disableFocusRipple = false,
     fullWidth,
     icon,
     indicator,
@@ -116,7 +110,6 @@ const Tab = props => {
 
   return (
     <ButtonBase
-      focusRipple={!disableFocusRipple}
       className={cx(
         classes.root,
         classes[`textColor${capitalize(textColor)}`],
@@ -126,6 +119,14 @@ const Tab = props => {
           [classes.labelIcon]: label && icon,
           [classes.fullWidth]: fullWidth,
           [classes.wrapped]: wrapped,
+          [classes.textColorPrimarySelected]:
+            selected && textColor === 'primary',
+          [classes.textColorSecondarySelected]:
+            selected && textColor === 'secondary',
+          [classes.textColorInheritSelected]:
+            selected && textColor === 'inherit',
+          [classes.textColorInheritDisabled]:
+            disabled && textColor === 'inherit',
         },
         className,
       )}
@@ -147,7 +148,6 @@ const Tab = props => {
 Tab.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
-  disableFocusRipple: PropTypes.bool,
   disableRipple: PropTypes.bool,
   fullWidth: PropTypes.bool,
   icon: PropTypes.node,

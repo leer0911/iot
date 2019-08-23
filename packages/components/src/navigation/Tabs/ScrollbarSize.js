@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import debounce from 'debounce'; // < 1kb payload overhead when lodash/debounce is > 3kb.
 
 const styles = {
   width: 99,
@@ -19,24 +18,6 @@ export default function ScrollbarSize(props) {
     scrollbarHeight.current =
       nodeRef.current.offsetHeight - nodeRef.current.clientHeight;
   };
-
-  React.useEffect(() => {
-    const handleResize = debounce(() => {
-      const prevHeight = scrollbarHeight.current;
-      setMeasurements();
-
-      if (prevHeight !== scrollbarHeight.current) {
-        onChange(scrollbarHeight.current);
-      }
-    }, 166); // Corresponds to 10 frames at 60 Hz.
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      handleResize.clear();
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [onChange]);
 
   React.useEffect(() => {
     setMeasurements();

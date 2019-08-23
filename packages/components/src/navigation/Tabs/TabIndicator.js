@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
-import { capitalize } from '../utils/helpers';
+import { capitalize } from '../../utils/helpers';
 
 export const styles = theme => ({
   root: {

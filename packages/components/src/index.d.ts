@@ -24,6 +24,8 @@ export { default as Toolbar } from './surfaces/Toolbar';
 
 export { default as BottomNavigation } from './navigation/BottomNavigation';
 export { default as BottomNavigationAction } from './navigation/BottomNavigationAction';
+export { default as Tab } from './navigation/Tab';
+export { default as Tabs } from './navigation/Tabs';
 
 export { default as CircularProgress } from './feedback/CircularProgress';
 
