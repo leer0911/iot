@@ -28,6 +28,7 @@ export { default as Tab } from './navigation/Tab';
 export { default as Tabs } from './navigation/Tabs';
 
 export { default as CircularProgress } from './feedback/CircularProgress';
+export { default as Modal } from './feedback/Modal';
 
 export { default as useClasses } from './styles/useClasses';
 
