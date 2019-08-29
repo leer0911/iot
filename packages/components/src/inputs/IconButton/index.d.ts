@@ -1,7 +1,7 @@
 import { PropTypes } from '..';
-import { ButtonProps } from '../Button';
+import { ButtonBaseProps } from '../ButtonBase';
 
-export interface IconButtonProps extends ButtonProps {
+export interface IconButtonProps extends ButtonBaseProps {
   color?: PropTypes.Color;
   edge?: 'start' | 'end' | false;
   size?: 'small' | 'medium';

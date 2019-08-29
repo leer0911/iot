@@ -5,13 +5,33 @@ import { Add } from '../../../icon';
 const Demo = () => {
   return (
     <Box p={1}>
-      <IconButton disabled>
+      <h3>color</h3>
+      <IconButton>
+        <Add />
+      </IconButton>
+      <IconButton color="primary">
+        <Add />
+      </IconButton>
+      <IconButton color="secondary">
+        <Add />
+      </IconButton>
+
+      <h3>edge</h3>
+      <IconButton>
         <Add />
       </IconButton>
       <IconButton edge="start">
         <Add />
       </IconButton>
-      <IconButton edge="start" size="small">
+      <IconButton edge="end">
+        <Add />
+      </IconButton>
+
+      <h3>size</h3>
+      <IconButton size="small">
+        <Add />
+      </IconButton>
+      <IconButton>
         <Add />
       </IconButton>
     </Box>
