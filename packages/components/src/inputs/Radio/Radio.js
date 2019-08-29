@@ -7,10 +7,6 @@ import { useClasses } from '../../styles';
 import SwitchBase from '../SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 
-import { createChainedFunction } from '../../utils/helpers';
-
-import RadioGroupContext from '../RadioGroup/RadioGroupContext';
-
 export const styles = theme => ({
   root: {
     color: theme.palette.text.secondary,
@@ -34,31 +30,14 @@ const Radio = props => {
     checked: checkedProp,
     color = 'secondary',
     name: nameProp,
-    onChange: onChangeProp,
     disabled,
     ...rest
   } = props;
 
   const classes = useClasses(styles);
 
-  const radioGroup = React.useContext(RadioGroupContext);
-
   let checked = checkedProp;
   let name = nameProp;
-
-  const onChange = createChainedFunction(
-    onChangeProp,
-    radioGroup && radioGroup.onChange,
-  );
-
-  if (radioGroup) {
-    if (typeof checked === 'undefined') {
-      checked = radioGroup.value === props.value;
-    }
-    if (typeof name === 'undefined') {
-      name = radioGroup.name;
-    }
-  }
 
   return (
     <SwitchBase
@@ -73,7 +52,7 @@ const Radio = props => {
       })}
       name={name}
       checked={checked}
-      onChange={onChange}
+      disabled={disabled}
       {...rest}
     />
   );
