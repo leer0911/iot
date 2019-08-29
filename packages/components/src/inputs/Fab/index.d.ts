@@ -1,12 +1,12 @@
 import { PropTypes } from '../../';
-import { ButtonProps } from '../Button';
+import { ButtonBaseProps } from '../ButtonBase';
 
-export interface FabButtonBase extends ButtonProps {
+export interface FabProps extends ButtonBaseProps {
   color?: PropTypes.Color;
   size?: 'small' | 'medium' | 'large';
   variant?: 'round' | 'extended';
 }
 
-declare const Fab: React.ComponentType<FabButtonBase>;
+declare const Fab: React.ComponentType<FabProps>;
 
 export default Fab;

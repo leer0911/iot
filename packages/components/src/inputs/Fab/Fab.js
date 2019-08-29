@@ -114,14 +114,13 @@ const Fab = props => {
 };
 
 Fab.propTypes = {
-  children: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
   component: PropTypes.elementType,
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(['round', 'extended']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
-  href: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  variant: PropTypes.oneOf(['round', 'extended']),
 };
 
 export default Fab;
