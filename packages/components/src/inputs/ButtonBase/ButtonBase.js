@@ -1,8 +1,10 @@
 import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
-import { cx } from 'emotion';
-import RippleHub from './RippleHub';
 import propTypes from './propTypes';
+
+import { cx } from 'emotion';
 import { useClasses } from '../../styles';
+
+import RippleHub from './RippleHub';
 
 export const styles = {
   root: {
@@ -40,21 +42,17 @@ const useEventCallback = fn => {
 
 const ButtonBase = props => {
   const {
+    component: Component = 'button',
     className: classNameProp,
+    children,
     centerRipple = false,
     disableRipple = false,
-    disableTouchRipple = false,
-    tabIndex = 0,
-    action,
-    children,
     disabled,
     onClick,
     onTouchEnd,
     onTouchMove,
     onTouchStart,
     onDragLeave,
-    TouchRippleProps,
-    component: Component = 'button',
     ...rest
   } = props;
 
@@ -69,7 +67,7 @@ const ButtonBase = props => {
 
   const useRippleHandler = (
     eventCallback,
-    skipRippleAction = disableTouchRipple,
+    skipRippleAction = disableRipple,
   ) => {
     return useEventCallback(event => {
       if (eventCallback) {
@@ -107,7 +105,6 @@ const ButtonBase = props => {
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
       onTouchStart={handleTouchStart}
-      tabIndex={disabled ? -1 : tabIndex}
       {...rest}
     >
       {children}
