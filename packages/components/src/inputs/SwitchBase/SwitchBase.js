@@ -53,6 +53,9 @@ const SwitchBase = props => {
 
   const handleInputChange = event => {
     const checked = event.target.checked;
+    if(disabled){
+      return
+    }
 
     if (!isControlled) {
       setCheckedState(checked);

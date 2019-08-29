@@ -33,14 +33,13 @@ const defaultIndeterminateIcon = <IndeterminateCheckBoxIcon />;
 
 const Checkbox = props => {
   const {
-    checkedIcon = defaultCheckedIcon,
-    color = 'secondary',
-    icon = defaultIcon,
-    indeterminate = false,
-    indeterminateIcon = defaultIndeterminateIcon,
-    inputProps,
-    disabled,
     checked,
+    disabled,
+    indeterminate = false,
+    icon = defaultIcon,
+    checkedIcon = defaultCheckedIcon,
+    indeterminateIcon = defaultIndeterminateIcon,
+    color = 'secondary',
     ...other
   } = props;
 
@@ -49,6 +48,7 @@ const Checkbox = props => {
   return (
     <SwitchBase
       type="checkbox"
+      icon={indeterminate ? indeterminateIcon : icon}
       checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
       className={cx(classes.root, {
         [classes.colorPrimaryChecked]: checked && color === 'primary',
@@ -56,11 +56,8 @@ const Checkbox = props => {
         [classes.disabled]: disabled,
       })}
       color={color}
-      inputProps={{
-        'data-indeterminate': indeterminate,
-        ...inputProps,
-      }}
-      icon={indeterminate ? indeterminateIcon : icon}
+      checked={checked}
+      disabled={disabled}
       {...other}
     />
   );
@@ -73,13 +70,10 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   disableRipple: PropTypes.bool,
   icon: PropTypes.node,
-  id: PropTypes.string,
   indeterminate: PropTypes.bool,
   indeterminateIcon: PropTypes.node,
   inputProps: PropTypes.object,
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   onChange: PropTypes.func,
-  type: PropTypes.string,
   value: PropTypes.any,
 };
 

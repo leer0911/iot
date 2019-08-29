@@ -1,25 +1,30 @@
 import React from 'react';
 import { Checkbox, Box } from '../../../';
+import Knobs from './Knobs.js';
 
 const Demo = () => {
   const [selectedValue, setSelectedValue] = React.useState('a');
 
-  const handleChange = event => {
-    setSelectedValue(event.target.value);
+  const handleChange = (event, checked) => {
+    setSelectedValue(checked);
   };
 
   return (
     <Box p={1}>
+      <Knobs></Knobs>
+      
+      <h3>color</h3>
       <Checkbox
+        color="default"
         checked={selectedValue === 'a'}
         onChange={handleChange}
-        value="a"
       />
       <Checkbox
-        checked={selectedValue === 'b'}
+        color="primary"
+        checked={selectedValue === 'a'}
         onChange={handleChange}
-        value="b"
       />
+      <Checkbox checked={selectedValue === 'a'} onChange={handleChange} />
     </Box>
   );
 };
