@@ -1,5 +1,3 @@
-// @inheritedComponent IconButton
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -58,7 +56,7 @@ export const styles = theme => ({
   trackChecked: {
     opacity: 0.5,
   },
-  trackDisabled: {
+  disabled: {
     opacity: theme.palette.type === 'light' ? 0.12 : 0.1,
   },
   trackColorSecondaryChecked: {
@@ -119,6 +117,7 @@ const Switch = props => {
         {
           [classes.edgeStart]: edge === 'start',
           [classes.edgeEnd]: edge === 'end',
+          [classes.disabled]: disabled,
         },
         className,
       )}
