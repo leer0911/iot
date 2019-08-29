@@ -1,8 +1,9 @@
-import * as React from 'react';
+import { SwitchBaseProps } from '../SwitchBase';
 
-export interface SwitchProps {
+export interface SwitchProps extends SwitchBaseProps {
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
+  edge?: 'start' | 'end' | false;
   icon?: React.ReactNode;
 }
 
