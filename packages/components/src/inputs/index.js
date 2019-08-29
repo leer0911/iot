@@ -8,3 +8,4 @@ export { default as RadioGroup } from './RadioGroup';
 export { default as Switch } from './Switch';
 export { default as Checkbox } from './Checkbox';
 export { default as InputBase } from './InputBase';
+export { default as Slider } from './Slider';

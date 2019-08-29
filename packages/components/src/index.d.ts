@@ -10,6 +10,7 @@ export { default as RadioGroup } from './inputs/RadioGroup';
 export { default as Switch } from './inputs/Switch';
 export { default as Checkbox } from './inputs/Checkbox';
 export { default as InputBase } from './inputs/InputBase';
+export { default as Slider } from './inputs/Slider';
 
 export { default as Typography } from './display/Typography';
 export { default as SvgIcon } from './display/SvgIcon';
