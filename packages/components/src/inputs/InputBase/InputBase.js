@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
 import Textarea from './Textarea';
-import propTypes from './propTypes';
 
 export const styles = theme => ({
   root: {
@@ -51,13 +51,13 @@ export const styles = theme => ({
 const InputBase = props => {
   const {
     className: classNameProp,
-    disabled,
     inputComponent = 'input',
+    type = 'text',
     multiline = false,
     rows,
     rowsMax,
-    type = 'text',
     value,
+    disabled,
     ...other
   } = props;
 
@@ -91,6 +91,14 @@ const InputBase = props => {
   );
 };
 
-InputBase.propTypes = propTypes;
+InputBase.propTypes = {
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  multiline: PropTypes.bool,
+  type: PropTypes.string,
+  value: PropTypes.any,
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
 
 export default InputBase;
