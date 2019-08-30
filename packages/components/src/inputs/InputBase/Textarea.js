@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
 }
 
-const useEnhancedEffect =
-  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
-
 const styles = {
   shadow: {
     visibility: 'hidden',
     position: 'absolute',
     overflow: 'hidden',
-    height: '0',
+    height: 0,
+    top: 0,
+    left: 0,
   },
 };
 
@@ -74,7 +73,7 @@ const Textarea = props => {
     });
   }, [setState, rows, rowsMax, props.placeholder]);
 
-  useEnhancedEffect(() => {
+  useLayoutEffect(() => {
     syncHeight();
   });
 
@@ -91,6 +90,7 @@ const Textarea = props => {
   return (
     <React.Fragment>
       <textarea
+        ref={inputRef}
         value={value}
         onChange={handleChange}
         style={{

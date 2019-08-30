@@ -20,13 +20,6 @@ export const styles = theme => ({
     display: 'block',
     minWidth: 0,
     width: '100%',
-    placeholder: {
-      color: 'currentColor',
-      opacity: theme.palette.type === 'light' ? 0.42 : 0.5,
-      transition: theme.transitions.create('opacity', {
-        duration: theme.transitions.duration.shorter,
-      }),
-    },
     '&:focus': {
       outline: 0,
     },
@@ -42,21 +35,15 @@ export const styles = theme => ({
     resize: 'none',
     padding: 0,
   },
-  inputTypeSearch: {
-    '-moz-appearance': 'textfield',
-    '-webkit-appearance': 'textfield',
-  },
 });
 
 const InputBase = props => {
   const {
-    className: classNameProp,
+    className,
     inputComponent = 'input',
-    type = 'text',
     multiline = false,
     rows,
     rowsMax,
-    value,
     disabled,
     ...other
   } = props;
@@ -78,14 +65,13 @@ const InputBase = props => {
       className={cx(
         classes.root,
         {
-          [classes.inputTypeSearch]: type === 'search',
           [classes.inputMultiline]: multiline,
           [classes.disabled]: disabled,
         },
-        classNameProp,
+        className,
       )}
       rows={rows}
-      value={value}
+      disabled={disabled}
       {...other}
     />
   );
@@ -95,8 +81,6 @@ InputBase.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   multiline: PropTypes.bool,
-  type: PropTypes.string,
-  value: PropTypes.any,
   rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
