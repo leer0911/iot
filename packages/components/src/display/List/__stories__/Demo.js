@@ -6,6 +6,7 @@ import {
   ListItemAvatar,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
   Avatar,
 } from '../../../';
 import Search from '../../../icon/Search.js';
@@ -14,7 +15,7 @@ const Demo = () => {
   return (
     <Box>
       <h3>基础用法</h3>
-      <List>
+      <List subheader={<ListSubheader>Header</ListSubheader>}>
         <ListItem divider>
           <ListItemAvatar>
             <Avatar>H</Avatar>
