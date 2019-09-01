@@ -1,9 +1,25 @@
-# Box
+# List
 
 ## API
 
-| Name      | Type              | Default | Description                                                                                |
-| :-------- | :---------------- | :------ | :----------------------------------------------------------------------------------------- |
-| component | React.ElementType | div     | tag of component                                                                           |
-| elevation | number            | 1       | Shadow depth, corresponds to dp in the spec. It accepts values between 0 and 24 inclusive. |
-| component | bool              | false   | If true, rounded corners are disabled.                                                     |
+| Name           | Type              | Default | Description |
+| :------------- | :---------------- | :------ | :---------- |
+| subheader      | React.ElementType |         |             |
+| dense          | bool              | `false` | 是否紧凑    |
+| disablePadding | bool              | `false` |             |
+
+# ListItem
+
+## API
+
+| Name               | Type                                 | Default  | Description |
+| :----------------- | :----------------------------------- | :------- | :---------- |
+| ContainerComponent | React.ElementType                    |          |             |
+| ContainerProps     | React.HTMLAttributes<HTMLDivElement> |          |             |
+| alignItems         | `flex-start` `center`                | `center` |             |
+| button             | bool                                 | `false`  |             |
+| dense              | bool                                 | `false`  |             |
+| disabled           | bool                                 | `false`  |             |
+| disableGutters     | bool                                 | `false`  |             |
+| divider            | bool                                 | `false`  |             |
+| selected           | bool                                 | `false`  |             |

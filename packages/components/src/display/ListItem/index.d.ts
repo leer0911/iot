@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { ExtendButtonBase } from '../../inputs/ButtonBase';
+import { ButtonBaseProps } from '../../inputs/ButtonBase';
 
-export interface ListItemProps extends ExtendButtonBase {
-  alignItems?: 'flex-start' | 'center';
-  autoFocus?: boolean;
-  button?: boolean;
+export interface ListItemProps extends ButtonBaseProps {
   ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
+  alignItems?: 'flex-start' | 'center';
+  button?: boolean;
   dense?: boolean;
   disabled?: boolean;
   disableGutters?: boolean;
   divider?: boolean;
-  focusVisibleClassName?: string;
   selected?: boolean;
 }
 

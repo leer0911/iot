@@ -17,7 +17,6 @@ export const styles = {
     paddingTop: 8,
     paddingBottom: 8,
   },
-  dense: {},
   subheader: {
     paddingTop: 0,
   },
@@ -44,7 +43,6 @@ const List = props => {
         className={cx(
           classes.root,
           {
-            [classes.dense]: dense,
             [classes.padding]: !disablePadding,
             [classes.subheader]: subheader,
           },

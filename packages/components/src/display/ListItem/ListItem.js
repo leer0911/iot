@@ -141,7 +141,6 @@ const ListItem = props => {
 
 ListItem.propTypes = {
   alignItems: PropTypes.oneOf(['flex-start', 'center']),
-  autoFocus: PropTypes.bool,
   button: PropTypes.bool,
   className: PropTypes.string,
   component: PropTypes.elementType,
