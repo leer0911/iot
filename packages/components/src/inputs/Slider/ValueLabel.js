@@ -3,14 +3,9 @@ import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
 const styles = theme => ({
-  thumb: {
-    '&$open': {
-      '& $offset': {
-        transform: 'scale(1) translateY(-10px)',
-      },
-    },
+  open: {
+    transform: 'scale(1) translateY(-10px)',
   },
-  open: {},
   offset: {
     zIndex: 1,
     ...theme.typography.body2,
@@ -61,15 +56,17 @@ const ValueLabel = props => {
   return React.cloneElement(
     children,
     {
-      className: cx(
-        children.props.className,
+      className: cx(children.props.className),
+    },
+    <span
+      className={cx(
+        classes.offset,
         {
           [classes.open]: open || valueLabelDisplay === 'on',
         },
-        classes.thumb,
-      ),
-    },
-    <span className={cx(classes.offset, className)}>
+        className,
+      )}
+    >
       <span className={classes.circle}>
         <span className={classes.label}>
           {typeof valueLabelFormat === 'function'

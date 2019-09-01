@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
-import { fade, lighten } from '../../theme/colorManipulator';
+import { fade } from '../../theme/colorManipulator';
 import { useEventCallback } from '../../utils';
 
 import ValueLabel from './ValueLabel';
@@ -25,10 +25,6 @@ const axisProps = {
     offset: percent => ({ left: `${percent}%` }),
     leap: percent => ({ width: `${percent}%` }),
   },
-  'horizontal-reverse': {
-    offset: percent => ({ right: `${percent}%` }),
-    leap: percent => ({ width: `${percent}%` }),
-  },
   vertical: {
     offset: percent => ({ bottom: `${percent}%` }),
     leap: percent => ({ height: `${percent}%` }),
@@ -47,25 +43,16 @@ export const styles = theme => ({
     touchAction: 'none',
     color: theme.palette.primary.main,
     WebkitTapHighlightColor: 'transparent',
-    '&$disabled': {
-      cursor: 'default',
-      color: theme.palette.grey[400],
-    },
-    '&$vertical': {
-      width: 2,
-      height: '100%',
-      padding: '0 11px',
-    },
   },
-  marked: {
-    marginBottom: 20,
-    '&$vertical': {
-      marginBottom: 'auto',
-      marginRight: 20,
-    },
+  vertical: {
+    width: 2,
+    height: '100%',
+    padding: '0 11px',
   },
-  vertical: {},
-  disabled: {},
+  disabled: {
+    cursor: 'default',
+    color: theme.palette.grey[400],
+  },
   rail: {
     display: 'block',
     position: 'absolute',
@@ -74,10 +61,10 @@ export const styles = theme => ({
     borderRadius: 1,
     backgroundColor: 'currentColor',
     opacity: 0.38,
-    '$vertical &': {
-      height: '100%',
-      width: 2,
-    },
+  },
+  railVertical: {
+    height: '100%',
+    width: 2,
   },
   track: {
     display: 'block',
@@ -85,9 +72,9 @@ export const styles = theme => ({
     height: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
-    '$vertical &': {
-      width: 2,
-    },
+  },
+  trackVertical: {
+    width: 2,
   },
   thumb: {
     position: 'absolute',
@@ -105,62 +92,24 @@ export const styles = theme => ({
     transition: theme.transitions.create(['box-shadow'], {
       duration: theme.transitions.duration.shortest,
     }),
-    '&$focusVisible,&:hover': {
-      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
-      '@media (hover: none)': {
-        boxShadow: 'none',
-      },
-    },
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
     },
-    '$disabled &': {
-      pointerEvents: 'none',
-      width: 8,
-      height: 8,
-      marginLeft: -4,
-      marginTop: -3,
-      '&:hover': {
-        boxShadow: 'none',
-      },
-    },
-    '$vertical &': {
-      marginLeft: -5,
-      marginBottom: -6,
-    },
-    '$vertical$disabled &': {
-      marginLeft: -3,
-      marginBottom: -4,
-    },
   },
-  active: {},
-  focusVisible: {},
-  valueLabel: {},
-  mark: {
-    position: 'absolute',
-    width: 2,
-    height: 2,
-    borderRadius: 1,
-    backgroundColor: 'currentColor',
+  thumbDisabled: {
+    pointerEvents: 'none',
+    width: 8,
+    height: 8,
+    marginLeft: -4,
+    marginTop: -3,
   },
-  markActive: {
-    backgroundColor: lighten(theme.palette.primary.main, 0.76),
+  thumbVertical: {
+    marginLeft: -5,
+    marginBottom: -6,
   },
-  markLabel: {
-    ...theme.typography.body2,
-    color: theme.palette.text.secondary,
-    position: 'absolute',
-    top: 22,
-    transform: 'translateX(-50%)',
-    whiteSpace: 'nowrap',
-    '$vertical &': {
-      top: 'auto',
-      left: 22,
-      transform: 'translateY(50%)',
-    },
-  },
-  markLabelActive: {
-    color: theme.palette.text.primary,
+  thumbVerticalDisable: {
+    marginLeft: -3,
+    marginBottom: -4,
   },
 });
 
@@ -191,9 +140,6 @@ const Slider = props => {
   const { current: isControlled } = useRef(valueProp != null);
   const sliderRef = useRef();
   const previousIndex = useRef();
-
-  const [active, setActive] = useState(-1);
-  const [open, setOpen] = useState(-1);
 
   const [valueState, setValueState] = useState(defaultValue);
   const valueDerived = isControlled ? valueProp : valueState;
@@ -312,18 +258,11 @@ const Slider = props => {
       source: valueDerived,
     });
 
-    setActive(-1);
-    if (event.type === 'touchend') {
-      setOpen(-1);
-    }
-
     if (onChangeCommitted) {
       onChangeCommitted(event, newValue);
     }
 
     touchId.current = undefined;
-    document.body.removeEventListener('mousemove', handleTouchMove);
-    document.body.removeEventListener('mouseup', handleTouchEnd);
     document.body.removeEventListener('touchmove', handleTouchMove);
     document.body.removeEventListener('touchend', handleTouchEnd);
   });
@@ -363,29 +302,38 @@ const Slider = props => {
         className,
       )}
       ref={sliderRef}
-      onTouchStart={handleTouchStart}
       {...other}
     >
-      <span className={classes.rail} />
-      <span className={classes.track} style={trackStyle} />
+      <span
+        className={cx(classes.rail, {
+          [classes.railVertical]: orientation === 'vertical',
+        })}
+      />
+      <span
+        className={cx(classes.track, {
+          [classes.trackVertical]: orientation === 'vertical',
+        })}
+        style={trackStyle}
+      />
       <input value={values.join(',')} name={name} type="hidden" />
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[orientation].offset(percent);
         return (
           <ValueLabelComponent
-            className={classes.valueLabel}
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
-            key={index}
             value={value}
+            key={index}
             index={index}
-            open={open === index || active === index}
             disabled={disabled}
           >
             <ThumbComponent
               className={cx(classes.thumb, {
-                [classes.active]: active === index,
+                [classes.thumbDisabled]: disabled,
+                [classes.thumbVertical]: orientation === 'vertical',
+                [classes.thumbVerticalDisabled]:
+                  orientation === 'vertical' && disabled,
               })}
               style={style}
             />
