@@ -86,6 +86,7 @@ export const styles = theme => ({
 const Fab = props => {
   const {
     children,
+    className: classNameProp,
     color = 'default',
     size = 'large',
     variant = 'round',
@@ -97,14 +98,18 @@ const Fab = props => {
 
   return (
     <ButtonBase
-      className={cx(classes.root, {
-        [classes.extended]: variant === 'extended',
-        [classes.primary]: color === 'primary',
-        [classes.secondary]: color === 'secondary',
-        [classes[`size${capitalize(size)}`]]: size !== 'large',
-        [classes.disabled]: disabled,
-        [classes.colorInherit]: color === 'inherit',
-      })}
+      className={cx(
+        classes.root,
+        {
+          [classes.extended]: variant === 'extended',
+          [classes.primary]: color === 'primary',
+          [classes.secondary]: color === 'secondary',
+          [classes[`size${capitalize(size)}`]]: size !== 'large',
+          [classes.disabled]: disabled,
+          [classes.colorInherit]: color === 'inherit',
+        },
+        classNameProp,
+      )}
       disabled={disabled}
       {...rest}
     >
