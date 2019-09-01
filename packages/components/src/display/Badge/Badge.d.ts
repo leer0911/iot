@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { PropTypes } from '../../..';
 
 export interface BadgeProps {
   badgeContent?: React.ReactNode;
