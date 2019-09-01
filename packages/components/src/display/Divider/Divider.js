@@ -30,6 +30,10 @@ export const styles = theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
   },
+  vertical: {
+    height: '100%',
+    width: 1,
+  },
 });
 
 const Divider = props => {
@@ -38,8 +42,8 @@ const Divider = props => {
     className,
     component: Component = 'hr',
     light = false,
-    role = Component !== 'hr' ? 'separator' : undefined,
     variant = 'fullWidth',
+    orientation = 'horizontal',
     ...other
   } = props;
 
@@ -54,10 +58,10 @@ const Divider = props => {
           [classes.middle]: variant === 'middle',
           [classes.absolute]: absolute,
           [classes.light]: light,
+          [classes.vertical]: orientation === 'vertical',
         },
         className,
       )}
-      role={role}
       {...other}
     />
   );
@@ -70,6 +74,7 @@ Divider.propTypes = {
   light: PropTypes.bool,
   role: PropTypes.string,
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
 };
 
 export default Divider;
