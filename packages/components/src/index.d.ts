@@ -19,6 +19,7 @@ export { default as List } from './display/List';
 export { default as ListItem } from './display/ListItem';
 export { default as ListItemAvatar } from './display/ListItemAvatar';
 export { default as ListItemIcon } from './display/ListItemIcon';
+export { default as ListItemText } from './display/ListItemText';
 export { default as Avatar } from './display/Avatar';
 export { default as Chip } from './display/Chip';
 
