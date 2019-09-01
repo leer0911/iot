@@ -1,5 +1,12 @@
 import React from 'react';
-import { List, ListItem, ListItemAvatar, Avatar } from '../../../';
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  Avatar,
+} from '../../../';
+import Search from '../../../icon/Search.js';
 
 const Demo = () => {
   return (
@@ -8,12 +15,17 @@ const Demo = () => {
         <ListItemAvatar>
           <Avatar>H</Avatar>
         </ListItemAvatar>
+        Avatar
       </ListItem>
-
+      <ListItem divider>
+        <ListItemIcon>
+          <Search></Search>
+        </ListItemIcon>
+        Icon
+      </ListItem>
       <ListItem button divider>
-        ListItem 1
+        button
       </ListItem>
-      <ListItem button>ListItem 2</ListItem>
     </List>
   );
 };

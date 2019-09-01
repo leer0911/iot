@@ -7,3 +7,4 @@ export { default as Divider } from './Divider';
 export { default as List } from './List';
 export { default as ListItem } from './ListItem';
 export { default as ListItemAvatar } from './ListItemAvatar';
+export { default as ListItemIcon } from './ListItemIcon';
