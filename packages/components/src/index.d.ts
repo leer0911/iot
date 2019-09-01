@@ -18,6 +18,7 @@ export { default as Divider } from './display/Divider';
 export { default as List } from './display/List';
 export { default as ListItem } from './display/ListItem';
 export { default as Avatar } from './display/Avatar';
+export { default as Chip } from './display/Chip';
 
 export { default as Paper } from './surfaces/Paper';
 export { default as AppBar } from './surfaces/AppBar';

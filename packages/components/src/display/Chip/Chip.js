@@ -6,8 +6,7 @@ import { useClasses } from '../../styles';
 
 import CancelIcon from '../../icon/Cancel';
 import { emphasize, fade } from '../../theme/colorManipulator';
-import { useForkRef } from '../utils/reactHelpers';
-import { capitalize } from '../utils/helpers';
+import { capitalize } from '../../utils/helpers';
 
 export const styles = theme => {
   const height = 32;
@@ -86,20 +85,24 @@ export const styles = theme => {
           ? 'rgba(0, 0, 0, 0.23)'
           : 'rgba(255, 255, 255, 0.23)'
       }`,
-      '$clickable&:focus, $deletable&:focus': {
+    },
+    outlinedClickable: {
+      '&:focus': {
         backgroundColor: fade(
           theme.palette.text.primary,
           theme.palette.action.hoverOpacity,
         ),
       },
-      '& $avatar': {
-        marginLeft: -1,
-      },
+    },
+    outlinedAvatar: {
+      marginLeft: -1,
     },
     outlinedPrimary: {
       color: theme.palette.primary.main,
       border: `1px solid ${theme.palette.primary.main}`,
-      '$clickable&:focus, $deletable&:focus': {
+    },
+    outlinedPrimaryClickable: {
+      '&:focus': {
         backgroundColor: fade(
           theme.palette.primary.main,
           theme.palette.action.hoverOpacity,
@@ -109,7 +112,9 @@ export const styles = theme => {
     outlinedSecondary: {
       color: theme.palette.secondary.main,
       border: `1px solid ${theme.palette.secondary.main}`,
-      '$clickable&:focus, $deletable&:focus': {
+    },
+    outlinedSecondaryClickable: {
+      '&:focus': {
         backgroundColor: fade(
           theme.palette.secondary.main,
           theme.palette.action.hoverOpacity,
@@ -208,58 +213,15 @@ const Chip = props => {
     label,
     onClick,
     onDelete,
-    onKeyDown,
-    onKeyUp,
     ...other
   } = props;
 
   const classes = useClasses(styles);
-  const chipRef = React.useRef(null);
 
   const handleDeleteIconClick = event => {
     event.stopPropagation();
     if (onDelete) {
       onDelete(event);
-    }
-  };
-
-  const handleKeyDown = event => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
-    const key = event.key;
-    if (
-      key === ' ' ||
-      key === 'Enter' ||
-      key === 'Backspace' ||
-      key === 'Delete' ||
-      key === 'Escape'
-    ) {
-      event.preventDefault();
-    }
-  };
-
-  const handleKeyUp = event => {
-    if (onKeyUp) {
-      onKeyUp(event);
-    }
-
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
-    const key = event.key;
-    if (onClick && (key === ' ' || key === 'Enter')) {
-      onClick(event);
-    } else if (onDelete && (key === 'Backspace' || key === 'Delete')) {
-      onDelete(event);
-    } else if (key === 'Escape' && chipRef.current) {
-      chipRef.current.blur();
     }
   };
 
@@ -276,15 +238,23 @@ const Chip = props => {
       [classes[`deletableColor${capitalize(color)}`]]:
         onDelete && color !== 'default',
       [classes.outlined]: variant === 'outlined',
+      [classes.outlinedClickable]: variant === 'outlined' && clickable,
+      [classes.outlinedAvatar]:
+        variant === 'outlined' &&
+        avatarProp &&
+        React.isValidElement(avatarProp),
       [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+      [classes.outlinedPrimaryClickable]:
+        variant === 'outlined' && color === 'primary' && clickable,
       [classes.outlinedSecondary]:
         variant === 'outlined' && color === 'secondary',
+      [classes.outlinedSecondaryClickable]:
+        variant === 'outlined' && color === 'secondary' && clickable,
     },
     classNameProp,
   );
 
   let deleteIcon = null;
-
   if (onDelete) {
     const customClasses = cx({
       [classes[`deleteIconColor${capitalize(color)}`]]:
@@ -333,19 +303,8 @@ const Chip = props => {
     });
   }
 
-  const handleRef = useForkRef(chipRef);
-
   return (
-    <Component
-      role={clickable || onDelete ? 'button' : undefined}
-      className={className}
-      tabIndex={clickable || onDelete ? 0 : undefined}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      ref={handleRef}
-      {...other}
-    >
+    <Component className={className} onClick={onClick} {...other}>
       {avatar || icon}
       <span className={classes.label}>{label}</span>
       {deleteIcon}

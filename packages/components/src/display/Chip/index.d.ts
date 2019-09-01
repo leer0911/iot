@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropTypes } from '..';
+import { PropTypes } from '../../../';
 
 export interface ChipProps {
   avatar?: React.ReactElement;
