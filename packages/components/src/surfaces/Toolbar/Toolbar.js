@@ -8,20 +8,20 @@ export const styles = theme => ({
   root: {
     position: 'relative',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   gutters: {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(2),
     [theme.breakpoints.up('sm')]: {
       paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3)
-    }
+      paddingRight: theme.spacing(3),
+    },
   },
   regular: theme.mixins.toolbar,
   dense: {
-    minHeight: 48
-  }
+    minHeight: 48,
+  },
 });
 
 const Toolbar = props => {
@@ -39,9 +39,9 @@ const Toolbar = props => {
     classes.root,
     classes[variant],
     {
-      [classes.gutters]: !disableGutters
+      [classes.gutters]: !disableGutters,
     },
-    classNameProp
+    classNameProp,
   );
 
   return <Component className={className} {...rest} />;
@@ -50,7 +50,7 @@ const Toolbar = props => {
 Toolbar.propTypes = {
   component: PropTypes.elementType,
   disableGutters: PropTypes.bool,
-  variant: PropTypes.oneOf(['regular', 'dense'])
+  variant: PropTypes.oneOf(['regular', 'dense']),
 };
 
 export default Toolbar;

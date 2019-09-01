@@ -1,9 +1,18 @@
-# Box
+# AppBar
 
 ## API
 
-| Name      | Type              | Default | Description                                                                                |
-| :-------- | :---------------- | :------ | :----------------------------------------------------------------------------------------- |
-| component | React.ElementType | div     | tag of component                                                                           |
-| elevation | number            | 1       | Shadow depth, corresponds to dp in the spec. It accepts values between 0 and 24 inclusive. |
-| component | bool              | false   | If true, rounded corners are disabled.                                                     |
+| Name     | Type                                            | Default   | Description |
+| :------- | :---------------------------------------------- | :-------- | :---------- |
+| color    | `default` `primary` `secondary`                 | `primary` |             |
+| position | `fixed` `absolute` `sticky` `static` `relative` | `fixed`   |             |
+
+# ToolBar
+
+## API
+
+| Name           | Type              | Default   | Description |
+| :------------- | :---------------- | :-------- | :---------- |
+| component      | React.ElementType | `div`     |             |
+| variant        | `regular` `dense` | `regular` |             |
+| disableGutters | bool              | `false`   |             |
