@@ -70,6 +70,7 @@ const ButtonBase = props => {
     skipRippleAction = disableRipple,
   ) => {
     return useEventCallback(event => {
+      event.stopPropagation();
       if (eventCallback) {
         eventCallback(event);
       }
