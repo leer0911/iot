@@ -1,9 +1,10 @@
 import React from 'react';
-import { cx } from 'emotion';
+import PropTypes from 'prop-types';
 
+import { cx } from 'emotion';
 import { useClasses } from '../../styles';
+
 import { capitalize } from '../../utils/helpers';
-import propTypes from './propTypes';
 
 export const styles = theme => ({
   root: {
@@ -86,6 +87,7 @@ const defaultVariantMapping = {
 
 const Typography = props => {
   const {
+    className: classNameProp,
     component,
     variant = 'body1',
     color = 'initial',
@@ -106,19 +108,59 @@ const Typography = props => {
 
   const Component = component || componentVariant || 'span';
 
-  const className = cx(classes.root, {
-    [classes[variant]]: variant !== 'inherit',
-    [classes[`color${capitalize(color)}`]]: color !== 'initial',
-    [classes[`align${capitalize(align)}`]]: align !== 'inherit',
-    [classes[`display${capitalize(display)}`]]: display !== 'initial',
-    [classes.paragraph]: paragraph,
-    [classes.noWrap]: noWrap,
-    [classes.gutterBottom]: gutterBottom,
-  });
+  const className = cx(
+    classes.root,
+    {
+      [classes[variant]]: variant !== 'inherit',
+      [classes[`color${capitalize(color)}`]]: color !== 'initial',
+      [classes[`align${capitalize(align)}`]]: align !== 'inherit',
+      [classes[`display${capitalize(display)}`]]: display !== 'initial',
+      [classes.paragraph]: paragraph,
+      [classes.noWrap]: noWrap,
+      [classes.gutterBottom]: gutterBottom,
+    },
+    classNameProp,
+  );
 
   return <Component className={className} {...rest} />;
 };
 
-Typography.propTypes = propTypes;
+Typography.propTypes = {
+  className: PropTypes.string,
+  component: PropTypes.elementType,
+  variant: PropTypes.oneOf([
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'subtitle2',
+    'body1',
+    'body2',
+    'caption',
+    'button',
+    'overline',
+    'srOnly',
+    'inherit',
+  ]),
+  color: PropTypes.oneOf([
+    'initial',
+    'inherit',
+    'primary',
+    'secondary',
+    'textPrimary',
+    'textSecondary',
+    'error',
+  ]),
+  align: PropTypes.oneOf(['inherit', 'left', 'center', 'right', 'justify']),
+  display: PropTypes.oneOf(['initial', 'block', 'inline']),
+  gutterBottom: PropTypes.bool,
+  noWrap: PropTypes.bool,
+  paragraph: PropTypes.bool,
+  variantMapping: PropTypes.object,
+  children: PropTypes.node,
+};
 
 export default Typography;
