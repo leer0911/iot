@@ -4,6 +4,7 @@ import { Box, Paper, Typography } from '../../../';
 const Demo = () => {
   return (
     <Box p={2} bgcolor="#f5f5f5">
+      <h3>基础用法</h3>
       <Paper>
         <Box p={2}>
           <Typography variant="h6">This is a sheet of paper.</Typography>
