@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ButtonProps } from '../../inputs/Button';
-import { SimplifiedPropsOf } from '../OverridableComponent';
 
 export interface BottomNavigationActionProps extends ButtonProps {
   icon?: string | React.ReactElement;
