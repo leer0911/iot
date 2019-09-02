@@ -8,20 +8,20 @@ import { capitalize } from '../../utils/helpers';
 
 const SIZE = 44;
 
-function getRelativeValue(value, min, max) {
+const getRelativeValue = (value, min, max) => {
   const clampedValue = Math.min(Math.max(min, value), max);
   return (clampedValue - min) / (max - min);
-}
+};
 
-function easeOut(t) {
+const easeOut = t => {
   t = getRelativeValue(t, 0, 1);
   t = (t -= 1) * t * t + 1;
   return t;
-}
+};
 
-function easeIn(t) {
+const easeIn = t => {
   return t * t;
-}
+};
 
 export const styles = theme => ({
   root: {
@@ -32,8 +32,8 @@ export const styles = theme => ({
     transition: theme.transitions.create('transform'),
   },
   indeterminate: {
-    animation: 'mui-progress-circular-rotate 1.4s linear infinite',
-    animationName: '$mui-progress-circular-rotate',
+    animation: '1.4s linear infinite',
+    animationName: 'progress-circular-rotate',
   },
   colorPrimary: {
     color: theme.palette.primary.main,
@@ -49,17 +49,17 @@ export const styles = theme => ({
     transition: theme.transitions.create('stroke-dashoffset'),
   },
   circleIndeterminate: {
-    animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
-    animationName: '$mui-progress-circular-dash',
+    animation: '1.4s ease-in-out infinite',
+    animationName: 'progress-circular-dash',
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px',
   },
-  '@keyframes mui-progress-circular-rotate': {
+  '@keyframes progress-circular-rotate': {
     '100%': {
       transform: 'rotate(360deg)',
     },
   },
-  '@keyframes mui-progress-circular-dash': {
+  '@keyframes progress-circular-dash': {
     '0%': {
       strokeDasharray: '1px, 200px',
       strokeDashoffset: '0px',
@@ -95,12 +95,10 @@ const CircularProgress = props => {
 
   const circleStyle = {};
   const rootStyle = {};
-  const rootProps = {};
 
   if (variant === 'determinate' || variant === 'static') {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
     circleStyle.strokeDasharray = circumference.toFixed(3);
-    rootProps['aria-valuenow'] = Math.round(value);
 
     if (variant === 'static') {
       circleStyle.strokeDashoffset = `${(
@@ -130,8 +128,6 @@ const CircularProgress = props => {
         className,
       )}
       style={{ width: size, height: size, ...rootStyle, ...style }}
-      role="progressbar"
-      {...rootProps}
       {...other}
     >
       <svg
@@ -158,13 +154,13 @@ const CircularProgress = props => {
 
 CircularProgress.propTypes = {
   className: PropTypes.string,
+  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
   color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
-  disableShrink: PropTypes.bool,
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   style: PropTypes.object,
+  disableShrink: PropTypes.bool,
   thickness: PropTypes.number,
   value: PropTypes.number,
-  variant: PropTypes.oneOf(['determinate', 'indeterminate', 'static']),
 };
 
 export default CircularProgress;
