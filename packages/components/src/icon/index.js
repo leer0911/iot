@@ -7,3 +7,4 @@ export { default as Search } from './Search';
 export { default as Favorite } from './Favorite';
 export { default as Room } from './Room';
 export { default as Work } from './Work';
+export { default as Close } from './Close';

@@ -36,6 +36,11 @@ export { default as Tabs } from './navigation/Tabs';
 
 export { default as CircularProgress } from './feedback/CircularProgress';
 export { default as Modal } from './feedback/Modal';
+export { default as Dialog } from './feedback/Dialog';
+export { default as DialogActions } from './feedback/DialogActions';
+export { default as DialogContent } from './feedback/DialogContent';
+export { default as DialogContentText } from './feedback/DialogContentText';
+export { default as DialogTitle } from './feedback/DialogTitle';
 
 export { default as Fade } from './other/Fade';
 
