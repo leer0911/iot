@@ -15,7 +15,7 @@ const Demo = () => {
           Component = Icon[key];
           return (
             <Box
-              width="25%"
+              width="33.3%"
               height="70px"
               display="flex"
               justifyContent="center"
