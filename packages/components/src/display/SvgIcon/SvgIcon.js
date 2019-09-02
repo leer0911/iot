@@ -72,8 +72,6 @@ const SvgIcon = props => {
       focusable="false"
       viewBox={viewBox}
       color={htmlColor}
-      aria-hidden={titleAccess ? 'false' : 'true'}
-      role={titleAccess ? 'img' : 'presentation'}
       {...rest}
     >
       {children}
@@ -95,7 +93,6 @@ SvgIcon.propTypes = {
   ]),
   fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
   htmlColor: PropTypes.string,
-  shapeRendering: PropTypes.string,
   titleAccess: PropTypes.string,
   viewBox: PropTypes.string,
 };
