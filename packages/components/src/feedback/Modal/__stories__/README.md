@@ -2,8 +2,21 @@
 
 ## API
 
-| Name      | Type              | Default | Description                                                                                |
-| :-------- | :---------------- | :------ | :----------------------------------------------------------------------------------------- |
-| component | React.ElementType | div     | tag of component                                                                           |
-| elevation | number            | 1       | Shadow depth, corresponds to dp in the spec. It accepts values between 0 and 24 inclusive. |
-| component | bool              | false   | If true, rounded corners are disabled.                                                     |
+| Name                 | Type              | Default | Description |
+| :------------------- | :---------------- | :------ | :---------- |
+| BackdropComponent    | React.ElementType |         |             |
+| BackdropProps        |                   |         |             |
+| container            |                   |         |             |
+| disableBackdropClick | bool              | false   |             |
+| disablePortal        | bool              | false   |             |
+| hideBackdrop         | bool              | false   |             |
+| keepMounted          | bool              | false   |             |
+| open                 | bool              | false   |             |
+
+## Event
+
+| Name            | Type | Default | Description |
+| :-------------- | :--- | :------ | :---------- |
+| onBackdropClick |      |         |             |
+| onClose         |      |         |             |
+| onRendered      |      |         |             |

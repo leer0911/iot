@@ -4,5 +4,6 @@ export * from './display';
 export * from './surfaces';
 export * from './navigation';
 export * from './feedback';
+export * from './other';
 
 export * from './styles';

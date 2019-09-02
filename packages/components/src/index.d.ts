@@ -37,6 +37,8 @@ export { default as Tabs } from './navigation/Tabs';
 export { default as CircularProgress } from './feedback/CircularProgress';
 export { default as Modal } from './feedback/Modal';
 
+export { default as Fade } from './other/Fade';
+
 export { default as useClasses } from './styles/useClasses';
 
 export namespace PropTypes {

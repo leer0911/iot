@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { PortalProps } from '../Portal';
 
+interface BackdropProps {
+  open: boolean;
+}
+
 export interface ModalProps extends PortalProps {
   BackdropComponent?: React.ElementType<BackdropProps>;
   BackdropProps?: Partial<BackdropProps>;
