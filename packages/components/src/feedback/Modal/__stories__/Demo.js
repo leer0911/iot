@@ -17,7 +17,7 @@ const Demo = () => {
     <Box p={1}>
       <h3>基础用法</h3>
       <Button variant="contained" color="primary" onClick={handleOpen}>
-        open
+        Open Modal
       </Button>
       <Modal open={open} onClose={handleClose}>
         <Fade in={open}>

@@ -17,6 +17,8 @@
 
 | Name            | Type | Default | Description |
 | :-------------- | :--- | :------ | :---------- |
-| onBackdropClick |      |         |             |
-| onClose         |      |         |             |
-| onRendered      |      |         |             |
+| onBackdropClick | func |         |             |
+| onClose         | func |         |             |
+| onRendered      | func |         |             |
+| onEnter         | func |         |             |
+| onEnter         | func |         |             |

@@ -41,7 +41,6 @@ const DialogContent = props => {
 
 DialogContent.propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   dividers: PropTypes.bool,
 };

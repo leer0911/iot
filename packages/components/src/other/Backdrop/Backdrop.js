@@ -8,7 +8,6 @@ import Fade from '../Fade';
 
 export const styles = {
   root: {
-    zIndex: -1,
     position: 'fixed',
     display: 'flex',
     alignItems: 'center',
