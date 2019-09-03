@@ -1,5 +1,6 @@
 import React from 'react';
-import { Tabs, Tab } from '../../../';
+import { Tabs, Tab, Paper, Box } from '../../../';
+import Knobs from './Knobs.js';
 
 const Demo = () => {
   const [value, setValue] = React.useState(2);
@@ -7,18 +8,26 @@ const Demo = () => {
   function handleChange(event, newValue) {
     setValue(newValue);
   }
+
   return (
-    <Tabs
-      value={value}
-      indicatorColor="primary"
-      textColor="primary"
-      onChange={handleChange}
-      aria-label="disabled tabs example"
-    >
-      <Tab label="Active" />
-      <Tab label="Disabled" disabled />
-      <Tab label="Active" />
-    </Tabs>
+    <Box p={1}>
+      <Knobs></Knobs>
+
+      <h3>基础用法</h3>
+      <Paper square>
+        <Tabs
+          value={value}
+          indicatorColor="primary"
+          textColor="primary"
+          onChange={handleChange}
+          aria-label="disabled tabs example"
+        >
+          <Tab label="Active" />
+          <Tab label="Disabled" disabled />
+          <Tab label="Active" />
+        </Tabs>
+      </Paper>
+    </Box>
   );
 };
 

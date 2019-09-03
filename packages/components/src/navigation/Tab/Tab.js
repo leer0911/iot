@@ -17,23 +17,13 @@ export const styles = theme => ({
     minHeight: 48,
     flexShrink: 0,
     padding: '6px 12px',
-    [theme.breakpoints.up('md')]: {
-      padding: '6px 24px',
-    },
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
-      fontSize: theme.typography.pxToRem(13),
-      minWidth: 160,
-    },
   },
   labelIcon: {
     minHeight: 72,
     paddingTop: 9,
-    '& $wrapper > *:first-child': {
-      marginBottom: 6,
-    },
   },
   textColorInherit: {
     color: 'inherit',
@@ -130,8 +120,6 @@ const Tab = props => {
         },
         className,
       )}
-      role="tab"
-      aria-selected={selected}
       disabled={disabled}
       onClick={handleChange}
       {...other}

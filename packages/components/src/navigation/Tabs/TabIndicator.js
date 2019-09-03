@@ -20,17 +20,24 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: theme.palette.secondary.main,
   },
+  vertical: {
+    height: '100%',
+    width: 2,
+    right: 0,
+  },
 });
 
 const TabIndicator = props => {
-  const { className, color, ...other } = props;
-
+  const { className, color, orientation, ...other } = props;
   const classes = useClasses(styles);
 
   return (
     <span
       className={cx(
         classes.root,
+        {
+          [classes.vertical]: orientation === 'vertical',
+        },
         classes[`color${capitalize(color)}`],
         className,
       )}
@@ -41,7 +48,8 @@ const TabIndicator = props => {
 
 TabIndicator.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
 };
 
 export default TabIndicator;

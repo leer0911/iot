@@ -1,10 +1,18 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, {
+  useCallback,
+  useState,
+  useRef,
+  useEffect,
+  isValidElement,
+  cloneElement,
+} from 'react';
 import PropTypes from 'prop-types';
 
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
-import animate from '../../utils/animate';
+import { animate, useEventCallback } from '../../utils';
+
 import ScrollbarSize from './ScrollbarSize';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
@@ -14,9 +22,16 @@ export const styles = theme => ({
     overflow: 'hidden',
     minHeight: 48,
     WebkitOverflowScrolling: 'touch',
+    display: 'flex',
+  },
+  vertical: {
+    flexDirection: 'column',
   },
   flexContainer: {
     display: 'flex',
+  },
+  flexContainerVertical: {
+    flexDirection: 'column',
   },
   centered: {
     justifyContent: 'center',
@@ -38,49 +53,139 @@ export const styles = theme => ({
       display: 'none',
     },
   },
-  scrollButtonsDesktop: {
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-    },
-  },
 });
 
 const Tabs = props => {
   const {
     className,
-    action,
-    centered,
     children: childrenProp,
-    component: Component,
-    onChange,
-    ScrollButtonComponent,
-    scrollButtons,
-    textColor,
-    theme,
+    component: Component = 'div',
+    variant = 'standard',
+    textColor = 'inherit',
+    indicatorColor = 'secondary',
+    orientation = 'horizontal',
+    scrollButtons = 'auto',
+    ScrollButtonComponent = TabScrollButton,
+    TabIndicatorProps = {},
     value,
-    variant,
-    indicatorColor,
+    onChange,
+    centered = false,
     ...other
   } = props;
 
   const classes = useClasses(styles);
+  const scrollable = variant === 'scrollable';
+  const vertical = orientation === 'vertical';
+  const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
+  const start = vertical ? 'top' : 'left';
+  const end = vertical ? 'bottom' : 'right';
+  const clientSize = vertical ? 'clientHeight' : 'clientWidth';
+  const size = vertical ? 'height' : 'width';
+
+  const [mounted, setMounted] = useState(false);
 
   const [indicatorStyle, setIndicatorStyle] = useState({});
+  const [displayScroll, setDisplayScroll] = useState({
+    start: false,
+    end: false,
+  });
   const [scrollerStyle, setScrollerStyle] = useState({
     overflow: 'hidden',
     marginBottom: null,
   });
-  const [showLeftScroll, setShowLeftScroll] = useState(false);
-  const [showRightScroll, setShowRightScroll] = useState(false);
-  const valueToIndex = new Map();
 
-  const scrollable = variant === 'scrollable';
+  const valueToIndex = new Map();
   const tabsRef = useRef(null);
+  const childrenWrapperRef = useRef(null);
+
+  const getTabsMeta = () => {
+    const tabsNode = tabsRef.current;
+
+    let tabsMeta;
+
+    if (tabsNode) {
+      const { top, left, bottom, right } = tabsNode.getBoundingClientRect();
+      const { clientWidth, scrollLeft, scrollTop, scrollWidth } = tabsNode;
+      tabsMeta = {
+        clientWidth,
+        scrollLeft,
+        scrollTop,
+        scrollWidth,
+        top,
+        bottom,
+        left,
+        right,
+      };
+    }
+
+    let tabMeta;
+
+    if (tabsNode && value !== false) {
+      const children = childrenWrapperRef.current.children;
+
+      if (children.length > 0) {
+        const tab = children[valueToIndex.get(value)];
+        tabMeta = tab ? tab.getBoundingClientRect() : null;
+      }
+    }
+    return { tabsMeta, tabMeta };
+  };
+
+  const updateIndicatorState = useEventCallback(() => {
+    const { tabsMeta, tabMeta } = getTabsMeta();
+    let startValue = 0;
+
+    if (tabMeta && tabsMeta) {
+      if (vertical) {
+        startValue = tabMeta.top - tabsMeta.top + tabsMeta.scrollTop;
+      } else {
+        startValue = tabMeta.left - tabsMeta.left + tabsMeta.scrollLeft;
+      }
+    }
+
+    const newIndicatorStyle = {
+      [start]: startValue,
+      [size]: tabMeta ? tabMeta[size] : 0,
+    };
+
+    if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
+      setIndicatorStyle(newIndicatorStyle);
+    } else {
+      const dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);
+      const dSize = Math.abs(indicatorStyle[size] - newIndicatorStyle[size]);
+
+      if (dStart >= 1 || dSize >= 1) {
+        setIndicatorStyle(newIndicatorStyle);
+      }
+    }
+  });
+
+  const scroll = scrollValue => {
+    animate(scrollStart, tabsRef.current, scrollValue);
+  };
+
+  const moveTabsScroll = delta => {
+    let scrollValue = tabsRef.current[scrollStart] + delta;
+    scroll(scrollValue);
+  };
+
+  const handleStartScrollClick = () => {
+    moveTabsScroll(-tabsRef.current[clientSize]);
+  };
+
+  const handleEndScrollClick = () => {
+    moveTabsScroll(tabsRef.current[clientSize]);
+  };
+
+  const handleScrollbarSizeChange = useCallback(scrollbarHeight => {
+    setScrollerStyle({
+      overflow: null,
+      marginBottom: -scrollbarHeight,
+    });
+  }, []);
 
   const getConditionalElements = () => {
     const conditionalElements = {};
-    const scrollButtonsActive = showLeftScroll || showRightScroll;
-
     conditionalElements.scrollbarSizeListener = scrollable ? (
       <ScrollbarSize
         className={classes.scrollable}
@@ -88,26 +193,31 @@ const Tabs = props => {
       />
     ) : null;
 
+    const scrollButtonsActive = displayScroll.start || displayScroll.end;
     const showScrollButtons =
       scrollable &&
       ((scrollButtons === 'auto' && scrollButtonsActive) ||
         scrollButtons === 'desktop' ||
         scrollButtons === 'on');
 
-    conditionalElements.scrollButtonLeft = showScrollButtons ? (
+    conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
-        onClick={handleLeftScrollClick}
-        visible={showLeftScroll}
+        orientation={orientation}
+        direction="left"
+        onClick={handleStartScrollClick}
+        visible={displayScroll.start}
         className={cx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
       />
     ) : null;
 
-    conditionalElements.scrollButtonRight = showScrollButtons ? (
+    conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
-        onClick={handleRightScrollClick}
-        visible={showRightScroll}
+        orientation={orientation}
+        direction="right"
+        onClick={handleEndScrollClick}
+        visible={displayScroll.end}
         className={cx(classes.scrollButtons, {
           [classes.scrollButtonsDesktop]: scrollButtons !== 'on',
         })}
@@ -117,138 +227,99 @@ const Tabs = props => {
     return conditionalElements;
   };
 
-  const getTabsMeta = useCallback(
-    value => {
-      let tabsMeta;
-      if (tabsRef) {
-        const rect = tabsRef.current.getBoundingClientRect();
-        tabsMeta = {
-          clientWidth: tabsRef.clientWidth,
-          scrollLeft: tabsRef.scrollLeft,
-          scrollWidth: tabsRef.scrollWidth,
-          left: rect.left,
-          right: rect.right,
-        };
-      }
+  const scrollSelectedIntoView = useEventCallback(() => {
+    const { tabsMeta, tabMeta } = getTabsMeta();
 
-      let tabMeta;
-      if (tabsRef && value !== false) {
-        const children = tabsRef.current.children[0].children;
-
-        if (children.length > 0) {
-          const tab = children[valueToIndex.get(value)];
-          tabMeta = tab ? tab.getBoundingClientRect() : null;
-        }
-      }
-      return { tabsMeta, tabMeta };
-    },
-    [valueToIndex],
-  );
-
-  const scroll = value => {
-    animate('scrollLeft', tabsRef, value);
-  };
-
-  const moveTabsScroll = delta => {
-    const nextScrollLeft = tabsRef.scrollLeft + delta;
-    const invert = 1;
-    scroll(invert * nextScrollLeft);
-  };
-
-  const handleLeftScrollClick = () => {
-    moveTabsScroll(-tabsRef.clientWidth);
-  };
-
-  const handleRightScrollClick = () => {
-    moveTabsScroll(tabsRef.clientWidth);
-  };
-
-  const handleScrollbarSizeChange = scrollbarHeight => {
-    setScrollerStyle({
-      scrollerStyle: {
-        overflow: null,
-        marginBottom: -scrollbarHeight,
-      },
-    });
-  };
-
-  const scrollSelectedIntoView = useCallback(() => {
-    const { tabsMeta, tabMeta } = getTabsMeta(value);
     if (!tabMeta || !tabsMeta) {
       return;
     }
-    if (tabMeta.left < tabsMeta.left) {
-      const nextScrollLeft =
-        tabsMeta.scrollLeft + (tabMeta.left - tabsMeta.left);
-      scroll(nextScrollLeft);
-    } else if (tabMeta.right > tabsMeta.right) {
-      const nextScrollLeft =
-        tabsMeta.scrollLeft + (tabMeta.right - tabsMeta.right);
-      scroll(nextScrollLeft);
-    }
-  }, [getTabsMeta, value]);
 
-  const updateScrollButtonState = useCallback(() => {
+    if (tabMeta[start] < tabsMeta[start]) {
+      const nextScrollStart =
+        tabsMeta[scrollStart] + (tabMeta[start] - tabsMeta[start]);
+      scroll(nextScrollStart);
+    } else if (tabMeta[end] > tabsMeta[end]) {
+      const nextScrollStart =
+        tabsMeta[scrollStart] + (tabMeta[end] - tabsMeta[end]);
+      scroll(nextScrollStart);
+    }
+  });
+
+  const updateScrollButtonState = useEventCallback(() => {
     if (scrollable && scrollButtons !== 'off') {
-      const { scrollWidth, clientWidth, scrollLeft } = tabsRef;
-      const _showLeftScroll = scrollLeft > 1;
-      const _showRightScroll = scrollLeft < scrollWidth - clientWidth - 1;
+      const {
+        scrollTop,
+        scrollLeft,
+        scrollHeight,
+        clientHeight,
+        scrollWidth,
+        clientWidth,
+      } = tabsRef.current;
+      let showStartScroll;
+      let showEndScroll;
+
+      if (vertical) {
+        showStartScroll = scrollTop > 1;
+        showEndScroll = scrollTop < scrollHeight - clientHeight - 1;
+      } else {
+        showStartScroll = scrollLeft > 1;
+        showEndScroll = scrollLeft < scrollWidth - clientWidth - 1;
+      }
 
       if (
-        showLeftScroll !== _showLeftScroll ||
-        showRightScroll !== _showRightScroll
+        showStartScroll !== displayScroll.start ||
+        showEndScroll !== displayScroll.end
       ) {
-        setShowLeftScroll(showLeftScroll);
-        setShowRightScroll(showRightScroll);
+        setDisplayScroll({ start: showStartScroll, end: showEndScroll });
       }
     }
-  }, [scrollButtons, scrollable, showLeftScroll, showRightScroll]);
+  });
+
+  const handleTabsScroll = useCallback(() => {
+    updateScrollButtonState();
+  }, [updateScrollButtonState]);
 
   useEffect(() => {
-    const updateIndicatorState = () => {
-      const { tabsMeta, tabMeta } = getTabsMeta(value);
-      let left = 0;
+    setMounted(true);
+  }, []);
 
-      if (tabMeta && tabsMeta) {
-        const correction = tabsMeta.scrollLeft || 0;
-        left = Math.round(tabMeta.left - tabsMeta.left + correction);
-      }
-
-      const indicatorStyle = {
-        left,
-        width: tabMeta ? Math.round(tabMeta.width) : 0,
-      };
-
-      setIndicatorStyle(indicatorStyle);
-    };
+  useEffect(() => {
     updateIndicatorState();
-  }, [getTabsMeta, value]);
+    updateScrollButtonState();
+  });
 
   useEffect(() => {
-    updateScrollButtonState();
-  }, [props, updateScrollButtonState]);
-
-  useEffect(() => {
-    updateScrollButtonState();
     scrollSelectedIntoView();
-  }, [props, scrollSelectedIntoView, updateScrollButtonState]);
+  }, [scrollSelectedIntoView, indicatorStyle]);
+
+  const indicator = (
+    <TabIndicator
+      className={classes.indicator}
+      orientation={orientation}
+      color={indicatorColor}
+      {...TabIndicatorProps}
+      style={{
+        ...indicatorStyle,
+        ...TabIndicatorProps.style,
+      }}
+    />
+  );
 
   let childIndex = 0;
-
   const children = React.Children.map(childrenProp, child => {
-    if (!React.isValidElement(child)) {
+    if (!isValidElement(child)) {
       return null;
     }
 
     const childValue =
       child.props.value === undefined ? childIndex : child.props.value;
-
     valueToIndex.set(childValue, childIndex);
     const selected = childValue === value;
 
     childIndex += 1;
-    return React.cloneElement(child, {
+    return cloneElement(child, {
       fullWidth: variant === 'fullWidth',
+      indicator: selected && !mounted && indicator,
       selected,
       onChange,
       textColor,
@@ -259,57 +330,57 @@ const Tabs = props => {
   const conditionalElements = getConditionalElements();
 
   return (
-    <Component className={cx(classes.root, className)} {...other}>
-      <div className={classes.flexContainer}>
-        {conditionalElements.scrollButtonLeft}
-        {conditionalElements.scrollbarSizeListener}
+    <Component
+      className={cx(
+        classes.root,
+        {
+          [classes.vertical]: vertical,
+        },
+        className,
+      )}
+      {...other}
+    >
+      {conditionalElements.scrollButtonStart}
+      {conditionalElements.scrollbarSizeListener}
+      <div
+        className={cx(classes.scroller, {
+          [classes.fixed]: !scrollable,
+          [classes.scrollable]: scrollable,
+        })}
+        style={scrollerStyle}
+        ref={tabsRef}
+        onScroll={handleTabsScroll}
+      >
         <div
-          className={cx(classes.scroller, {
-            [classes.fixed]: !scrollable,
-            [classes.scrollable]: scrollable,
+          className={cx(classes.flexContainer, {
+            [classes.flexContainerVertical]: vertical,
+            [classes.centered]: centered && !scrollable,
           })}
-          style={scrollerStyle}
-          ref={tabsRef}
+          ref={childrenWrapperRef}
         >
-          <div
-            className={cx(classes.flexContainer, {
-              [classes.centered]: centered && !scrollable,
-            })}
-          >
-            {children}
-          </div>
-          <TabIndicator color={indicatorColor} style={indicatorStyle} />
+          {children}
         </div>
-        {conditionalElements.scrollButtonRight}
+        {mounted && indicator}
       </div>
+      {conditionalElements.scrollButtonEnd}
     </Component>
   );
 };
 
 Tabs.propTypes = {
-  action: PropTypes.func,
-  centered: PropTypes.bool,
-  children: PropTypes.node,
-  className: PropTypes.string,
   component: PropTypes.elementType,
-  indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
-  onChange: PropTypes.func,
-  ScrollButtonComponent: PropTypes.elementType,
-  scrollButtons: PropTypes.oneOf(['auto', 'desktop', 'on', 'off']),
-  TabIndicatorProps: PropTypes.object,
-  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
-  value: PropTypes.any,
+  className: PropTypes.string,
+  children: PropTypes.node,
   variant: PropTypes.oneOf(['standard', 'scrollable', 'fullWidth']),
-};
-
-Tabs.defaultProps = {
-  centered: false,
-  component: 'div',
-  indicatorColor: 'secondary',
-  ScrollButtonComponent: TabScrollButton,
-  scrollButtons: 'auto',
-  textColor: 'inherit',
-  variant: 'standard',
+  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  scrollButtons: PropTypes.oneOf(['auto', 'on', 'off']),
+  ScrollButtonComponent: PropTypes.elementType,
+  indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
+  TabIndicatorProps: PropTypes.object,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
+  centered: PropTypes.bool,
 };
 
 export default Tabs;
