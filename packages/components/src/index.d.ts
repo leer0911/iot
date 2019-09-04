@@ -43,6 +43,8 @@ export { default as DialogContentText } from './feedback/DialogContentText';
 export { default as DialogTitle } from './feedback/DialogTitle';
 
 export { default as Fade } from './other/Fade';
+export { default as Backdrop } from './other/Backdrop';
+export { default as Slide } from './other/Slide';
 
 export { default as useClasses } from './styles/useClasses';
 
