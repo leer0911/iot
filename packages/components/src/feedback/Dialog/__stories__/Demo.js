@@ -1,4 +1,15 @@
 import React from 'react';
+// import { Slide, Box } from '../../../';
+
+// function Demo() {
+//   return (
+//     <Slide>
+//       <Box p={10} bgcolor="#f00"></Box>
+//     </Slide>
+//   );
+// }
+
+// export default Demo;
 
 import {
   Dialog,
@@ -8,6 +19,7 @@ import {
   DialogContent,
   DialogActions,
   Typography,
+  Slide,
 } from '../../../';
 
 const Demo = () => {
@@ -27,10 +39,13 @@ const Demo = () => {
       <Button variant="contained" color="primary" onClick={handleOpen}>
         Open Dialog
       </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
-        </DialogTitle>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Slide}
+        TransitionProps={{ direction: 'down' }}
+      >
+        <DialogTitle onClose={handleClose}>Modal title</DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,

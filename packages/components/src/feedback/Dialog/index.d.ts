@@ -7,6 +7,7 @@ export interface DialogProps extends ModalProps {
   fullWidth?: boolean;
   maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
   PaperComponent?: React.ComponentType;
+  TransitionComponent?: React.ComponentType;
   PaperProps?: Partial<PaperProps>;
   scroll?: 'body' | 'paper';
 }

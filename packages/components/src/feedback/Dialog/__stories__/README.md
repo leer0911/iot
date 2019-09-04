@@ -4,7 +4,8 @@
 
 | Name                 | Type              | Default | Description |
 | :------------------- | :---------------- | :------ | :---------- |
-| BackdropComponent    | React.ElementType |         |             |
+| TransitionComponent  | React.ElementType |         |             |
+| TransitionProps      | TransitionProps   |         |             |
 | BackdropProps        |                   |         |             |
 | container            |                   |         |             |
 | disableBackdropClick | bool              | false   |             |
