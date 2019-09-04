@@ -33,6 +33,7 @@ export { default as BottomNavigation } from './navigation/BottomNavigation';
 export { default as BottomNavigationAction } from './navigation/BottomNavigationAction';
 export { default as Tab } from './navigation/Tab';
 export { default as Tabs } from './navigation/Tabs';
+export { default as Drawer } from './navigation/Drawer';
 
 export { default as CircularProgress } from './feedback/CircularProgress';
 export { default as Modal } from './feedback/Modal';
