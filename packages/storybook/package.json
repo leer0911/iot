@@ -1,7 +1,6 @@
 {
   "name": "@iot/storybook",
   "version": "1.0.0",
-  "private": true,
   "dependencies": {
     "@babel/core": "^7.2.2",
     "@iot/components": "1.0.0",
