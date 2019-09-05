@@ -24,9 +24,6 @@
     "react-spring": "^8.0.27",
     "resize-observer-polyfill": "^1.5.1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
