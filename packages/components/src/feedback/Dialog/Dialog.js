@@ -112,27 +112,28 @@ export const styles = theme => ({
 
 const Dialog = props => {
   const {
-    BackdropProps,
-    children,
     className,
+    children,
+    open,
+    scroll = 'paper',
+    maxWidth = 'sm',
     disableBackdropClick = false,
     fullScreen = false,
     fullWidth = false,
-    maxWidth = 'sm',
     onBackdropClick,
     onClose,
     onEnter,
     onExited,
-    open,
     PaperComponent = Paper,
     PaperProps = {},
-    scroll = 'paper',
+    BackdropProps,
     TransitionComponent = Fade,
     TransitionProps,
     ...other
   } = props;
 
   const classes = useClasses(styles);
+
   const mouseDownTarget = React.useRef();
   const handleMouseDown = event => {
     mouseDownTarget.current = event.target;
@@ -171,57 +172,54 @@ const Dialog = props => {
       {...other}
     >
       <TransitionComponent
+        className={cx(
+          classes.container,
+          classes[`scroll${capitalize(scroll)}`],
+        )}
         in={open}
         onEnter={onEnter}
         onExited={onExited}
+        onClick={handleBackdropClick}
+        onMouseDown={handleMouseDown}
         {...TransitionProps}
       >
-        <div
+        <PaperComponent
+          elevation={24}
+          {...PaperProps}
           className={cx(
-            classes.container,
-            classes[`scroll${capitalize(scroll)}`],
+            classes.paper,
+            classes[`paperScroll${capitalize(scroll)}`],
+            classes[`paperWidth${capitalize(String(maxWidth))}`],
+            {
+              [classes.paperFullScreen]: fullScreen,
+              [classes.paperFullWidth]: fullWidth,
+            },
+            PaperProps.className,
           )}
-          onClick={handleBackdropClick}
-          onMouseDown={handleMouseDown}
         >
-          <PaperComponent
-            elevation={24}
-            {...PaperProps}
-            className={cx(
-              classes.paper,
-              classes[`paperScroll${capitalize(scroll)}`],
-              classes[`paperWidth${capitalize(String(maxWidth))}`],
-              {
-                [classes.paperFullScreen]: fullScreen,
-                [classes.paperFullWidth]: fullWidth,
-              },
-              PaperProps.className,
-            )}
-          >
-            {children}
-          </PaperComponent>
-        </div>
+          {children}
+        </PaperComponent>
       </TransitionComponent>
     </Modal>
   );
 };
 
 Dialog.propTypes = {
-  BackdropProps: PropTypes.object,
-  children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  open: PropTypes.bool.isRequired,
+  scroll: PropTypes.oneOf(['body', 'paper']),
+  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
   disableBackdropClick: PropTypes.bool,
   fullScreen: PropTypes.bool,
   fullWidth: PropTypes.bool,
-  maxWidth: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
   onBackdropClick: PropTypes.func,
   onClose: PropTypes.func,
   onEnter: PropTypes.func,
   onExited: PropTypes.func,
-  open: PropTypes.bool.isRequired,
   PaperComponent: PropTypes.elementType,
   PaperProps: PropTypes.object,
-  scroll: PropTypes.oneOf(['body', 'paper']),
+  BackdropProps: PropTypes.object,
   TransitionComponent: PropTypes.elementType,
   TransitionProps: PropTypes.object,
 };

@@ -31,18 +31,18 @@ const Backdrop = props => {
   const classes = useClasses(styles);
 
   return (
-    <Fade in={open} {...other}>
-      <div
-        className={cx(
-          classes.root,
-          {
-            [classes.invisible]: invisible,
-          },
-          className,
-        )}
-      >
-        {children}
-      </div>
+    <Fade
+      className={cx(
+        classes.root,
+        {
+          [classes.invisible]: invisible,
+        },
+        className,
+      )}
+      in={open}
+      {...other}
+    >
+      {children}
     </Fade>
   );
 };

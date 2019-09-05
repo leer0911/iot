@@ -4,7 +4,7 @@ import { SlideProps } from '../../other/Slide';
 
 export interface DrawerProps {
   variant?: 'permanent' | 'persistent' | 'temporary';
-  anchor?: 'left' | 'top' | 'right' | 'bottom';
+  anchor?: 'left' | 'up' | 'right' | 'down';
   elevation?: number;
   open?: boolean;
   ModalProps?: Partial<ModalProps>;

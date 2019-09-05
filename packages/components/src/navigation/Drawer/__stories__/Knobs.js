@@ -1,62 +1,53 @@
 import React from 'react';
-import { Tabs, Tab, Box } from '../../..';
-import { select, boolean } from '@storybook/addon-knobs';
+import { Drawer, Button, Box, List, ListItem, ListItemText } from '../../..';
+import { select, number } from '@storybook/addon-knobs';
 
 const Knobs = () => {
-  const [value, setValue] = React.useState(2);
+  const [open, setOpen] = React.useState(false);
 
-  function handleChange(event, newValue) {
-    setValue(newValue);
-  }
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
   return (
     <>
       <h3>knobs</h3>
       <Box p={2} bgcolor="#eee" borderRadius={5}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
+        <Button onClick={toggleDrawer}>Open</Button>
+        <Drawer
+          open={open}
+          onClose={() => {
+            setOpen(false);
+          }}
           variant={select(
             'variant',
             {
-              standard: 'standard',
-              scrollable: 'scrollable',
-              fullWidth: 'fullWidth',
+              permanent: 'permanent',
+              persistent: 'persistent',
+              temporary: 'temporary',
             },
-            'standard',
+            'temporary',
           )}
-          indicatorColor={select(
-            'indicatorColor',
+          anchor={select(
+            'anchor',
             {
-              primary: 'primary',
-              secondary: 'secondary',
+              left: 'left',
+              top: 'top',
+              right: 'right',
+              bottom: 'bottom',
             },
-            'secondary',
+            'left',
           )}
-          textColor={select(
-            'textColor',
-            {
-              inherit: 'inherit',
-              primary: 'primary',
-              secondary: 'secondary',
-            },
-            'inherit',
-          )}
-          scrollButtons={select('scrollButtons', {
-            auto: 'auto',
-            destop: 'destop',
-            on: 'on',
-            off: 'off',
-          })}
-          centered={boolean('centered')}
+          elevation={number('elevation', 16)}
         >
-          <Tab label="Bed Room" />
-          <Tab label="Living Room" />
-          <Tab label="Room 1" />
-          <Tab label="Room 2" />
-          <Tab label="Room 3" />
-          <Tab label="Room 4" />
-          <Tab label="Room 5" />
-        </Tabs>
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map(text => (
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
       </Box>
     </>
   );

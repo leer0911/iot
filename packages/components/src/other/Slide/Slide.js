@@ -10,6 +10,7 @@ const Slide = props => {
     children,
     onEnter,
     onExited,
+    component,
     ...other
   } = props;
 
@@ -18,23 +19,27 @@ const Slide = props => {
   const transform = useMemo(() => {
     const { top, left } = rect;
 
-    // down
-    let from = `translateY(${-window.innerHeight}px)`;
-    let to = `translateY(-${top}px)`;
+    let from = '';
+    let to = '';
 
-    if (direction === 'left') {
-      from = `translateX(${window.innerWidth}px)`;
-      to = `translateX(-${left}px)`;
+    if (direction === 'up') {
+      from = `translateY(${-window.innerHeight}px)`;
+      to = `translateY(-${top}px)`;
     }
 
-    if (direction === 'right') {
+    if (direction === 'down') {
+      from = `translateY(${window.innerHeight}px)`;
+      to = `translateY(-${top}px)`;
+    }
+
+    if (direction === 'left') {
       from = `translateX(${-window.innerWidth}px)`;
       to = `translateX(-${left}px)`;
     }
 
-    if (direction === 'up') {
-      from = `translateY(${window.innerHeight}px)`;
-      to = `translateY(-${top}px)`;
+    if (direction === 'right') {
+      from = `translateX(${window.innerWidth}px)`;
+      to = `translateX(-${left}px)`;
     }
 
     return [from, to];
@@ -57,6 +62,16 @@ const Slide = props => {
       }
     },
   });
+
+  // 注意：需要支持自定义 component 的情况
+  if (component) {
+    const Animate = animated(component);
+    return (
+      <Animate style={style} {...bind} {...other}>
+        {children}
+      </Animate>
+    );
+  }
 
   return (
     <animated.div style={style} {...bind} {...other}>

@@ -66,9 +66,12 @@ export const styles = theme => ({
   },
 });
 
-export function isHorizontal(anchor) {
-  return ['left', 'right'].indexOf(anchor) !== -1;
-}
+const directionMap = {
+  left: 'left',
+  right: 'right',
+  top: 'up',
+  bottom: 'down',
+};
 
 const Drawer = props => {
   const {
@@ -93,36 +96,43 @@ const Drawer = props => {
     mounted.current = true;
   }, []);
 
-  const drawer = (
-    <Paper
-      className={cx(
-        classes.paper,
-        classes[`paperAnchor${capitalize(anchor)}`],
-        {
-          [classes[`paperAnchorDocked${capitalize(anchor)}`]]:
-            variant !== 'temporary',
-        },
-      )}
-      elevation={variant === 'temporary' ? elevation : 0}
-      square
-      {...PaperProps}
-    >
-      {children}
-    </Paper>
-  );
+  const Drawer = props => {
+    return (
+      <Paper
+        {...props}
+        className={cx(
+          classes.paper,
+          classes[`paperAnchor${capitalize(anchor)}`],
+          {
+            [classes[`paperAnchorDocked${capitalize(anchor)}`]]:
+              variant !== 'temporary',
+          },
+        )}
+        elevation={variant === 'temporary' ? elevation : 0}
+        square
+        {...PaperProps}
+      >
+        {children}
+      </Paper>
+    );
+  };
 
   if (variant === 'permanent') {
     return (
       <div className={cx(classes.root, classes.docked, className)} {...other}>
-        {drawer}
+        <Drawer />
       </div>
     );
   }
 
   const slidingDrawer = (
-    <Slide in={open} direction={anchor} {...SlideProps}>
-      {drawer}
-    </Slide>
+    <Slide
+      className={classes.slide}
+      in={open}
+      direction={directionMap[anchor]}
+      component={Drawer}
+      {...SlideProps}
+    ></Slide>
   );
 
   if (variant === 'persistent') {
