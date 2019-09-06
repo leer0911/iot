@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "ui:start": "cd packages/storybook && yarn storybook",
+    "start": "cd packages/apps/mi && yarn start",
     "test": "FORCE_COLOR=true lerna run lint && CI=true FORCE_COLOR=true lerna run test -- --coverage",
     "deploy": "FORCE_COLOR=true lerna run deploy"
   },
