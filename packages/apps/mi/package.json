@@ -1,9 +1,9 @@
 {
   "name": "@iot/mi",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "dependencies": {
-    "@iot/components": "^1.0.0",
-    "@iot/react-scripts": "^1.0.0",
+    "@iot/components": "^1.0.1",
+    "@iot/react-scripts": "^1.0.1",
     "cross-env": "^5.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
