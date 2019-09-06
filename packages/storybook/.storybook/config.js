@@ -1,12 +1,15 @@
 import { configure, addParameters, addDecorator } from '@storybook/react';
+import { jsxDecorator } from 'storybook-addon-jsx';
+
+addDecorator(jsxDecorator);
 
 addParameters({
   options: {
-    panelPosition: 'right'
+    panelPosition: 'right',
   },
   viewport: {
-    defaultViewport: 'iphone6'
-  }
+    defaultViewport: 'iphone6',
+  },
 });
 
 const comps = require.context('@iot/components/src', true, /.stories.js$/);
