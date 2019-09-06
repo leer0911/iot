@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@iot/components": "^1.0.0",
-    "@react-workspaces/react-scripts": "3.0.1-alpha-07",
+    "@iot/react-scripts": "^1.0.0",
     "cross-env": "^5.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",

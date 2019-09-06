@@ -1,9 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import PropTypes from 'prop-types';
-
-import { Button } from '@iot/components';
 
 function App() {
   return (
@@ -11,16 +8,19 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit 2222<code>src/App.js</code> and save to reload.
+          Edit <code>src/App.js</code> and save to reload.
         </p>
-        <Button variant="contained">Test</Button>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
       </header>
     </div>
   );
 }
-
-App.propTypes = {
-  component: PropTypes.elementType,
-};
 
 export default App;
