@@ -46,8 +46,35 @@ export { default as DialogTitle } from './feedback/DialogTitle';
 export { default as Fade } from './other/Fade';
 export { default as Backdrop } from './other/Backdrop';
 export { default as Slide } from './other/Slide';
+export { default as CssBaseline } from './other/CssBaseline';
 
 export { default as useClasses } from './styles/useClasses';
+
+export { default as common } from './colors/common';
+export { default as red } from './colors/red';
+export { default as pink } from './colors/pink';
+export { default as purple } from './colors/purple';
+export { default as deepPurple } from './colors/deepPurple';
+export { default as indigo } from './colors/indigo';
+export { default as blue } from './colors/blue';
+export { default as lightBlue } from './colors/lightBlue';
+export { default as cyan } from './colors/cyan';
+export { default as teal } from './colors/teal';
+export { default as green } from './colors/green';
+export { default as lightGreen } from './colors/lightGreen';
+export { default as lime } from './colors/lime';
+export { default as yellow } from './colors/yellow';
+export { default as amber } from './colors/amber';
+export { default as orange } from './colors/orange';
+export { default as deepOrange } from './colors/deepOrange';
+export { default as brown } from './colors/brown';
+export { default as grey } from './colors/grey';
+export { default as blueGrey } from './colors/blueGrey';
+
+export { default as createTheme } from './theme/createTheme';
+export { default as useTheme } from './theme/useTheme';
+export { default as defaultTheme } from './theme/defaultTheme';
+export { default as ThemeContext } from './theme/ThemeContext';
 
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
