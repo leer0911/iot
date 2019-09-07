@@ -2,5 +2,7 @@
   "parser": "babel-eslint",
   "plugins": ["react", "prettier", "import"],
   "extends": ["react-app", "prettier", "prettier/react"],
-  "rules": {}
+  "rules": {
+    "react/self-closing-comp": "warn"
+  }
 }
