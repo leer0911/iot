@@ -11,17 +11,8 @@ export const styles = theme => {
   const bottomLineColor = light
     ? 'rgba(0, 0, 0, 0.42)'
     : 'rgba(255, 255, 255, 0.7)';
+
   return {
-    root: {
-      position: 'relative',
-    },
-    formControl: {
-      'label + &': {
-        marginTop: 16,
-      },
-    },
-    focused: {},
-    disabled: {},
     underline: {
       '&:after': {
         borderBottom: `2px solid ${
@@ -39,13 +30,6 @@ export const styles = theme => {
         }),
         pointerEvents: 'none',
       },
-      '&$focused:after': {
-        transform: 'scaleX(1)',
-      },
-      '&$error:after': {
-        borderBottomColor: theme.palette.error.main,
-        transform: 'scaleX(1)',
-      },
       '&:before': {
         borderBottom: `1px solid ${bottomLineColor}`,
         left: 0,
@@ -58,33 +42,35 @@ export const styles = theme => {
         }),
         pointerEvents: 'none',
       },
-      '&:hover:not($disabled):before': {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
-        '@media (hover: none)': {
-          borderBottom: `1px solid ${bottomLineColor}`,
-        },
-      },
-      '&$disabled:before': {
-        borderBottomStyle: 'dotted',
+    },
+  };
+};
+
+export const InputBaseStyles = theme => {
+  return {
+    root: {
+      position: 'relative',
+    },
+    focused: {
+      '&:after': {
+        transform: 'scaleX(1)',
       },
     },
-    error: {},
-    multiline: {},
-    fullWidth: {},
-    input: {},
-    inputMarginDense: {},
-    inputMultiline: {},
-    inputTypeSearch: {},
+    error: {
+      '&:after': {
+        borderBottomColor: theme.palette.error.main,
+        transform: 'scaleX(1)',
+      },
+    },
   };
 };
 
 const Input = props => {
   const {
+    type = 'text',
     disableUnderline,
     fullWidth = false,
-    inputComponent = 'input',
     multiline = false,
-    type = 'text',
     ...other
   } = props;
 
@@ -92,15 +78,11 @@ const Input = props => {
 
   return (
     <InputBase
-      classes={{
-        ...classes,
-        root: cx(classes.root, {
-          [classes.underline]: !disableUnderline,
-        }),
-        underline: null,
-      }}
+      className={cx({
+        [classes.underline]: !disableUnderline,
+      })}
+      classes={InputBaseStyles}
       fullWidth={fullWidth}
-      inputComponent={inputComponent}
       multiline={multiline}
       type={type}
       {...other}
@@ -109,31 +91,30 @@ const Input = props => {
 };
 
 Input.propTypes = {
-  autoComplete: PropTypes.string,
-  autoFocus: PropTypes.bool,
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  inputComponent: PropTypes.elementType,
+  type: PropTypes.string,
+  value: PropTypes.any,
   defaultValue: PropTypes.any,
   disabled: PropTypes.bool,
+  autoComplete: PropTypes.string,
+  autoFocus: PropTypes.bool,
   disableUnderline: PropTypes.bool,
+  multiline: PropTypes.bool,
+  startAdornment: PropTypes.node,
   endAdornment: PropTypes.node,
   error: PropTypes.bool,
   fullWidth: PropTypes.bool,
   id: PropTypes.string,
-  inputComponent: PropTypes.elementType,
-  inputProps: PropTypes.object,
-  margin: PropTypes.oneOf(['dense', 'none']),
-  multiline: PropTypes.bool,
   name: PropTypes.string,
+  inputProps: PropTypes.object,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  margin: PropTypes.oneOf(['dense', 'none']),
   rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  startAdornment: PropTypes.node,
-  type: PropTypes.string,
-  value: PropTypes.any,
 };
 
 export default Input;

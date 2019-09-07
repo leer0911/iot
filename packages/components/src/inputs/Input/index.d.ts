@@ -1,4 +1,6 @@
-export interface InputProps {
+import { InputBaseProps } from '../InputBase';
+
+export interface InputProps extends InputBaseProps {
   disableUnderline?: boolean;
 }
 

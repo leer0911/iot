@@ -8,8 +8,15 @@ export { default as SwitchBase } from './inputs/SwitchBase';
 export { default as Radio } from './inputs/Radio';
 export { default as Switch } from './inputs/Switch';
 export { default as Checkbox } from './inputs/Checkbox';
-export { default as InputBase } from './inputs/InputBase';
 export { default as Slider } from './inputs/Slider';
+
+export { default as InputBase } from './inputs/InputBase';
+export { default as Input } from './inputs/Input';
+export { default as InputAdornment } from './inputs/InputAdornment';
+export { default as InputLabel } from './inputs/InputLabel';
+export { default as FilledInput } from './inputs/FilledInput';
+export { default as OutlinedInput } from './inputs/OutlinedInput';
+export { default as TextField } from './inputs/TextField';
 
 export { default as Typography } from './display/Typography';
 export { default as SvgIcon } from './display/SvgIcon';
