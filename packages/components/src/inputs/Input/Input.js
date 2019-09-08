@@ -51,6 +51,9 @@ export const InputBaseStyles = theme => {
     root: {
       position: 'relative',
     },
+    formControl: {
+      marginTop: 16,
+    },
     focused: {
       '&:after': {
         transform: 'scaleX(1)',

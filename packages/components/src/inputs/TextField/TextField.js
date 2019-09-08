@@ -24,40 +24,41 @@ export const styles = {
 
 const TextField = props => {
   const {
-    autoComplete,
-    autoFocus,
     children,
     className: classNameProp,
-    defaultValue,
-    error,
-    FormHelperTextProps,
-    fullWidth,
-    helperText,
-    hiddenLabel,
-    id,
-    InputLabelProps,
-    inputProps,
-    InputProps,
-    inputRef,
+    variant = 'standard',
     label,
-    multiline,
-    name,
-    onBlur,
-    onChange,
-    onFocus,
-    placeholder,
-    required = false,
+    id,
     rows,
     rowsMax,
     type,
     value,
-    variant = 'standard',
+    name,
+    placeholder,
+    helperText,
+    FormHelperTextProps,
+    autoComplete,
+    autoFocus,
+    required = false,
+    error,
+    defaultValue,
+    fullWidth,
+    hiddenLabel,
+    InputLabelProps,
+    inputProps,
+    InputProps,
+    multiline,
+    onBlur,
+    onChange,
+    onFocus,
     ...other
   } = props;
 
   const classes = useClasses(styles);
+
   const [labelWidth, setLabelWidth] = React.useState(0);
   const labelRef = React.useRef(null);
+
   React.useEffect(() => {
     if (variant === 'outlined') {
       const labelNode = ReactDOM.findDOMNode(labelRef.current);
@@ -77,9 +78,9 @@ const TextField = props => {
 
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const InputComponent = variantComponent[variant];
+
   const InputElement = (
     <InputComponent
-      aria-describedby={helperTextId}
       autoComplete={autoComplete}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
@@ -91,7 +92,6 @@ const TextField = props => {
       type={type}
       value={value}
       id={id}
-      inputRef={inputRef}
       onBlur={onBlur}
       onChange={onChange}
       onFocus={onFocus}
@@ -105,11 +105,11 @@ const TextField = props => {
   return (
     <FormControl
       className={cx(classes.root, classNameProp)}
+      variant={variant}
       error={error}
       fullWidth={fullWidth}
       hiddenLabel={hiddenLabel}
       required={required}
-      variant={variant}
       {...other}
     >
       {label && (
@@ -131,7 +131,6 @@ TextField.propTypes = {
   autoComplete: PropTypes.string,
   autoFocus: PropTypes.bool,
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   defaultValue: PropTypes.any,
   disabled: PropTypes.bool,
@@ -145,7 +144,6 @@ TextField.propTypes = {
   InputProps: PropTypes.object,
   inputProps: PropTypes.object,
   label: PropTypes.node,
-  margin: PropTypes.oneOf(['none', 'dense', 'normal']),
   multiline: PropTypes.bool,
   name: PropTypes.string,
   onBlur: PropTypes.func,
@@ -153,10 +151,11 @@ TextField.propTypes = {
   onFocus: PropTypes.func,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   type: PropTypes.string,
   value: PropTypes.any,
+  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  margin: PropTypes.oneOf(['none', 'dense', 'normal']),
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 

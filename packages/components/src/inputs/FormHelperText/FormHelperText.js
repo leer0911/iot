@@ -15,25 +15,19 @@ export const styles = theme => ({
     marginTop: 8,
     lineHeight: '1em',
     minHeight: '1em',
-    margin: 0,
-    '&$disabled': {
-      color: theme.palette.text.disabled,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
   },
-  error: {},
-  disabled: {},
+  error: {
+    color: theme.palette.error.main,
+  },
+  disabled: {
+    color: theme.palette.text.disabled,
+  },
   marginDense: {
     marginTop: 4,
   },
   contained: {
     margin: '8px 14px 0',
   },
-  focused: {},
-  filled: {},
-  required: {},
 });
 
 const FormHelperText = props => {

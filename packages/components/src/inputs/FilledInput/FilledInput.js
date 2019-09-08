@@ -25,24 +25,6 @@ export const styles = theme => {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
-      '&:hover': {
-        backgroundColor: light
-          ? 'rgba(0, 0, 0, 0.13)'
-          : 'rgba(255, 255, 255, 0.13)',
-        '@media (hover: none)': {
-          backgroundColor,
-        },
-      },
-      '&$focused': {
-        backgroundColor: light
-          ? 'rgba(0, 0, 0, 0.09)'
-          : 'rgba(255, 255, 255, 0.09)',
-      },
-      '&$disabled': {
-        backgroundColor: light
-          ? 'rgba(0, 0, 0, 0.12)'
-          : 'rgba(255, 255, 255, 0.12)',
-      },
     },
     underline: {
       '&:after': {
@@ -61,13 +43,6 @@ export const styles = theme => {
         }),
         pointerEvents: 'none',
       },
-      '&$focused:after': {
-        transform: 'scaleX(1)',
-      },
-      '&$error:after': {
-        borderBottomColor: theme.palette.error.main,
-        transform: 'scaleX(1)',
-      },
       '&:before': {
         borderBottom: `1px solid ${bottomLineColor}`,
         left: 0,
@@ -80,32 +55,47 @@ export const styles = theme => {
         }),
         pointerEvents: 'none',
       },
-      '&:hover:before': {
-        borderBottom: `1px solid ${theme.palette.text.primary}`,
-      },
-      '&$disabled:before': {
-        borderBottomStyle: 'dotted',
+    },
+  };
+};
+
+const fillStyles = theme => {
+  const light = theme.palette.type === 'light';
+  return {
+    focused: {
+      backgroundColor: light
+        ? 'rgba(0, 0, 0, 0.09)'
+        : 'rgba(255, 255, 255, 0.09)',
+      '&:after': {
+        transform: 'scaleX(1)',
       },
     },
-    focused: {},
-    disabled: {},
+    error: {
+      '&:after': {
+        borderBottomColor: theme.palette.error.main,
+        transform: 'scaleX(1)',
+      },
+    },
+    disabled: {
+      backgroundColor: light
+        ? 'rgba(0, 0, 0, 0.12)'
+        : 'rgba(255, 255, 255, 0.12)',
+    },
+    input: {
+      padding: '27px 12px 10px',
+    },
     adornedStart: {
       paddingLeft: 12,
     },
     adornedEnd: {
       paddingRight: 12,
     },
-    error: {},
-    marginDense: {},
     multiline: {
       padding: '27px 12px 10px',
-      '&$marginDense': {
-        paddingTop: 23,
-        paddingBottom: 6,
-      },
     },
-    input: {
-      padding: '27px 12px 10px',
+    multilineDense: {
+      paddingTop: 23,
+      paddingBottom: 6,
     },
     inputMarginDense: {
       paddingTop: 23,
@@ -114,10 +104,10 @@ export const styles = theme => {
     inputHiddenLabel: {
       paddingTop: 18,
       paddingBottom: 19,
-      '&$inputMarginDense': {
-        paddingTop: 10,
-        paddingBottom: 11,
-      },
+    },
+    inputHiddenLabelDense: {
+      paddingTop: 10,
+      paddingBottom: 11,
     },
     inputMultiline: {
       padding: 0,
@@ -134,7 +124,6 @@ export const styles = theme => {
 const FilledInput = props => {
   const {
     type = 'text',
-    inputComponent = 'input',
     fullWidth = false,
     multiline = false,
     disableUnderline,
@@ -145,15 +134,11 @@ const FilledInput = props => {
 
   return (
     <InputBase
-      classes={{
-        ...classes,
-        root: cx(classes.root, {
-          [classes.underline]: !disableUnderline,
-        }),
-        underline: null,
-      }}
+      className={cx(classes.root, {
+        [classes.underline]: !disableUnderline,
+      })}
+      classes={fillStyles}
       fullWidth={fullWidth}
-      inputComponent={inputComponent}
       multiline={multiline}
       type={type}
       {...other}
@@ -172,7 +157,6 @@ FilledInput.propTypes = {
   error: PropTypes.bool,
   fullWidth: PropTypes.bool,
   id: PropTypes.string,
-  inputComponent: PropTypes.elementType,
   inputProps: PropTypes.object,
   margin: PropTypes.oneOf(['dense', 'none']),
   multiline: PropTypes.bool,

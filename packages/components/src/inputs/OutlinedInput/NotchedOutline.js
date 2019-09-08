@@ -58,7 +58,6 @@ const NotchedOutline = props => {
 
   return (
     <fieldset
-      aria-hidden
       style={{
         [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
         ...style,
@@ -69,9 +68,6 @@ const NotchedOutline = props => {
       <legend
         className={classes.legend}
         style={{
-          // IE 11: fieldset with legend does not render
-          // a border radius. This maintains consistency
-          // by always having a legend rendered
           width: notched ? labelWidth : 0.01,
         }}
       >

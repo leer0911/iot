@@ -16,71 +16,56 @@ export const styles = theme => {
   return {
     root: {
       position: 'relative',
-      '&:hover $notchedOutline': {
-        borderColor: theme.palette.text.primary,
-      },
-      '@media (hover: none)': {
-        '&:hover $notchedOutline': {
-          borderColor,
-        },
-      },
-      '&$focused $notchedOutline': {
-        borderColor: theme.palette.primary.main,
-        borderWidth: 2,
-      },
-      '&$error $notchedOutline': {
-        borderColor: theme.palette.error.main,
-      },
-      '&$disabled $notchedOutline': {
-        borderColor: theme.palette.action.disabled,
-      },
-    },
-    focused: {},
-    disabled: {},
-    adornedStart: {
-      paddingLeft: 14,
-    },
-    adornedEnd: {
-      paddingRight: 14,
-    },
-    error: {},
-    marginDense: {},
-    multiline: {
-      padding: '18.5px 14px',
-      '&$marginDense': {
-        paddingTop: 10.5,
-        paddingBottom: 10.5,
-      },
     },
     notchedOutline: {
       borderColor,
     },
-    input: {
-      padding: '18.5px 14px',
+    notchedOutlineFocused: {
+      borderColor: theme.palette.primary.main,
+      borderWidth: 2,
     },
-    inputMarginDense: {
-      paddingTop: 10.5,
-      paddingBottom: 10.5,
+    notchedOutlineError: {
+      borderColor: theme.palette.error.main,
     },
-    inputSelect: {
-      paddingRight: 24,
-    },
-    inputMultiline: {
-      padding: 0,
-    },
-    inputAdornedStart: {
-      paddingLeft: 0,
-    },
-    inputAdornedEnd: {
-      paddingRight: 0,
+    notchedOutlineDisabled: {
+      borderColor: theme.palette.action.disabled,
     },
   };
 };
 
-const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
+const InputBaseStyles = theme => ({
+  input: { padding: '18.5px 14px;' },
+  adornedStart: {
+    paddingLeft: 14,
+  },
+  adornedEnd: {
+    paddingRight: 14,
+  },
+  multiline: {
+    padding: '18.5px 14px',
+    '&$marginDense': {
+      paddingTop: 10.5,
+      paddingBottom: 10.5,
+    },
+  },
+  inputMarginDense: {
+    paddingTop: 10.5,
+    paddingBottom: 10.5,
+  },
+  inputMultiline: {
+    padding: 0,
+  },
+  inputAdornedStart: {
+    paddingLeft: 0,
+  },
+  inputAdornedEnd: {
+    paddingRight: 0,
+  },
+});
+
+const OutlinedInput = props => {
   const {
     fullWidth = false,
-    inputComponent = 'input',
     labelWidth = 0,
     multiline = false,
     notched,
@@ -94,7 +79,11 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     <InputBase
       renderSuffix={state => (
         <NotchedOutline
-          className={classes.notchedOutline}
+          className={cx(classes.notchedOutline, {
+            [classes.notchedOutlineFocused]: state.focused,
+            [classes.notchedOutlineError]: state.error,
+            [classes.notchedOutlineDisabled]: state.disabled,
+          })}
           labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
@@ -103,19 +92,15 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
           }
         />
       )}
-      classes={{
-        ...classes,
-        root: cx(classes.root, classes.underline),
-        notchedOutline: null,
-      }}
+      className={cx(classes.root)}
+      classes={InputBaseStyles}
       fullWidth={fullWidth}
-      inputComponent={inputComponent}
       multiline={multiline}
       type={type}
       {...other}
     />
   );
-});
+};
 
 OutlinedInput.propTypes = {
   autoComplete: PropTypes.string,

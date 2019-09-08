@@ -19,7 +19,12 @@ export const styles = theme => {
       duration: theme.transitions.duration.shorter,
     }),
   };
-
+  const placeholderHidden = {
+    opacity: '0 !important',
+  };
+  const placeholderVisible = {
+    opacity: light ? 0.42 : 0.5,
+  };
   return {
     root: {
       fontFamily: theme.typography.fontFamily,
@@ -35,9 +40,6 @@ export const styles = theme => {
     disabled: {
       color: theme.palette.text.disabled,
       cursor: 'default',
-    },
-    multiline: {
-      padding: `${8 - 2}px 0 ${8 - 1}px`,
     },
     fullWidth: {
       width: '100%',
@@ -65,12 +67,27 @@ export const styles = theme => {
       '&:invalid': {
         boxShadow: 'none',
       },
-      '&::-webkit-search-decoration': {
-        '-webkit-appearance': 'none',
-      },
+    },
+    hiddenPlaceholder: {
+      '&::-webkit-input-placeholder': placeholderHidden,
+      '&::-moz-placeholder': placeholderHidden, // Firefox 19+
+      '&:-ms-input-placeholder': placeholderHidden, // IE 11
+      '&::-ms-input-placeholder': placeholderHidden, // Edge
+      '&:focus::-webkit-input-placeholder': placeholderVisible,
+      '&:focus::-moz-placeholder': placeholderVisible, // Firefox 19+
+      '&:focus:-ms-input-placeholder': placeholderVisible, // IE 11
+      '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
     inputMarginDense: {
       paddingTop: 4 - 1,
+    },
+    multilineDense: {},
+    inputHiddenLabel: {},
+    inputHiddenLabelDense: {},
+    inputAdornedStart: {},
+    inputAdornedEnd: {},
+    multiline: {
+      padding: `${8 - 2}px 0 ${8 - 1}px`,
     },
     inputMultiline: {
       height: 'auto',
@@ -246,6 +263,10 @@ const InputBase = props => {
     };
   }
 
+  // 用于 label 和 palceholder 重叠时的样式标识
+  let shrink =
+    formControl.filled || formControl.focused || formControl.adornedStart;
+
   return (
     <div
       className={cx(classes.root, classNameProp, {
@@ -254,6 +275,7 @@ const InputBase = props => {
         [classes.focused]: fcs.focused,
         [classes.marginDense]: fcs.margin === 'dense',
         [classes.multiline]: multiline,
+        [classes.multilineDense]: multiline && fcs.margin === 'dense',
         [classes.formControl]: formControl,
         [classes.fullWidth]: fullWidth,
         [classes.adornedStart]: startAdornment,
@@ -271,12 +293,14 @@ const InputBase = props => {
             classes.input,
             {
               [classes.disabled]: fcs.disabled,
-              [classes.inputTypeSearch]: type === 'search',
-              [classes.inputMultiline]: multiline,
               [classes.inputMarginDense]: fcs.margin === 'dense',
               [classes.inputHiddenLabel]: fcs.hiddenLabel,
+              [classes.inputHiddenLabelDense]:
+                fcs.hiddenLabel && fcs.margin === 'dense',
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
+              [classes.hiddenPlaceholder]: formControl && !shrink,
+              [classes.inputMultiline]: multiline,
             },
             inputPropsClassName,
           )}
@@ -307,7 +331,7 @@ const InputBase = props => {
 };
 
 InputBase.propTypes = {
-  classes: PropTypes.object,
+  classes: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   autoComplete: PropTypes.string,
   autoFocus: PropTypes.bool,
   className: PropTypes.string,

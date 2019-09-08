@@ -1,5 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useForkRef } from '../../utils/useForkRef';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
@@ -16,11 +17,12 @@ const styles = {
   },
 };
 
-const TextareaAutosize = props => {
+const TextareaAutosize = React.forwardRef((props, ref) => {
   const { onChange, rows, rowsMax, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
+  const handleRef = useForkRef(ref, inputRef);
   const [state, setState] = React.useState({});
   const shadowRef = React.useRef(null);
 
@@ -90,7 +92,7 @@ const TextareaAutosize = props => {
   return (
     <React.Fragment>
       <textarea
-        ref={inputRef}
+        ref={handleRef}
         value={value}
         onChange={handleChange}
         style={{
@@ -110,7 +112,7 @@ const TextareaAutosize = props => {
       />
     </React.Fragment>
   );
-};
+});
 
 TextareaAutosize.propTypes = {
   className: PropTypes.string,

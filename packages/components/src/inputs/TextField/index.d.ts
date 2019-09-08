@@ -23,6 +23,7 @@ export interface BaseTextFieldProps {
   label?: React.ReactNode;
   margin?: PropTypes.Margin;
   multiline?: boolean;
+  hiddenLabel?: boolean;
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   placeholder?: string;

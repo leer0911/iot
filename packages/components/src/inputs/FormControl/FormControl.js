@@ -84,12 +84,14 @@ const FormControl = props => {
   }
 
   const childContext = {
-    adornedStart,
+    variant,
     disabled,
     error,
     filled,
     focused,
+    required,
     hiddenLabel,
+    adornedStart,
     margin,
     onBlur: () => {
       setFocused(false);
@@ -107,8 +109,6 @@ const FormControl = props => {
     onFocus: () => {
       setFocused(true);
     },
-    required,
-    variant,
   };
 
   return (
