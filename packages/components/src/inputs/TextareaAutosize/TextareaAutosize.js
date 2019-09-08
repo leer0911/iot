@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useForkRef } from '../../utils/useForkRef';
+import { useForkRef } from '../../utils';
 
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
