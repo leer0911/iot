@@ -264,8 +264,7 @@ const InputBase = props => {
   }
 
   // 用于 label 和 palceholder 重叠时的样式标识
-  let shrink =
-    formControl.filled || formControl.focused || formControl.adornedStart;
+  let shrink = fcs.filled || fcs.focused || fcs.adornedStart;
 
   return (
     <div

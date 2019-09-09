@@ -5,7 +5,7 @@ import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
 import Typography from '../../display/Typography';
-import FormControlContext, { useFormControl } from '../FormControl';
+import { FormControlContext, useFormControl } from '../FormControl';
 
 export const styles = {
   root: {

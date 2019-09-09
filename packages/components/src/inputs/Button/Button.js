@@ -10,7 +10,7 @@ export const styles = theme => ({
   root: {
     minWidth: 64,
     boxSizing: 'border-box',
-    padding: '6px 16px',
+    padding: '10px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
   },
@@ -58,9 +58,9 @@ export const styles = theme => ({
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
-    '&:active': {
-      boxShadow: theme.shadows[8],
-    },
+    // '&:active': {
+    //   boxShadow: theme.shadows[8],
+    // },
   },
   containeDisabled: {
     color: theme.palette.action.disabled,
@@ -80,10 +80,10 @@ export const styles = theme => ({
     borderColor: 'currentColor',
   },
   sizeSmall: {
-    padding: '4px 8px',
+    padding: '6px 8px',
   },
   sizeLarge: {
-    padding: '8px 24px',
+    padding: '14px 24px',
   },
   fullWidth: {
     width: '100%',

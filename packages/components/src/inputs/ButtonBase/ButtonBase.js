@@ -48,11 +48,7 @@ const ButtonBase = props => {
     centerRipple = false,
     disableRipple = false,
     disabled,
-    onClick,
-    onTouchEnd,
-    onTouchMove,
     onTouchStart,
-    onDragLeave,
     ...rest
   } = props;
 
@@ -83,11 +79,7 @@ const ButtonBase = props => {
     });
   };
 
-  const handleDragLeave = useRippleHandler(onDragLeave);
   const handleTouchStart = useRippleHandler(onTouchStart);
-  const handleTouchEnd = useRippleHandler(onTouchEnd);
-  const handleTouchMove = useRippleHandler(onTouchMove);
-  const handleClick = useRippleHandler(onClick);
 
   const className = cx(
     classes.root,
@@ -99,15 +91,7 @@ const ButtonBase = props => {
   );
 
   return (
-    <Component
-      className={className}
-      onClick={handleClick}
-      onDragLeave={handleDragLeave}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
-      onTouchStart={handleTouchStart}
-      {...rest}
-    >
+    <Component className={className} onTouchStart={handleTouchStart} {...rest}>
       {children}
       {!disableRipple && !disabled ? (
         <RippleHub

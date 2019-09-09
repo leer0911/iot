@@ -61,6 +61,12 @@ const RippleHub = ({ center, children }) => {
     [children],
   );
 
+  useEffect(() => {
+    return () => {
+      // TODO: 组件卸载时，停止动画更新
+    };
+  }, []);
+
   const containerRef = useRef(null);
 
   const getRippleRect = useCallback(

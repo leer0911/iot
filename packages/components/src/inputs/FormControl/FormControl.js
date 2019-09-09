@@ -54,6 +54,9 @@ const FormControl = props => {
 
     if (children) {
       React.Children.forEach(children, child => {
+        if (!child) {
+          return;
+        }
         const input = child.props.input;
         if (input && isAdornedStart(input.props)) {
           initialAdornedStart = true;
@@ -68,6 +71,9 @@ const FormControl = props => {
 
     if (children) {
       React.Children.forEach(children, child => {
+        if (!child) {
+          return;
+        }
         if (isFilled(child.props, true)) {
           initialFilled = true;
         }
