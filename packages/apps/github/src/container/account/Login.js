@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import {
   Paper,
   TextField,
@@ -11,10 +12,11 @@ import {
   CircularProgress,
 } from '@iot/components';
 import { Visibility, VisibilityOff } from '@iot/components/src/icon';
-import { login } from '../../api';
+import { useUserAction } from '../../store';
 
-const Login = () => {
+const Login = ({ history }) => {
   const theme = useTheme();
+  const { login } = useUserAction();
   const [state, setState] = React.useState({
     username: '',
     password: '',
@@ -49,11 +51,12 @@ const Login = () => {
     const { username, password } = state;
     try {
       await login({ username, password });
+      history.push('/');
     } catch (error) {
       console.log(error);
     }
     setState({ ...state, submitting: false });
-  }, [state]);
+  }, [history, login, state]);
 
   return (
     <Box
@@ -102,6 +105,10 @@ const Login = () => {
       </Paper>
     </Box>
   );
+};
+
+Login.propTypes = {
+  history: ReactRouterPropTypes.history.isRequired,
 };
 
 export default Login;

@@ -3,3 +3,4 @@ export { default as useGlobalStore } from './useGlobalStore';
 export { default as useStore } from './useStore';
 
 export * from './reducers';
+export * from './hooks';

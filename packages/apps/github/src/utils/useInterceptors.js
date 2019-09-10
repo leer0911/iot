@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
 import { createBrowserHistory } from 'history';
 import { DESTROY } from '../store';
 import http from './http';
 
 const history = createBrowserHistory();
 
+let done = false;
+
 const useInterceptors = store => {
   const { userState = {}, dispatch } = store;
   const { token } = userState;
 
-  useEffect(() => {
+  if (token && !done) {
+    done = true;
     http.interceptors.request.use(
       config => {
         if (token) {
@@ -39,7 +41,7 @@ const useInterceptors = store => {
         return Promise.reject(error.response.data);
       },
     );
-  }, [dispatch, token]);
+  }
 };
 
 export default useInterceptors;

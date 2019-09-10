@@ -5,12 +5,12 @@ import { useGlobalStore } from '../store';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { userState } = useGlobalStore();
-  const { userId } = userState || {};
+  const { token } = userState || {};
   return (
     <Route
       {...rest}
       render={props => {
-        return userId ? (
+        return token ? (
           <Component {...props} />
         ) : (
           <Redirect
