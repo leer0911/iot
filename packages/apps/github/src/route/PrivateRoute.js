@@ -6,7 +6,6 @@ import { useGlobalStore } from '../store';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { userState } = useGlobalStore();
   const { userId } = userState || {};
-
   return (
     <Route
       {...rest}

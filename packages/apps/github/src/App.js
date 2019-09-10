@@ -4,9 +4,14 @@ import { CssBaseline } from '@iot/components';
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
 import { User, Home, NoMatch } from './route';
+import { useInterceptors } from './utils';
 
 const App = () => {
   const store = useStore();
+
+  // axios 拦截器设置
+  useInterceptors(store);
+
   return (
     <GlobalStoreContext.Provider value={store}>
       <CssBaseline />

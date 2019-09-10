@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from '@iot/components';
 import { Visibility, VisibilityOff } from '@iot/components/src/icon';
-import axios from 'axios';
+import { login } from '../../api';
 
 const Login = () => {
   const theme = useTheme();
@@ -44,18 +44,15 @@ const Login = () => {
     [state],
   );
 
-  const handleLogin = useCallback(() => {
+  const handleLogin = useCallback(async () => {
     setState({ ...state, submitting: true });
-    axios({
-      method: 'get',
-      url: 'https://api.github.com/',
-      auth: {
-        username: state.username,
-        password: state.password,
-      },
-    }).then(result => {
-      setState({ ...state, submitting: false });
-    });
+    const { username, password } = state;
+    try {
+      await login({ username, password });
+    } catch (error) {
+      console.log(error);
+    }
+    setState({ ...state, submitting: false });
   }, [state]);
 
   return (
