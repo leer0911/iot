@@ -1,21 +1,40 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
-import { CssBaseline } from '@iot/components';
+import { CssBaseline, useClasses } from '@iot/components';
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
 import { User, Home, News, Profile, NoMatch } from './route';
 import { useInterceptors } from './utils';
 
-const AnimatRoute = ({ location }) => {
+const styles = theme => ({
+  root: {
+    position: 'absolute',
+    willChange: 'transform',
+    overflow: 'hidden',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    boxShadow: theme.shadows[5],
+  },
+});
+
+const AnimatRoute = ({ location, history, match }) => {
+  const classes = useClasses(styles);
+  const { action } = history;
+  const from = action === 'POP' ? -100 : 100;
+  const leave = action === 'POP' ? 50 : -50;
+
   const transitions = useTransition(location, location => location.pathname, {
-    from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-    enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-    leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
+    config: { duration: 200 },
+    from: { transform: `translate3d(${from}%,0,0)` },
+    enter: { transform: `translate3d(0%,0,0)` },
+    leave: { transform: `translate3d(${leave}%,0,0)` },
   });
   return transitions.map(({ item, props, key }) => (
-    <animated.div key={key} style={{ width: '100vw', height: '100vh', ...props }}>
-      <Switch location={location}>
+    <animated.div key={key} style={props} className={classes.root}>
+      <Switch location={item}>
         <Route path="/:user(login)" component={User} />
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute path="/news" component={News} />

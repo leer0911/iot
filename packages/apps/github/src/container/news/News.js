@@ -10,12 +10,12 @@ const News = () => {
   const [news, setNews] = React.useState([]);
   const [loaded, setLoaded] = React.useState(false);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const fetchData = async () => {
       try {
         const res = await event.fetch(username);
         setNews(res);
-        setLoaded(true)
+        setLoaded(true);
       } catch (error) {
         console.error(error);
       }

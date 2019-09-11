@@ -5,7 +5,7 @@ import DrawerNav from './DrawerNav';
 
 const DrawerLayout = ({ title = '', loading = false, children }) => {
   return (
-    <Box display="flex" flexDirection="column" height="100vh">
+    <Box display="flex" flexDirection="column" height="100vh" width="100vw" overflow="hidden">
       <AppBar position="static">
         <Toolbar>
           <DrawerNav />
