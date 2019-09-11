@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { useSpring, animated } from 'react-spring';
+import { useTransition, animated } from 'react-spring';
 import { useMeasure } from '../../utils';
 
 const Slide = props => {
@@ -45,18 +45,16 @@ const Slide = props => {
     return [from, to];
   }, [direction, rect]);
 
-  const style = useSpring({
+  const transitions = useTransition(open, null, {
     from: { opacity: 0, transform: transform[0] },
-    to: {
-      opacity: 1,
-      transform: transform[1],
-    },
-    onStart: () => {
+    enter: item => async (next, cancel) => {
+      await next({ opacity: 1, transform: transform[1] });
       if (open && onEnter) {
         onEnter();
       }
     },
-    onRest: () => {
+    leave: item => async (next, cancel) => {
+      await next({ opacity: 0, transform: transform[0] });
       if (!open && onExited) {
         onExited();
       }
@@ -64,19 +62,19 @@ const Slide = props => {
   });
 
   // 注意：需要支持自定义 component 的情况
+  let Animate = animated.div;
   if (component) {
-    const Animate = animated(component);
-    return (
-      <Animate style={style} {...bind} {...other}>
-        {children}
-      </Animate>
-    );
+    Animate = animated(component);
   }
 
-  return (
-    <animated.div style={style} {...bind} {...other}>
-      {children}
-    </animated.div>
+  return transitions.map(
+    ({ item, key, props }) =>
+      item && (
+        <Animate key={key} style={props} {...bind} {...other}>
+          {' '}
+          {children}
+        </Animate>
+      ),
   );
 };
 

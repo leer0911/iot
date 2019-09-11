@@ -6,6 +6,11 @@ import { useClasses } from '../../styles';
 
 import Portal from '../Portal';
 import SimpleBackdrop from './SimpleBackdrop';
+import { createChainedFunction } from '../../utils/helpers';
+
+function getHasTransition(props) {
+  return props.children ? props.children.props.hasOwnProperty('in') : false;
+}
 
 export const styles = theme => ({
   root: {
@@ -38,6 +43,8 @@ const Modal = props => {
     ...other
   } = props;
 
+  const [exited, setExited] = React.useState(true);
+  const hasTransition = getHasTransition(props);
   const classes = useClasses(styles);
 
   const handleRendered = useCallback(() => {
@@ -46,8 +53,29 @@ const Modal = props => {
     }
   }, [onRendered]);
 
-  if (!keepMounted && !open) {
+  if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
+  }
+
+  const handleEnter = () => {
+    setExited(false);
+  };
+
+  const handleExited = () => {
+    setExited(true);
+  };
+
+  const childProps = {};
+
+  if (hasTransition) {
+    childProps.onEnter = createChainedFunction(
+      handleEnter,
+      children.props.onEnter,
+    );
+    childProps.onExited = createChainedFunction(
+      handleExited,
+      children.props.onExited,
+    );
   }
 
   const handleBackdropClick = event => {
@@ -78,7 +106,7 @@ const Modal = props => {
             {...BackdropProps}
           />
         )}
-        {children}
+        {React.cloneElement(children, childProps)}
       </div>
     </Portal>
   );
