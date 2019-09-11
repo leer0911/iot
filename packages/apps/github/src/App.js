@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { CssBaseline } from '@iot/components';
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
-import { User, Home, NoMatch } from './route';
+import { User, Home, News, Profile, NoMatch } from './route';
 import { useInterceptors } from './utils';
 
 const App = () => {
@@ -20,7 +20,9 @@ const App = () => {
           render={({ location }) => (
             <Switch location={location}>
               <Route path="/:user(login)" component={User} />
-              <PrivateRoute path="/" component={Home} exact />
+              <PrivateRoute exact path="/" component={Home} />
+              <PrivateRoute path="/news" component={News} />
+              <PrivateRoute path="/profile" component={Profile} />
               <Route component={NoMatch} />
             </Switch>
           )}

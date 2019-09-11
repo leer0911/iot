@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
-import { user as userService } from '../../../api';
 import { useGlobalStore } from '../..';
 import { FETCH_USER_INFO_SUCCESS } from '../../reducers';
+import { user as userService } from '../../../api';
 
 const useUserInfo = () => {
   const { userState, userDispatch } = useGlobalStore();
   const { data: userInfo, loaded } = userState;
 
-  // 获取用户信息
   useEffect(() => {
     const fetchUserInfo = async () => {
       useUserInfo.loading = true;

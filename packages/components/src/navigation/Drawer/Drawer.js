@@ -132,7 +132,7 @@ const Drawer = props => {
       direction={directionMap[anchor]}
       component={Drawer}
       {...SlideProps}
-    ></Slide>
+     />
   );
 
   if (variant === 'persistent') {

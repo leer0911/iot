@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   IconButton,
   Drawer,
@@ -15,29 +16,29 @@ import {
 import * as moment from 'moment';
 import Menu from '@iot/components/src/icon/Menu';
 import * as icons from '@iot/components/src/icon';
-import { useUserInfo } from '../../store';
+import { useUserInfo } from '../store';
 
 const navs = [
-  { title: 'Profile', icon: 'Person', link: '' },
-  { title: 'Notificationgs', icon: 'Notifications', link: '' },
-  { title: 'News', icon: 'Send', link: '' },
-  { title: 'Issues', icon: 'ErrorOutline', link: '' },
-  { title: 'Divider' },
-  { title: 'My repos', icon: 'Work', link: '' },
-  { title: 'Starred repos', icon: 'Favorite', link: '' },
-  { title: 'Bookmarks', icon: 'Folder', link: '' },
-  { title: 'Divider' },
-  { title: 'Search', icon: 'Search', link: '' },
-  { title: 'Trace', icon: 'Map', link: '' },
-  { title: 'Trending repos', icon: 'Room', link: '' },
-  { title: 'Repo collections', icon: 'FolderSpecial', link: '' },
-  { title: 'Featured topics', icon: 'Sms', link: '' },
-  { title: 'Divider' },
-  { title: 'Settings', icon: 'Settings', link: '' },
-  { title: 'About', icon: 'Help', link: '' },
+  { title: 'Profile', icon: 'Person', link: 'profile' },
+  { title: 'Notificationgs', icon: 'Notifications', link: 'notificationgs' },
+  { title: 'News', icon: 'Send', link: 'news' },
+  { title: 'Issues', icon: 'ErrorOutline', link: 'issues' },
+  { title: 'Divider', key: 'Divider1' },
+  { title: 'My repos', icon: 'Work', link: 'repos' },
+  { title: 'Starred repos', icon: 'Favorite', link: 'starred' },
+  { title: 'Bookmarks', icon: 'Folder', link: 'bookmarks' },
+  { title: 'Divider', key: 'Divider2' },
+  { title: 'Search', icon: 'Search', link: 'search' },
+  { title: 'Trace', icon: 'Map', link: 'trace' },
+  { title: 'Trending repos', icon: 'Room', link: 'trending' },
+  { title: 'Repo collections', icon: 'FolderSpecial', link: 'collections' },
+  { title: 'Featured topics', icon: 'Sms', link: 'topics' },
+  { title: 'Divider', key: 'Divider3' },
+  { title: 'Settings', icon: 'Settings', link: 'setting' },
+  { title: 'About', icon: 'Help', link: 'about' },
 ];
 
-const Home = () => {
+const DrawerNav = () => {
   const { avatar_url, name, created_at } = useUserInfo();
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -69,13 +70,13 @@ const Home = () => {
           </Box>
           <Box flex="1" overflow="auto">
             <List>
-              {navs.map(({ title, icon }) => {
+              {navs.map(({ title, icon, link, key }) => {
                 if (title === 'Divider') {
-                  return <Divider />;
+                  return <Divider key={key} />;
                 }
                 const Component = icons[icon];
                 return (
-                  <ListItem button key={title}>
+                  <ListItem button key={title} component={Link} to={`/${link}`} onClick={toggleDrawer}>
                     <ListItemIcon>
                       <Component />
                     </ListItemIcon>
@@ -91,4 +92,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default DrawerNav;
