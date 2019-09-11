@@ -32,7 +32,7 @@ const News = () => {
     const repoName = item.repo.name;
 
     return (
-      <Box pb={2}>
+      <Box pb={2} key={item.id}>
         <Paper>
           <Box p={1}>
             <Box display="flex">

@@ -48,7 +48,7 @@ const ButtonBase = props => {
     centerRipple = false,
     disableRipple = false,
     disabled,
-    onTouchStart,
+    onClick,
     ...rest
   } = props;
 
@@ -79,7 +79,7 @@ const ButtonBase = props => {
     });
   };
 
-  const handleTouchStart = useRippleHandler(onTouchStart);
+  const handleClick = useRippleHandler(onClick);
 
   const className = cx(
     classes.root,
@@ -91,7 +91,7 @@ const ButtonBase = props => {
   );
 
   return (
-    <Component className={className} onTouchStart={handleTouchStart} {...rest}>
+    <Component className={className} onClick={handleClick} {...rest}>
       {children}
       {!disableRipple && !disabled ? (
         <RippleHub

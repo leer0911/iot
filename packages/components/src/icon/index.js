@@ -120,3 +120,6 @@ export { default as Security } from './Security';
 
 export { default as Lock } from './Lock';
 export { default as LockOpen } from './LockOpen';
+
+export { default as Settings } from './Settings';
+export { default as SettingsApplications } from './SettingsApplications';

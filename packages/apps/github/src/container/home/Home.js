@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Box } from '@iot/components';
-import Menu from '@iot/components/src/icon/Menu';
+import { AppBar, Toolbar, Typography, Box } from '@iot/components';
+import Sidebar from './Sidebar';
 import News from './News';
 
 const Home = () => {
@@ -8,9 +8,7 @@ const Home = () => {
     <Box display="flex" flexDirection="column" height="100vh">
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" color="inherit">
-            <Menu />
-          </IconButton>
+          <Sidebar />
           <Typography variant="h6">News</Typography>
         </Toolbar>
       </AppBar>

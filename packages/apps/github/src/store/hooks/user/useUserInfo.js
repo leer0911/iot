@@ -10,6 +10,7 @@ const useUserInfo = () => {
   // 获取用户信息
   useEffect(() => {
     const fetchUserInfo = async () => {
+      useUserInfo.loading = true;
       const res = await userService.fetch();
       userDispatch({
         type: FETCH_USER_INFO_SUCCESS,
@@ -17,12 +18,14 @@ const useUserInfo = () => {
       });
     };
 
-    if (!loaded) {
+    if (!loaded && !useUserInfo.loading) {
       fetchUserInfo();
     }
   }, [loaded, userDispatch]);
 
   return userInfo || {};
 };
+
+useUserInfo.loading = false;
 
 export default useUserInfo;
