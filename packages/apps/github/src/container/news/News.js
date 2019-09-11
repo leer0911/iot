@@ -8,12 +8,14 @@ import * as moment from 'moment';
 const News = () => {
   const { login: username = '' } = useUserInfo();
   const [news, setNews] = React.useState([]);
+  const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await event.fetch(username);
         setNews(res);
+        setLoaded(true)
       } catch (error) {
         console.error(error);
       }
@@ -24,7 +26,7 @@ const News = () => {
   }, [username]);
 
   return (
-    <DrawerLayout title="News">
+    <DrawerLayout title="News" loading={!loaded}>
       {news.map(item => {
         const avatar = item.actor.avatar_url;
         const name = item.actor.login;

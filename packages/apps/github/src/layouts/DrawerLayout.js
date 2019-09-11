@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, Typography, Box } from '@iot/components';
+import { AppBar, Toolbar, Typography, Box, CircularProgress } from '@iot/components';
 import DrawerNav from './DrawerNav';
 
-const DrawerLayout = ({ title, children }) => {
+const DrawerLayout = ({ title = '', loading = false, children }) => {
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <AppBar position="static">
@@ -13,7 +13,13 @@ const DrawerLayout = ({ title, children }) => {
         </Toolbar>
       </AppBar>
       <Box flex="1" overflow="auto" bgcolor="#efefef" p={2}>
-        {children}
+        {loading ? (
+          <Box display="flex" justifyContent="center" height="100%" pt={5}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          children
+        )}
       </Box>
     </Box>
   );
@@ -21,6 +27,7 @@ const DrawerLayout = ({ title, children }) => {
 
 DrawerLayout.propTypes = {
   title: PropTypes.string,
+  loading: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };
 
