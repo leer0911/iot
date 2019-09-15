@@ -13,7 +13,7 @@ const News = () => {
   React.useLayoutEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await event.fetch(username);
+        const res = await event.fetchReceived(username);
         setNews(res);
         setLoaded(true);
       } catch (error) {

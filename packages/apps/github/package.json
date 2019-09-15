@@ -11,7 +11,8 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
-    "react-router-prop-types": "^1.0.4"
+    "react-router-prop-types": "^1.0.4",
+    "react-swipeable-views": "^0.13.3"
   },
   "scripts": {
     "start": "react-scripts start",

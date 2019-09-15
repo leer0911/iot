@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
   IconButton,
   Drawer,
@@ -38,7 +38,7 @@ const navs = [
   { title: 'About', icon: 'Help', link: 'about' },
 ];
 
-const DrawerNav = () => {
+const DrawerNav = ({ history }) => {
   const { avatar_url, name, created_at } = useUserInfo();
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
@@ -46,6 +46,13 @@ const DrawerNav = () => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const handleDirect = React.useCallback(
+    link => () => {
+      history.push(link);
+    },
+    [history],
+  );
 
   return (
     <>
@@ -76,7 +83,7 @@ const DrawerNav = () => {
                 }
                 const Component = icons[icon];
                 return (
-                  <ListItem button key={title} component={Link} to={`/${link}`} onClick={toggleDrawer}>
+                  <ListItem button key={title} onClick={handleDirect(link)}>
                     <ListItemIcon>
                       <Component />
                     </ListItemIcon>
@@ -92,4 +99,4 @@ const DrawerNav = () => {
   );
 };
 
-export default DrawerNav;
+export default withRouter(DrawerNav);

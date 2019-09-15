@@ -6,3 +6,4 @@ export const login = ({ username, password }) => {
 
 export { default as user } from './user.js';
 export { default as event } from './event.js';
+export { default as repo } from './repo.js';
