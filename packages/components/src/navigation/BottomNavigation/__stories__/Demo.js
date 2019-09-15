@@ -19,27 +19,27 @@ const Demo = () => {
       flexDirection="column"
       bgcolor="#eee"
     >
-      <Box flex="1"></Box>
+      <Box flex="1" />
       <BottomNavigation value={value} onChange={handleChange} showLabels>
         <BottomNavigationAction
           label="Home"
           value="Home"
-          icon={<Home></Home>}
+          icon={<Home />}
         />
         <BottomNavigationAction
           label="Favorite"
           value="Favorite"
-          icon={<Favorite></Favorite>}
+          icon={<Favorite />}
         />
         <BottomNavigationAction
           label="Room"
           value="Room"
-          icon={<Room></Room>}
+          icon={<Room />}
         />
         <BottomNavigationAction
           label="Work"
           value="Work"
-          icon={<Work></Work>}
+          icon={<Work />}
         />
       </BottomNavigation>
     </Box>

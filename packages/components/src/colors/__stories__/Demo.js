@@ -25,7 +25,7 @@ const demo = () => {
             </Box>
           );
         })}
-        <Box mt={2}></Box>
+        <Box mt={2} />
       </Box>
     );
   });

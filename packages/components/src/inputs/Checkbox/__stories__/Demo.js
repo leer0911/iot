@@ -11,8 +11,8 @@ const Demo = () => {
 
   return (
     <Box p={1}>
-      <Knobs></Knobs>
-      
+      <Knobs />
+
       <h3>color</h3>
       <Checkbox
         color="default"

@@ -5,27 +5,27 @@ import Knobs from './Knobs.js';
 const Demo = () => {
   return (
     <Box p={1}>
-      <Knobs></Knobs>
+      <Knobs />
       <h3>基础用法</h3>
       fullwidth
-      <Divider></Divider>
-      <Box p={1}></Box>
+      <Divider />
+      <Box p={1} />
       middle
-      <Divider variant="middle"></Divider>
-      <Box p={1}></Box>
+      <Divider variant="middle" />
+      <Box p={1} />
       inset
-      <Divider variant="inset"></Divider>
-      <Box p={1}></Box>
+      <Divider variant="inset" />
+      <Box p={1} />
       <h3>light</h3>
-      <Divider light></Divider>
+      <Divider light />
       <h3>absolute</h3>
       <Box position="relative">
-        <Divider absolute></Divider>
+        <Divider absolute />
       </Box>
-      <Box p={1}></Box>
+      <Box p={1} />
       <h3>vertical</h3>
       <Box height={100}>
-        <Divider orientation="vertical"></Divider>
+        <Divider orientation="vertical" />
       </Box>
     </Box>
   );

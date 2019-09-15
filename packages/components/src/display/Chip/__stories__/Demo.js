@@ -9,19 +9,19 @@ const Demo = () => {
 
   return (
     <Box p={1}>
-      <Knobs></Knobs>
+      <Knobs />
 
       <h3>基础用法</h3>
       <Chip label="Basic Chip" />
-      <Box p={1}></Box>
+      <Box p={1} />
       <Chip
         avatar={
-          <Avatar src="https://material-ui.com/static/images/avatar/1.jpg"></Avatar>
+          <Avatar src="https://material-ui.com/static/images/avatar/1.jpg" />
         }
         onClick={handleClick}
         label="Clickable Chip"
       />
-      <Box p={1}></Box>
+      <Box p={1} />
       <Chip
         icon={<Search />}
         label="Clickable Deletable Chip"

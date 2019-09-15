@@ -11,7 +11,7 @@ const Demo = () => {
 
   return (
     <Box p={2}>
-      <Knobs></Knobs>
+      <Knobs />
       <h3>基础用法</h3>
       <Slider
         defaultValue={30}

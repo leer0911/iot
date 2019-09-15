@@ -8,7 +8,7 @@ const Demo = () => {
   const keys = Object.keys(Icon);
   return (
     <Box p={1}>
-      <Knobs></Knobs>
+      <Knobs />
       <h3>基本图标</h3>
       <Box display="flex" flexWrap="wrap">
         {keys.map(key => {
@@ -22,7 +22,7 @@ const Demo = () => {
               alignItems="center"
               flexDirection="column"
             >
-              <Component></Component>
+              <Component />
               <Typography variant="caption">{key}</Typography>
             </Box>
           );

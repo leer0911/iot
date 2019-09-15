@@ -1,16 +1,4 @@
 import React from 'react';
-// import { Slide, Box } from '../../../';
-
-// function Demo() {
-//   return (
-//     <Slide>
-//       <Box p={10} bgcolor="#f00"></Box>
-//     </Slide>
-//   );
-// }
-
-// export default Demo;
-
 import {
   Dialog,
   Button,

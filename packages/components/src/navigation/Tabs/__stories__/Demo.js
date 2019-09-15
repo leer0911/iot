@@ -11,7 +11,7 @@ const Demo = () => {
 
   return (
     <Box p={1}>
-      <Knobs></Knobs>
+      <Knobs />
 
       <h3>基础用法</h3>
       <Paper square>

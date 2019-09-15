@@ -41,7 +41,7 @@ const Demo = () => {
         </ListItem>
         <ListItem divider>
           <ListItemIcon>
-            <Search></Search>
+            <Search />
           </ListItemIcon>
           Icon
         </ListItem>
@@ -58,7 +58,7 @@ const Demo = () => {
           <ListItemText primary="primary text" secondary="secondary text" />
           <ListItemSecondaryAction>
             <IconButton edge="end">
-              <Search></Search>
+              <Search />
             </IconButton>
           </ListItemSecondaryAction>
         </ListItem>
