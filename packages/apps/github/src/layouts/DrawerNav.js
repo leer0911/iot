@@ -20,7 +20,7 @@ import { useUserInfo } from '../store';
 
 const navs = [
   { title: 'Profile', icon: 'Person', link: 'profile' },
-  { title: 'Notificationgs', icon: 'Notifications', link: 'notificationgs' },
+  { title: 'notifications', icon: 'Notifications', link: 'notifications' },
   { title: 'News', icon: 'Send', link: 'news' },
   { title: 'Issues', icon: 'ErrorOutline', link: 'issues' },
   { title: 'Divider', key: 'Divider1' },

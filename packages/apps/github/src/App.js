@@ -4,7 +4,7 @@ import { useTransition, animated } from 'react-spring';
 import { CssBaseline, useClasses } from '@iot/components';
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
-import { User, Home, News, Profile, NoMatch } from './route';
+import { User, Home, News, Profile, Notification, NoMatch } from './route';
 import { useInterceptors } from './utils';
 
 const styles = theme => ({
@@ -39,6 +39,8 @@ const AnimatRoute = ({ location, history, match }) => {
         <PrivateRoute exact path="/" component={Home} />
         <PrivateRoute path="/news" component={News} />
         <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/notifications" component={Notification} />
         <Route component={NoMatch} />
       </Switch>
     </animated.div>
