@@ -49,9 +49,10 @@ const DrawerNav = ({ history }) => {
 
   const handleDirect = React.useCallback(
     link => () => {
+      setOpen(!open);
       history.push(link);
     },
-    [history],
+    [history, open],
   );
 
   return (

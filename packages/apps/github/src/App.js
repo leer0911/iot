@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
-import { CssBaseline, useClasses } from '@iot/components';
+import { CssBaseline, useClasses, ThemeContext, createTheme } from '@iot/components';
+import { red } from '@iot/components/src/colors';
+
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
 import { NoMatch, User, Home, News, Profile, Notification, Issue } from './route';
@@ -27,11 +29,11 @@ const AnimatRoute = ({ location, history, match }) => {
   const leave = action === 'POP' ? 50 : -50;
 
   const transitions = useTransition(location, location => location.pathname, {
-    config: { duration: 200 },
     from: { transform: `translate3d(${from}%,0,0)` },
     enter: { transform: `translate3d(0%,0,0)` },
     leave: { transform: `translate3d(${leave}%,0,0)` },
   });
+
   return transitions.map(({ item, props, key }) => (
     <animated.div key={key} style={props} className={classes.root}>
       <Switch location={item}>
@@ -48,6 +50,14 @@ const AnimatRoute = ({ location, history, match }) => {
   ));
 };
 
+const userTheme = createTheme({
+  palette: {
+    secondary: {
+      main: red.A400,
+    },
+  },
+});
+
 const App = () => {
   const store = useStore();
 
@@ -55,12 +65,14 @@ const App = () => {
   useInterceptors(store);
 
   return (
-    <GlobalStoreContext.Provider value={store}>
-      <CssBaseline />
-      <BrowserRouter>
-        <Route component={AnimatRoute} />
-      </BrowserRouter>
-    </GlobalStoreContext.Provider>
+    <ThemeContext.Provider value={userTheme}>
+      <GlobalStoreContext.Provider value={store}>
+        <CssBaseline />
+        <BrowserRouter>
+          <Route component={AnimatRoute} />
+        </BrowserRouter>
+      </GlobalStoreContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 

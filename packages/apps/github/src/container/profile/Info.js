@@ -6,7 +6,6 @@ import { useUserInfo } from '../../store';
 const Info = () => {
   const userInfo = useUserInfo();
   const { name, company, email, followers, following, public_repos, public_gists } = userInfo;
-  console.log(userInfo);
   return (
     <>
       <Typography>{name}</Typography>
