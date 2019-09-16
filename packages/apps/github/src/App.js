@@ -29,6 +29,7 @@ const AnimatRoute = ({ location, history, match }) => {
   const leave = action === 'POP' ? 50 : -50;
 
   const transitions = useTransition(location, location => location.pathname, {
+    config: { mass: 1, tension: 500, friction: 20, clamp: true },
     from: { transform: `translate3d(${from}%,0,0)` },
     enter: { transform: `translate3d(0%,0,0)` },
     leave: { transform: `translate3d(${leave}%,0,0)` },

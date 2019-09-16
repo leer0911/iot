@@ -5,6 +5,7 @@ import { useSpring, animated } from 'react-spring';
 const Fade = props => {
   const { in: open, children, onEnter, onExited, ...other } = props;
   const style = useSpring({
+    config: { mass: 1, tension: 500, friction: 20, clamp: true },
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
     onStart: () => {

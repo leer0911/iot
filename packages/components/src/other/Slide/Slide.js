@@ -46,15 +46,16 @@ const Slide = props => {
   }, [direction, rect]);
 
   const transitions = useTransition(open, null, {
-    from: { opacity: 0, transform: transform[0] },
+    config: { mass: 1, tension: 500, friction: 20, clamp: true },
+    from: { transform: transform[0] },
     enter: item => async (next, cancel) => {
-      await next({ opacity: 1, transform: transform[1] });
+      await next({ transform: transform[1] });
       if (open && onEnter) {
         onEnter();
       }
     },
     leave: item => async (next, cancel) => {
-      await next({ opacity: 0, transform: transform[0] });
+      await next({ transform: transform[0] });
       if (!open && onExited) {
         onExited();
       }
@@ -71,7 +72,6 @@ const Slide = props => {
     ({ item, key, props }) =>
       item && (
         <Animate key={key} style={props} {...bind} {...other}>
-          {' '}
           {children}
         </Animate>
       ),
