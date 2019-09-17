@@ -6,7 +6,7 @@ import { red } from '@iot/components/src/colors';
 
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
-import { NoMatch, User, Home, News, Profile, Notification, Issue } from './route';
+import { NoMatch, User, Home, News, Profile, Notification, Issue, Setting } from './route';
 import { useInterceptors } from './utils';
 
 const styles = theme => ({
@@ -45,6 +45,7 @@ const AnimatRoute = ({ location, history, match }) => {
         <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute path="/notifications" component={Notification} />
         <PrivateRoute path="/issues" component={Issue} />
+        <PrivateRoute path="/setting" component={Setting} />
         <Route component={NoMatch} />
       </Switch>
     </animated.div>
