@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, Box, Paper } from '@iot/components';
-import { event } from '../../api';
+import { notification } from '../../api';
 import { useUserInfo } from '../../store';
 import * as moment from 'moment';
 
@@ -11,7 +11,7 @@ const List = ({ params }) => {
   React.useLayoutEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await event.fetchNotifications(params);
+        const res = await notification.fetch(params);
         setActivitys(res);
       } catch (error) {
         console.error(error);

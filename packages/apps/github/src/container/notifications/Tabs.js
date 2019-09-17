@@ -33,14 +33,14 @@ const ProfileTabs = ({ history }) => {
         <TabPanel value={selected} index={0}>
           <Box p={1} overflow="hidden" width="100%" height="100%">
             <Box overflow="auto">
-              <List params={{ unread: true }} />
+              <List params={{ all: false }} />
             </Box>
           </Box>
         </TabPanel>
         <TabPanel value={selected} index={1}>
           <Box p={1} overflow="hidden" width="100%" height="100%">
             <Box overflow="auto">
-              <List params={{ participant: true }}/>
+              <List params={{ participating: true }}/>
             </Box>
           </Box>
         </TabPanel>

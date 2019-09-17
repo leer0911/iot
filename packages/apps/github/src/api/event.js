@@ -1,3 +1,5 @@
+// https://developer.github.com/v3/activity/events/
+
 import { http } from '../utils';
 
 export default {
@@ -6,8 +8,5 @@ export default {
   },
   fetchReceived(username) {
     return http.get(`/users/${username}/received_events`);
-  },
-  fetchNotifications(params) {
-    return http.get('/notifications', { params });
   },
 };
