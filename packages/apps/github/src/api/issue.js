@@ -3,7 +3,7 @@
 import { http } from '../utils';
 
 export default {
-  fetch() {
-    return http.get('/user/issues');
+  fetch(params) {
+    return http.get('/issues', { params });
   },
 };

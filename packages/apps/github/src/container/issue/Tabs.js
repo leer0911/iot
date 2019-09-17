@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Tabs, Tab, useTheme } from '@iot/components';
 import SwipeableViews from 'react-swipeable-views';
-import Activity from './Activity';
+import List from './List';
 
 const TabPanel = props => {
   const { children, value, index, ...other } = props;
@@ -32,14 +32,14 @@ const ProfileTabs = ({ history }) => {
         <TabPanel value={selected} index={0}>
           <Box p={1} overflow="hidden" width="100%" height="100%">
             <Box overflow="auto">
-              <Activity />
+              <List params={{ filter: 'all', state: 'open' }} />
             </Box>
           </Box>
         </TabPanel>
         <TabPanel value={selected} index={1}>
           <Box p={1} overflow="hidden" width="100%" height="100%">
             <Box overflow="auto">
-              <Activity />
+              <List params={{ filter: 'all', state: 'closed' }} />
             </Box>
           </Box>
         </TabPanel>
