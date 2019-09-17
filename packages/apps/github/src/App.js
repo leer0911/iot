@@ -2,12 +2,10 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useTransition, animated } from 'react-spring';
 import { CssBaseline, useClasses, ThemeContext, createTheme } from '@iot/components';
-import { red } from '@iot/components/src/colors';
-
 import { PrivateRoute } from './route';
 import { GlobalStoreContext, useStore } from './store';
 import { NoMatch, User, Home, News, Profile, Notification, Issue, Setting } from './route';
-import { useInterceptors } from './utils';
+import { useInterceptors, theme } from './utils';
 
 const styles = theme => ({
   root: {
@@ -52,22 +50,19 @@ const AnimatRoute = ({ location, history, match }) => {
   ));
 };
 
-const userTheme = createTheme({
-  palette: {
-    secondary: {
-      main: red.A400,
-    },
-    background: {
-      default: '#efefef',
-    },
-  },
-});
-
 const App = () => {
   const store = useStore();
+  window.store = store;
 
   // axios 拦截器设置
   useInterceptors(store);
+
+  const { themeState = {} } = store;
+  const { type } = themeState;
+
+  const userTheme = React.useMemo(() => createTheme(theme[type] || {}), [type]);
+
+  window.theme = userTheme;
 
   return (
     <ThemeContext.Provider value={userTheme}>

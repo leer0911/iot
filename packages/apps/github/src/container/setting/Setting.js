@@ -17,23 +17,29 @@ import {
   Typography,
 } from '@iot/components';
 import { ArrowBack, SystemUpdate } from '@iot/components/src/icon';
+import { useThemeAction } from '../../store';
 import { THEME } from '../../utils';
 
 const Setting = ({ history }) => {
   const [open, setOpen] = React.useState(false);
   const [selected, setSelected] = React.useState('');
+  const { setTheme } = useThemeAction();
 
   const handleBack = React.useCallback(() => {
     history.goBack();
   }, [history]);
 
-  const handleRadioChange = React.useCallback(event => {
-    setSelected(event.target.value);
-    setOpen(false);
-  }, []);
+  const handleRadioChange = React.useCallback(
+    event => {
+      setSelected(event.target.value);
+      setOpen(false);
+      setTheme(event.target.value);
+    },
+    [setTheme],
+  );
 
   return (
-    <Box width="100vw" height="100vh" bgcolor="#fff" display="flex" flexDirection="column">
+    <Box width="100vw" height="100vh" display="flex" flexDirection="column">
       <AppBar position="static">
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={handleBack}>

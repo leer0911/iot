@@ -12,7 +12,7 @@ const DrawerLayout = ({ title = '', loading = false, children }) => {
           <Typography variant="h6">{title}</Typography>
         </Toolbar>
       </AppBar>
-      <Box flex="1" overflow="auto" bgcolor="#efefef" p={2}>
+      <Box flex="1" overflow="auto" p={2}>
         {loading ? (
           <Box display="flex" justifyContent="center" height="100%" pt={5}>
             <CircularProgress />

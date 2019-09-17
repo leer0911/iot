@@ -24,7 +24,7 @@ const Profile = ({ history }) => {
   }, [history]);
 
   return (
-    <Box width="100vw" height="100vh" bgcolor="#e8e8e8" display="flex" flexDirection="column">
+    <Box width="100vw" height="100vh" display="flex" flexDirection="column">
       <Box bgcolor={theme.palette.primary.main} color="#fff" position="relative">
         <AvatarBg url={avatar} />
         <Box>

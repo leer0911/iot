@@ -1,4 +1,4 @@
-import { PropTypes } from '..';
+import { PropTypes } from '../..';
 import { PaperProps } from '../Paper';
 
 export interface AppBarProps extends PaperProps {

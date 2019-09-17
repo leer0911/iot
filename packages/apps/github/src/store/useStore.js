@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { userReducer, userInitialState } from './reducers';
+import { userReducer, userInitialState, themeReducer, themeInitialState } from './reducers';
 
 const combineDispatches = dispatches => {
   if (!Array.isArray(dispatches)) {
@@ -14,10 +14,13 @@ const combineDispatches = dispatches => {
 
 const useStore = () => {
   const [userState, userDispatch] = useReducer(userReducer, userInitialState);
+  const [themeState, themeDispatch] = useReducer(themeReducer, themeInitialState);
   const dispatch = combineDispatches([userDispatch]);
   const store = {
     userState,
     userDispatch,
+    themeState,
+    themeDispatch,
     dispatch,
   };
 
