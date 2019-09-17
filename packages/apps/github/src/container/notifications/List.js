@@ -4,14 +4,14 @@ import { event } from '../../api';
 import { useUserInfo } from '../../store';
 import * as moment from 'moment';
 
-const Activity = () => {
+const List = ({ params }) => {
   const { login: username = '' } = useUserInfo();
   const [activitys, setActivitys] = React.useState([]);
 
   React.useLayoutEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await event.fetchNotifications({ all: true });
+        const res = await event.fetchNotifications(params);
         setActivitys(res);
       } catch (error) {
         console.error(error);
@@ -20,7 +20,15 @@ const Activity = () => {
     if (username !== '') {
       fetchData();
     }
-  }, [username]);
+  }, [params, username]);
+
+  if (activitys.length === 0) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" pt={5}>
+        <Typography color="textSecondary">No new notifications</Typography>
+      </Box>
+    );
+  }
 
   return activitys.map(item => {
     const title = item.subject.title;
@@ -43,4 +51,4 @@ const Activity = () => {
   });
 };
 
-export default Activity;
+export default List;

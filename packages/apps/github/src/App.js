@@ -56,6 +56,9 @@ const userTheme = createTheme({
     secondary: {
       main: red.A400,
     },
+    background: {
+      default: '#efefef',
+    },
   },
 });
 
