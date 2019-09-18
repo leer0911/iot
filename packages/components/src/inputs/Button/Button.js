@@ -62,7 +62,7 @@ export const styles = theme => ({
     //   boxShadow: theme.shadows[8],
     // },
   },
-  containeDisabled: {
+  containedDisabled: {
     color: theme.palette.action.disabled,
     boxShadow: theme.shadows[0],
     backgroundColor: theme.palette.action.disabledBackground,
@@ -128,7 +128,7 @@ const Button = props => {
       [classes.colorInherit]: color === 'inherit',
       [classes.disabled]: disabled,
       [classes.outlinedDisabled]: outlined && disabled,
-      [classes.containeDisabled]: contained && disabled,
+      [classes.containedDisabled]: contained && disabled,
     },
     classNameProp,
   );

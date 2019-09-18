@@ -1,4 +1,3 @@
-import {} from '@iot/components';
 import { teal, indigo } from '@iot/components/src/colors';
 
 export const THEME = {

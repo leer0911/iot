@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-const AnimatRoute = ({ location, history, match }) => {
+const AnimateRoute = ({ location, history, match }) => {
   const classes = useClasses(styles);
   const { action } = history;
   const from = action === 'POP' ? -100 : 100;
@@ -69,7 +69,7 @@ const App = () => {
       <GlobalStoreContext.Provider value={store}>
         <CssBaseline />
         <BrowserRouter>
-          <Route component={AnimatRoute} />
+          <Route component={AnimateRoute} />
         </BrowserRouter>
       </GlobalStoreContext.Provider>
     </ThemeContext.Provider>

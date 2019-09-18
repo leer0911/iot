@@ -86,6 +86,29 @@ export { default as useTheme } from './theme/useTheme';
 export { default as defaultTheme } from './theme/defaultTheme';
 export { default as ThemeContext } from './theme/ThemeContext';
 
+export interface CommonColors {
+  black: string;
+  white: string;
+}
+
+export type PaletteType = 'light' | 'dark';
+export interface Color {
+  50: string;
+  100: string;
+  200: string;
+  300: string;
+  400: string;
+  500: string;
+  600: string;
+  700: string;
+  800: string;
+  900: string;
+  A100: string;
+  A200: string;
+  A400: string;
+  A700: string;
+}
+
 export namespace PropTypes {
   type Alignment = 'inherit' | 'left' | 'center' | 'right' | 'justify';
   type Color = 'inherit' | 'primary' | 'secondary' | 'default';
