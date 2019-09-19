@@ -39,26 +39,15 @@ const RippleHub = ({ center, children }) => {
   const [items, setItems] = useState([]);
   const classes = useClasses(styles) || {};
 
-  const unmounted = useRef({});
-
-  useEffect(() => {
-    return () => {
-      unmounted.current = true;
-    };
-  }, []);
-
   const transitions = useTransition(items, item => item.key, {
     from: { opacity: 0, transform: 'scale(0)' },
     config: { duration: DURATION },
     enter: item => async (next, cancel) => {
-      if (!unmounted.current) {
         await next({ opacity: 0.1, transform: 'scale(0.2)' });
         await next({ opacity: 0.2, transform: 'scale(0.9)' });
         next({ opacity: 0.3, transform: 'scale(1)' });
         next({ opacity: 0 });
         setItems(state => state.filter(i => i.key !== item.key));
-      }
-      cancel();
     },
   });
 
@@ -71,12 +60,6 @@ const RippleHub = ({ center, children }) => {
       }),
     [children],
   );
-
-  useEffect(() => {
-    return () => {
-      // TODO: 组件卸载时，停止动画更新
-    };
-  }, []);
 
   const containerRef = useRef(null);
 

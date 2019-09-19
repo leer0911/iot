@@ -8,11 +8,15 @@ const Knobs = () => {
       <h3>knobs</h3>
       <Box p={2} bgcolor="#eee" borderRadius={5}>
         <Button
-          variant={select('variant', {
-            text: 'text',
-            outlined: 'outlined',
-            contained: 'contained',
-          })}
+          variant={select(
+            'variant',
+            {
+              text: 'text',
+              outlined: 'outlined',
+              contained: 'contained',
+            },
+            'text',
+          )}
           color={select(
             'color',
             {
