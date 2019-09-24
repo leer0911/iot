@@ -1,53 +1,48 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useTransition, animated } from 'react-spring';
-import { css } from 'emotion';
 import { useClasses } from '../../styles';
 
 let id = 0;
 
 const DURATION = 150;
 
-const containerCls = css({
-  display: 'block',
-  position: 'absolute',
-  overflow: 'hidden',
-  borderRadius: 'inherit',
-  width: '100%',
-  height: '100%',
-  left: 0,
-  top: 0,
-  zIndex: 0,
-  pointerEvents: 'none',
-});
-
 export const styles = theme => ({
-  ripple: {
-    opacity: 0,
+  root: {
     position: 'absolute',
+    overflow: 'hidden',
+    borderRadius: 'inherit',
+    width: '100%',
+    height: '100%',
+    pointerEvents: 'none',
+    zIndex: 0,
+  },
+  ripple: {
+    position: 'absolute',
+    opacity: 0,
   },
   child: {
-    opacity: 1,
     display: 'block',
     width: '100%',
     height: '100%',
     borderRadius: '50%',
     backgroundColor: 'currentColor',
+    opacity: 1,
   },
 });
 
 const RippleHub = ({ center, children }) => {
-  const [items, setItems] = useState([]);
-  const classes = useClasses(styles) || {};
+  const classes = useClasses(styles);
 
+  const [items, setItems] = useState([]);
   const transitions = useTransition(items, item => item.key, {
     from: { opacity: 0, transform: 'scale(0)' },
     config: { duration: DURATION },
     enter: item => async (next, cancel) => {
-        await next({ opacity: 0.1, transform: 'scale(0.2)' });
-        await next({ opacity: 0.2, transform: 'scale(0.9)' });
-        next({ opacity: 0.3, transform: 'scale(1)' });
-        next({ opacity: 0 });
-        setItems(state => state.filter(i => i.key !== item.key));
+      await next({ opacity: 0.1, transform: 'scale(0.2)' });
+      await next({ opacity: 0.2, transform: 'scale(0.9)' });
+      next({ opacity: 0.3, transform: 'scale(1)' });
+      next({ opacity: 0 });
+      setItems(state => state.filter(i => i.key !== item.key));
     },
   });
 
@@ -104,7 +99,7 @@ const RippleHub = ({ center, children }) => {
   );
 
   return (
-    <div className={containerCls} ref={containerRef}>
+    <div className={classes.root} ref={containerRef}>
       {transitions.map(({ key, item, props, state }) => (
         <animated.span
           className={classes.ripple}

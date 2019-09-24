@@ -1,9 +1,10 @@
-import React, { useLayoutEffect, useRef, useState, useCallback } from 'react';
-import propTypes from './propTypes';
+import React, { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
+import { useEventCallback } from '../../utils';
 import RippleHub from './RippleHub';
 
 export const styles = {
@@ -30,14 +31,6 @@ export const styles = {
     pointerEvents: 'none',
     cursor: 'default',
   },
-};
-
-const useEventCallback = fn => {
-  const ref = useRef(fn);
-  useLayoutEffect(() => {
-    ref.current = fn;
-  });
-  return useCallback(event => (0, ref.current)(event), []);
 };
 
 const ButtonBase = props => {
@@ -103,6 +96,10 @@ const ButtonBase = props => {
   );
 };
 
-ButtonBase.propTypes = propTypes;
-
+ButtonBase.propTypes = {
+  component: PropTypes.elementType,
+  centerRipple: PropTypes.bool,
+  disabled: PropTypes.bool,
+  disableRipple: PropTypes.bool,
+};
 export default ButtonBase;

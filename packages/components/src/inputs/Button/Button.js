@@ -1,28 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { cx } from 'emotion';
-import propTypes from './propTypes';
-import ButtonBase from '../ButtonBase';
 import { useClasses } from '../../styles';
+
+import ButtonBase from '../ButtonBase';
 import { fade } from '../../theme/colorManipulator';
 import { capitalize } from '../../utils/helpers';
 
 export const styles = theme => ({
   root: {
+    ...theme.typography.button,
     minWidth: 64,
     boxSizing: 'border-box',
-    padding: '10px 16px',
+    padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
     color: theme.palette.text.primary,
   },
-  disabled: {
-    color: theme.palette.action.disabled,
-  },
-  label: {
-    width: '100%',
-    display: 'inherit',
-    alignItems: 'inherit',
-    justifyContent: 'inherit',
-  },
+  label: {},
   text: {
     padding: '6px 8px',
   },
@@ -88,16 +83,19 @@ export const styles = theme => ({
   fullWidth: {
     width: '100%',
   },
+  disabled: {
+    color: theme.palette.action.disabled,
+  },
 });
 
 const Button = props => {
   const {
     className: classNameProp,
     children,
+    variant = 'text',
     color = 'default',
     size = 'medium',
     type = 'button',
-    variant = 'text',
     disabled = false,
     fullWidth = false,
     ...rest
@@ -140,6 +138,15 @@ const Button = props => {
   );
 };
 
-Button.propTypes = propTypes;
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  disabled: PropTypes.bool,
+  disableRipple: PropTypes.bool,
+  fullWidth: PropTypes.bool,
+};
 
 export default Button;
