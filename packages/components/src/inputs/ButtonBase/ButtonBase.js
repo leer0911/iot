@@ -22,7 +22,6 @@ export const styles = {
     padding: 0,
     cursor: 'pointer',
     userSelect: 'none',
-    verticalAlign: 'middle',
     appearance: 'none',
     textDecoration: 'none',
     color: 'inherit',
