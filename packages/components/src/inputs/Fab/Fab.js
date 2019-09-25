@@ -9,30 +9,26 @@ import { capitalize } from '../../utils/helpers';
 
 export const styles = theme => ({
   root: {
-    boxSizing: 'border-box',
+    ...theme.typography.button,
+    width: 56,
+    height: 56,
     minHeight: 36,
+    padding: 0,
+    minWidth: 0,
+    borderRadius: '50%',
+    boxSizing: 'border-box',
+    boxShadow: theme.shadows[6],
+    color: theme.palette.getContrastText(theme.palette.grey[300]),
+    backgroundColor: theme.palette.grey[300],
+    '&:active': {
+      boxShadow: theme.shadows[12],
+    },
     transition: theme.transitions.create(
       ['background-color', 'box-shadow', 'border'],
       {
         duration: theme.transitions.duration.short,
       },
     ),
-    borderRadius: '50%',
-    padding: 0,
-    minWidth: 0,
-    width: 56,
-    height: 56,
-    boxShadow: theme.shadows[6],
-    '&:active': {
-      boxShadow: theme.shadows[12],
-    },
-    color: theme.palette.getContrastText(theme.palette.grey[300]),
-    backgroundColor: theme.palette.grey[300],
-  },
-  disabled: {
-    color: theme.palette.action.disabled,
-    boxShadow: theme.shadows[0],
-    backgroundColor: theme.palette.action.disabledBackground,
   },
   label: {
     width: '100%',
@@ -55,20 +51,20 @@ export const styles = theme => ({
     minHeight: 'auto',
     minWidth: 48,
     height: 48,
-    '&$sizeSmall': {
-      width: 'auto',
-      padding: '0 8px',
-      borderRadius: 34 / 2,
-      minWidth: 34,
-      height: 34,
-    },
-    '&$sizeMedium': {
-      width: 'auto',
-      padding: '0 16px',
-      borderRadius: 40 / 2,
-      minWidth: 40,
-      height: 40,
-    },
+  },
+  extendedSmall: {
+    width: 'auto',
+    padding: '0 8px',
+    borderRadius: 34 / 2,
+    minWidth: 34,
+    height: 34,
+  },
+  extendedMedium: {
+    width: 'auto',
+    padding: '0 16px',
+    borderRadius: 40 / 2,
+    minWidth: 40,
+    height: 40,
   },
   colorInherit: {
     color: 'inherit',
@@ -81,32 +77,48 @@ export const styles = theme => ({
     width: 48,
     height: 48,
   },
+  disabled: {
+    color: theme.palette.action.disabled,
+    boxShadow: theme.shadows[0],
+    backgroundColor: theme.palette.action.disabledBackground,
+  },
 });
 
 const Fab = props => {
   const {
     children,
     className: classNameProp,
+    variant = 'round',
     color = 'default',
     size = 'large',
-    variant = 'round',
     disabled = false,
     ...rest
   } = props;
 
   const classes = useClasses(styles);
 
+  const extended = variant === 'extended';
+  const primary = color === 'primary';
+  const secondary = color === 'secondary';
+  const small = size === 'small';
+  const medium = size === 'medium';
+
   return (
     <ButtonBase
       className={cx(
         classes.root,
         {
-          [classes.extended]: variant === 'extended',
-          [classes.primary]: color === 'primary',
-          [classes.secondary]: color === 'secondary',
           [classes[`size${capitalize(size)}`]]: size !== 'large',
-          [classes.disabled]: disabled,
+
+          [classes.extended]: extended,
+          [classes.extendedSmall]: extended && small,
+          [classes.extendedMedium]: extended && medium,
+
+          [classes.primary]: primary,
+          [classes.secondary]: secondary,
           [classes.colorInherit]: color === 'inherit',
+
+          [classes.disabled]: disabled,
         },
         classNameProp,
       )}
