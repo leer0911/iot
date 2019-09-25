@@ -1,42 +1,49 @@
 import React from 'react';
-import { IconButton, Box } from '../../../';
-import { Add } from '../../../icon';
+import { IconButton, Box, useClasses } from '../../../';
+import { ArrowDownward, Delete } from '../../../icon';
 import Knobs from './Knobs';
 
+const styles = theme => ({
+  margin: {
+    marginRight: theme.spacing(1),
+  },
+});
+
 const Demo = () => {
+  const classes = useClasses(styles);
+
   return (
     <Box p={1}>
       <Knobs />
 
       <h3>color</h3>
-      <IconButton>
-        <Add />
-      </IconButton>
-      <IconButton color="primary">
-        <Add />
-      </IconButton>
-      <IconButton color="secondary">
-        <Add />
-      </IconButton>
-
-      <h3>edge</h3>
-      <IconButton>
-        <Add />
-      </IconButton>
-      <IconButton edge="start">
-        <Add />
-      </IconButton>
-      <IconButton edge="end">
-        <Add />
-      </IconButton>
+      <Box bgcolor="#f5f5f5" p={2}>
+        <IconButton className={classes.margin}>
+          <Delete />
+        </IconButton>
+        <IconButton color="primary" className={classes.margin}>
+          <Delete />
+        </IconButton>
+        <IconButton color="secondary" className={classes.margin}>
+          <Delete />
+        </IconButton>
+      </Box>
 
       <h3>size</h3>
-      <IconButton size="small">
-        <Add />
-      </IconButton>
-      <IconButton>
-        <Add />
-      </IconButton>
+      <Box bgcolor="#f5f5f5" p={2}>
+        <IconButton className={classes.margin} size="small">
+          <ArrowDownward fontSize="inherit" />
+        </IconButton>
+        <IconButton className={classes.margin}>
+          <Delete fontSize="small" />
+        </IconButton>
+        <IconButton className={classes.margin}>
+          <Delete />
+        </IconButton>
+        <IconButton className={classes.margin}>
+          <Delete fontSize="large" />
+        </IconButton>
+      </Box>
     </Box>
   );
 };

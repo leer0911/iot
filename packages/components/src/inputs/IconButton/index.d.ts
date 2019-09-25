@@ -1,4 +1,4 @@
-import { PropTypes } from '..';
+import { PropTypes } from '../..';
 import { ButtonBaseProps } from '../ButtonBase';
 
 export interface IconButtonProps extends ButtonBaseProps {
