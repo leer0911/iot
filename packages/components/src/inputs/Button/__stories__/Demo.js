@@ -1,10 +1,20 @@
 import React from 'react';
-import { Button, Box } from '../../../';
+import { Button, Box, useClasses } from '../../../';
 import Knobs from './Knobs';
 
 import { Delete, Save, SystemUpdate } from '../../../icon';
 
+const styles = theme => ({
+  margin: {
+    margin: theme.spacing(0.5),
+  },
+  extendedIcon: {
+    marginLeft: theme.spacing(1),
+  },
+});
+
 const Demo = () => {
+  const classes = useClasses(styles);
   return (
     <Box p={2}>
       <Knobs />
@@ -67,50 +77,70 @@ const Demo = () => {
 
       <h3>size 尺寸</h3>
       <Box bgcolor="#f5f5f5" p={2}>
-        <Box display="flex" pb={2}>
-          <Button color="primary" size="small">
+        <Box pb={2}>
+          <Button color="primary" size="small" className={classes.margin}>
             small
           </Button>
-          <Box p={1} />
-
-          <Button color="primary" size="medium">
+          <Button color="primary" size="medium" className={classes.margin}>
             medium
           </Button>
-          <Box p={1} />
-
-          <Button color="primary" size="large">
+          <Button color="primary" size="large" className={classes.margin}>
             large
           </Button>
         </Box>
 
-        <Box display="flex" pb={2}>
-          <Button variant="outlined" color="primary" size="small">
+        <Box pb={2}>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="small"
+            className={classes.margin}
+          >
             small
           </Button>
-          <Box p={1} />
-
-          <Button variant="outlined" color="primary" size="medium">
+          <Button
+            variant="outlined"
+            color="primary"
+            size="medium"
+            className={classes.margin}
+          >
             medium
           </Button>
-          <Box p={1} />
-
-          <Button variant="outlined" color="primary" size="large">
+          <Button
+            variant="outlined"
+            color="primary"
+            size="large"
+            className={classes.margin}
+          >
             large
           </Button>
         </Box>
 
-        <Box display="flex" pb={2}>
-          <Button variant="contained" color="primary" size="small">
+        <Box pb={2}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="small"
+            className={classes.margin}
+          >
             small
           </Button>
-          <Box p={1} />
 
-          <Button variant="contained" color="primary" size="medium">
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            className={classes.margin}
+          >
             medium
           </Button>
-          <Box p={1} />
 
-          <Button variant="contained" color="primary" size="large">
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            className={classes.margin}
+          >
             large
           </Button>
         </Box>
@@ -120,22 +150,19 @@ const Demo = () => {
       <Box bgcolor="#f5f5f5" p={2}>
         <Button variant="contained">
           default
-          <Box pl={1} />
-          <SystemUpdate />
+          <SystemUpdate className={classes.extendedIcon} />
         </Button>
         <Box p={1} />
 
         <Button variant="contained" color="primary">
           primary
-          <Box pl={1} />
-          <Save />
+          <Save className={classes.extendedIcon} />
         </Button>
         <Box p={1} />
 
         <Button variant="contained" color="secondary">
           secondary
-          <Box pl={1} />
-          <Delete />
+          <Delete className={classes.extendedIcon} />
         </Button>
       </Box>
     </Box>
