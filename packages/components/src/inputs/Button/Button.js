@@ -125,7 +125,6 @@ const Button = props => {
       [classes.text]: text,
       [classes.textPrimary]: text && primary,
       [classes.textSecondary]: text && secondary,
-      [classes.disabled]: disabled,
 
       [classes.outlined]: outlined,
       [classes.outlinedPrimary]: outlined && primary,
@@ -140,6 +139,7 @@ const Button = props => {
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.fullWidth]: fullWidth,
       [classes.colorInherit]: color === 'inherit',
+      [classes.disabled]: disabled,
     },
     classNameProp,
   );

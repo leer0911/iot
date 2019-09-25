@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, useClasses } from '../../../';
+import { Button, Box, ButtonGroup, useClasses } from '../../../';
 import Knobs from './Knobs';
 
 import { Delete, Save, SystemUpdate } from '../../../icon';
@@ -164,6 +164,89 @@ const Demo = () => {
           secondary
           <Delete className={classes.extendedIcon} />
         </Button>
+      </Box>
+
+      <h3>Grouped Buttons 组合按钮</h3>
+      <Box bgcolor="#f5f5f5" p={2}>
+        <h4>outlined</h4>
+        <ButtonGroup>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup color="primary">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup color="secondary">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup color="secondary" disabled>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <h4>contained</h4>
+        <ButtonGroup variant="contained">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup variant="contained" color="primary">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup variant="contained" color="secondary">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup variant="contained" color="secondary" disabled>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <h4>size</h4>
+        <ButtonGroup size="small">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup>
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
+
+        <ButtonGroup size="large">
+          <Button>One</Button>
+          <Button>Two</Button>
+          <Button>Three</Button>
+        </ButtonGroup>
+        <Box p={1} />
       </Box>
     </Box>
   );

@@ -2,6 +2,7 @@ export { default as Box } from './layout/Box';
 export { default as Grid } from './layout/Grid';
 
 export { default as Button } from './inputs/Button';
+export { default as ButtonGroup } from './inputs/ButtonGroup';
 export { default as IconButton } from './inputs/IconButton';
 export { default as Fab } from './inputs/Fab';
 export { default as SwitchBase } from './inputs/SwitchBase';
