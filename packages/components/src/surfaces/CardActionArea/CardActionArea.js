@@ -1,25 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
-import ButtonBase from '../ButtonBase';
+
+import { cx } from 'emotion';
+import { useClasses } from '../../styles';
+
+import ButtonBase from '../../inputs/ButtonBase';
 
 export const styles = theme => ({
-  /* Styles applied to the root element. */
   root: {
     display: 'block',
     textAlign: 'inherit',
     width: '100%',
-    '&:hover $focusHighlight': {
-      opacity: theme.palette.action.hoverOpacity,
-    },
-    '&$focusVisible $focusHighlight': {
-      opacity: 0.12,
-    },
   },
-  /* Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused. */
-  focusVisible: {},
-  /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   focusHighlight: {
     overflow: 'hidden',
     pointerEvents: 'none',
@@ -37,40 +29,26 @@ export const styles = theme => ({
   },
 });
 
-const CardActionArea = React.forwardRef(function CardActionArea(props, ref) {
-  const { children, classes, className, focusVisibleClassName, ...other } = props;
+const CardActionArea = props => {
+  const { children, className, focusVisibleClassName, ...other } = props;
+  const classes = useClasses(styles);
 
   return (
     <ButtonBase
-      className={clsx(classes.root, className)}
-      focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
-      ref={ref}
+      className={cx(classes.root, className)}
+      focusVisibleClassName={cx(focusVisibleClassName, classes.focusVisible)}
       {...other}
     >
       {children}
       <span className={classes.focusHighlight} />
     </ButtonBase>
   );
-});
+};
 
 CardActionArea.propTypes = {
-  /**
-   * The content of the component.
-   */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   * See [CSS API](#css) below for more details.
-   */
-  classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
   className: PropTypes.string,
-  /**
-   * @ignore
-   */
   focusVisibleClassName: PropTypes.string,
 };
 
-export default withStyles(styles, { name: 'MuiCardActionArea' })(CardActionArea);
+export default CardActionArea;

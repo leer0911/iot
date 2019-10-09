@@ -36,6 +36,12 @@ export { default as Chip } from './display/Chip';
 export { default as Paper } from './surfaces/Paper';
 export { default as AppBar } from './surfaces/AppBar';
 export { default as Toolbar } from './surfaces/Toolbar';
+export { default as Card } from './surfaces/Card';
+export { default as CardHeader } from './surfaces/CardHeader';
+export { default as CardContent } from './surfaces/CardContent';
+export { default as CardActions } from './surfaces/CardActions';
+export { default as CardActionArea } from './surfaces/CardActionArea';
+export { default as CardMedia } from './surfaces/CardMedia';
 
 export { default as BottomNavigation } from './navigation/BottomNavigation';
 export { default as BottomNavigationAction } from './navigation/BottomNavigationAction';

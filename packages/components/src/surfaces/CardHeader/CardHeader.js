@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { cx } from 'emotion';
 import { useClasses } from '../../styles';
 
-import Typography from '../Typography';
+import Typography from '../../display/Typography';
 
 export const styles = {
   root: {
@@ -25,8 +25,6 @@ export const styles = {
   content: {
     flex: '1 1 auto',
   },
-  title: {},
-  subheader: {},
 };
 
 const CardHeader = props => {
