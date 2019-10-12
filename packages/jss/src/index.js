@@ -1,26 +1,11 @@
-import createCache from '@emotion/cache';
-import { serializeStyles } from '@emotion/serialize';
-import { insertStyles, getRegisteredStyles } from '@emotion/utils';
-
-function insertWithoutScoping(cache, serialized) {
-  if (cache.inserted[serialized.name] === undefined) {
-    return cache.insert('', serialized, cache.sheet, true);
-  }
-}
-
-function merge(registered, css, className) {
-  const registeredStyles = [];
-  const rawClassName = getRegisteredStyles(
-    registered,
-    registeredStyles,
-    className,
-  );
-
-  if (registeredStyles.length < 2) {
-    return className;
-  }
-  return rawClassName + css(registeredStyles);
-}
+import createCache from './cache';
+import { serializeStyles } from './serialize';
+import {
+  insertStyles,
+  getRegisteredStyles,
+  insertWithoutScoping,
+  merge,
+} from './utils';
 
 let createEmotion = options => {
   let cache = createCache(options);
@@ -119,4 +104,4 @@ let classnames = args => {
   return cls;
 };
 
-export default createEmotion;
+export const { cx, injectGlobal, keyframes, css } = createEmotion();

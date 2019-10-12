@@ -1,4 +1,4 @@
-import { keyframes, css } from 'emotion';
+import { keyframes, css } from '@iot/jss';
 import { useTheme } from '../theme';
 import deepmerge from 'deepmerge';
 

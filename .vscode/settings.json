@@ -11,6 +11,8 @@
     "nowrap",
     "scrollable",
     "scroller",
-    "sheetkey"
+    "sheetkey",
+    "stateful",
+    "stylis"
   ]
 }
