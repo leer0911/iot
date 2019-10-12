@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import CancelIcon from '../../icon/Cancel';
 import { emphasize, fade } from '../../theme/colorManipulator';
 import { capitalize } from '../../utils/helpers';

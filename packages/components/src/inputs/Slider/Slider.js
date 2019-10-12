@@ -1,9 +1,6 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import { fade } from '../../theme/colorManipulator';
 import { useEventCallback } from '../../utils';
 

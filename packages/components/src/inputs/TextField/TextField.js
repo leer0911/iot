@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';

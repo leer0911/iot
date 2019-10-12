@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import { capitalize } from '../../utils/helpers';
 import Paper from '../Paper';
 
@@ -20,44 +17,44 @@ export const styles = theme => {
       width: '100%',
       boxSizing: 'border-box',
       zIndex: theme.zIndex.appBar,
-      flexShrink: 0
+      flexShrink: 0,
     },
     positionFixed: {
       position: 'fixed',
       top: 0,
       left: 'auto',
-      right: 0
+      right: 0,
     },
     positionAbsolute: {
       position: 'absolute',
       top: 0,
       left: 'auto',
-      right: 0
+      right: 0,
     },
     positionSticky: {
       position: 'sticky',
       top: 0,
       left: 'auto',
-      right: 0
+      right: 0,
     },
     positionStatic: {
-      position: 'static'
+      position: 'static',
     },
     positionRelative: {
-      position: 'relative'
+      position: 'relative',
     },
     colorDefault: {
       backgroundColor: backgroundColorDefault,
-      color: theme.palette.getContrastText(backgroundColorDefault)
+      color: theme.palette.getContrastText(backgroundColorDefault),
     },
     colorPrimary: {
       backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText
+      color: theme.palette.primary.contrastText,
     },
     colorSecondary: {
       backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText
-    }
+      color: theme.palette.secondary.contrastText,
+    },
   };
 };
 
@@ -75,9 +72,9 @@ const AppBar = (props, ref) => {
         classes.root,
         classes[`position${capitalize(position)}`],
         {
-          [classes[`color${capitalize(color)}`]]: color !== 'inherit'
+          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
         },
-        className
+        className,
       )}
       {...rest}
     />
@@ -93,8 +90,8 @@ AppBar.propTypes = {
     'absolute',
     'sticky',
     'static',
-    'relative'
-  ])
+    'relative',
+  ]),
 };
 
 export default AppBar;

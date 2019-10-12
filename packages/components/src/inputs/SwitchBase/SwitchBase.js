@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { useClasses } from '../../styles';
-import { cx } from 'emotion';
-
+import { useClasses, cx } from '../../styles';
 import IconButton from '../IconButton';
 
 export const styles = {
@@ -53,8 +50,8 @@ const SwitchBase = props => {
 
   const handleInputChange = event => {
     const checked = event.target.checked;
-    if(disabled){
-      return
+    if (disabled) {
+      return;
     }
 
     if (!isControlled) {

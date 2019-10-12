@@ -1,9 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import Portal from '../Portal';
 import SimpleBackdrop from './SimpleBackdrop';
 import { createChainedFunction } from '../../utils/helpers';

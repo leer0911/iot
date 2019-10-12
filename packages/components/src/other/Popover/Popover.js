@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
+import { useClasses, cx } from '../../styles';
 
 import Modal from '../../feedback/Modal';
 import Grow from '../Grow';

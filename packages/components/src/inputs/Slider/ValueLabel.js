@@ -1,6 +1,5 @@
 import React from 'react';
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
+import { useClasses, cx } from '../../styles';
 
 const styles = theme => ({
   open: {

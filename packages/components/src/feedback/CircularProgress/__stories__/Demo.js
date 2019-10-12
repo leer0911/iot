@@ -1,7 +1,6 @@
 import React from 'react';
 import { CircularProgress, Box, Fab, Button } from '../../../';
-import { cx } from 'emotion';
-import { useClasses } from '../../../styles';
+import { useClasses, cx } from '../../../styles';
 import Knobs from './Knobs.js';
 import { green } from '../../../colors';
 import SearchIcon from '../../../icon/Search';

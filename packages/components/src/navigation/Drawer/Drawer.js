@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import Modal from '../../feedback/Modal';
 import Backdrop from '../../other/Backdrop';
 import Slide from '../../other/Slide';
@@ -132,7 +129,7 @@ const Drawer = props => {
       direction={directionMap[anchor]}
       component={Drawer}
       {...SlideProps}
-     />
+    />
   );
 
   if (variant === 'persistent') {

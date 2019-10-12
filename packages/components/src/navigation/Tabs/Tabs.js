@@ -7,10 +7,7 @@ import React, {
   cloneElement,
 } from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import { animate, useEventCallback } from '../../utils';
 
 import ScrollbarSize from './ScrollbarSize';

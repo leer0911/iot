@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { cx } from 'emotion';
-import { useClasses } from '../../styles';
-
+import { useClasses, cx } from '../../styles';
 import KeyboardArrowLeft from '../../icon/KeyboardArrowLeft';
 import KeyboardArrowRight from '../../icon/KeyboardArrowRight';
 import ButtonBase from '../../inputs/ButtonBase';
