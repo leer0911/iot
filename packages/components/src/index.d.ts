@@ -64,6 +64,7 @@ export { default as Slide } from './other/Slide';
 export { default as CssBaseline } from './other/CssBaseline';
 export { default as Grow } from './other/Grow';
 export { default as ClickAwayListener } from './other/ClickAwayListener';
+export { default as Popover } from './other/Popover';
 
 export { default as useClasses } from './styles/useClasses';
 

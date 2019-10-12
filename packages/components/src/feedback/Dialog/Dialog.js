@@ -123,7 +123,7 @@ const Dialog = props => {
     onBackdropClick,
     onClose,
     onEnter,
-    onExited,
+    onExit,
     PaperComponent = Paper,
     PaperProps = {},
     BackdropProps,
@@ -178,7 +178,7 @@ const Dialog = props => {
         )}
         in={open}
         onEnter={onEnter}
-        onExited={onExited}
+        onExit={onExit}
         onClick={handleBackdropClick}
         onMouseDown={handleMouseDown}
         {...TransitionProps}
@@ -216,7 +216,7 @@ Dialog.propTypes = {
   onBackdropClick: PropTypes.func,
   onClose: PropTypes.func,
   onEnter: PropTypes.func,
-  onExited: PropTypes.func,
+  onExit: PropTypes.func,
   PaperComponent: PropTypes.elementType,
   PaperProps: PropTypes.object,
   BackdropProps: PropTypes.object,

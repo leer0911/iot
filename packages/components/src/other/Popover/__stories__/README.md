@@ -1,14 +1,27 @@
-# Button
+# Popover
 
 ## API
 
-| Name           | Type                                      | Default   | Description      |
-| :------------- | :---------------------------------------- | :-------- | :--------------- |
-| component      | React.ElementType                         | `button`  | 节点             |
-| variant        | `text` `outlined` `contained`             | `text`    | 类型             |
-| color          | `default` `inherit` `primary` `secondary` | `default` | 颜色             |
-| size           | `small` `medium` `large`                  | `medium`  | 大小             |
-| fullWidth      | bool                                      | `false`   | 是否占满容器     |
-| centerRipple   | bool                                      | `false`   | 涟漪效果居中显示 |
-| disabled       | bool                                      | `false`   | 是否禁用         |
-| disabledRipple | bool                                      | `false`   | 是否禁用涟漪效果 |
+| Name                | Type                                                          | Default                                      | Description |
+| :------------------ | :------------------------------------------------------------ | :------------------------------------------- | :---------- |
+| container           | `obj` `func`                                                  | `null`                                       |             |
+| open                | `bool`                                                        | `false`                                      |             |
+| anchorEl            | `node`                                                        | `null`                                       |             |
+| anchorOrigin        | `{ vertical: string | number, horizontal: string | number, }` | `{ vertical: 'top' , horizontal: 'left' , }` |             |
+| transformOrigin     | `{ vertical: string | number, horizontal: string | number, }` | `{ vertical: 'top' , horizontal: 'left' , }` |             |
+| container           | `node`                                                        |                                              |             |
+| action              | `node`                                                        |                                              |             |
+| anchorReference     | `anchorEl` `anchorPosition` `none`                            | `anchorEl`                                   |             |
+| anchorPosition      | `{ vertical: number, horizontal: number, }`                   |                                              |             |
+| elevation           | `number`                                                      | `8`                                          |             |
+| marginThreshold     | `number`                                                      | `16`                                         |             |
+| TransitionComponent |                                                               |                                              |             |
+| TransitionProps     |                                                               |                                              |             |
+| ModalClasses        |                                                               |                                              |             |
+| getContentAnchorEl  | `func`                                                        |                                              |             |
+
+## Event
+| Name            | Type                                                          | Default                                      | Description |
+| onClose         | `func`                                                        |                                              |             |
+| onEnter         | `func`                                                        |                                              |             |
+| onExit         | `func`                                                        |                                              |             |

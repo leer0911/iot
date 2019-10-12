@@ -9,7 +9,7 @@ const Slide = props => {
     direction = 'down',
     children,
     onEnter,
-    onExited,
+    onExit,
     component,
     ...other
   } = props;
@@ -56,8 +56,8 @@ const Slide = props => {
     },
     leave: item => async (next, cancel) => {
       await next({ transform: transform[0] });
-      if (!open && onExited) {
-        onExited();
+      if (!open && onExit) {
+        onExit();
       }
     },
   });
@@ -83,7 +83,7 @@ Slide.propTypes = {
   direction: PropTypes.oneOf(['left', 'right', 'up', 'down']),
   in: PropTypes.bool,
   onEnter: PropTypes.func,
-  onExited: PropTypes.func,
+  onExit: PropTypes.func,
 };
 
 export default Slide;

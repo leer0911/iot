@@ -105,7 +105,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     autoHideDuration,
     onClose,
     onEnter,
-    onExited,
+    onExit,
     ...other
   } = props;
 
@@ -187,7 +187,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
           appear
           in={open}
           onEnter={createChainedFunction(handleEnter, onEnter)}
-          onExited={createChainedFunction(handleExited, onExited)}
+          onExit={createChainedFunction(handleExited, onExit)}
           direction={vertical === 'top' ? 'down' : 'up'}
           {...TransitionProps}
         >
@@ -220,7 +220,7 @@ Snackbar.propTypes = {
   message: PropTypes.node,
   onClose: PropTypes.func,
   onEnter: PropTypes.func,
-  onExited: PropTypes.func,
+  onExit: PropTypes.func,
   TransitionComponent: PropTypes.elementType,
   TransitionProps: PropTypes.object,
 };

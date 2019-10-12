@@ -16,8 +16,8 @@
 
 ## Event
 
-| Name     | Type | Default | Description |
-| :------- | :--- | :------ | :---------- |
-| onClose  | func |         |             |
-| onEnter  | func |         |             |
-| onExited | func |         |             |
+| Name    | Type | Default | Description |
+| :------ | :--- | :------ | :---------- |
+| onClose | func |         |             |
+| onEnter | func |         |             |
+| onExit  | func |         |             |

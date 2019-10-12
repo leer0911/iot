@@ -72,9 +72,9 @@ const Modal = props => {
       handleEnter,
       children.props.onEnter,
     );
-    childProps.onExited = createChainedFunction(
+    childProps.onExit = createChainedFunction(
       handleExited,
-      children.props.onExited,
+      children.props.onExit,
     );
   }
 

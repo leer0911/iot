@@ -4,3 +4,4 @@ export { default as Slide } from './Slide';
 export { default as Grow } from './Grow';
 export { default as CssBaseline } from './CssBaseline';
 export { default as ClickAwayListener } from './ClickAwayListener';
+export { default as Popover } from './Popover';

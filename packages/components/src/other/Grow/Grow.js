@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 
 const Fade = props => {
-  const { in: open, children, onEnter, onExited, ...other } = props;
+  const { in: open, children, onEnter, onExit, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },
     to: { opacity: open ? 1 : 0 },
@@ -13,8 +13,8 @@ const Fade = props => {
       }
     },
     onRest: () => {
-      if (!open && onExited) {
-        onExited();
+      if (!open && onExit) {
+        onExit();
       }
     },
   });

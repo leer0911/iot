@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import { cx } from 'emotion';
@@ -7,56 +6,16 @@ import { useClasses } from '../../styles';
 
 import Modal from '../../feedback/Modal';
 import Grow from '../Grow';
-import Paper from '../../surface/Paper';
+import Paper from '../../surfaces/Paper';
 
-export function getOffsetTop(rect, vertical) {
-  let offset = 0;
-
-  if (typeof vertical === 'number') {
-    offset = vertical;
-  } else if (vertical === 'center') {
-    offset = rect.height / 2;
-  } else if (vertical === 'bottom') {
-    offset = rect.height;
-  }
-
-  return offset;
-}
-
-export function getOffsetLeft(rect, horizontal) {
-  let offset = 0;
-
-  if (typeof horizontal === 'number') {
-    offset = horizontal;
-  } else if (horizontal === 'center') {
-    offset = rect.width / 2;
-  } else if (horizontal === 'right') {
-    offset = rect.width;
-  }
-
-  return offset;
-}
-
-function getTransformOriginValue(transformOrigin) {
-  return [transformOrigin.horizontal, transformOrigin.vertical]
-    .map(n => (typeof n === 'number' ? `${n}px` : n))
-    .join(' ');
-}
-
-function getScrollParent(parent, child) {
-  let element = child;
-  let scrollTop = 0;
-
-  while (element && element !== parent) {
-    element = element.parentNode;
-    scrollTop += element.scrollTop;
-  }
-  return scrollTop;
-}
-
-function getAnchorEl(anchorEl) {
-  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
-}
+import {
+  getAnchorEl,
+  getScrollParent,
+  getTransformOriginValue,
+  getOffsetTop,
+  getOffsetLeft,
+} from './utils';
+import propTypes from './propTypes';
 
 export const styles = {
   paper: {
@@ -84,23 +43,25 @@ const Popover = props => {
       vertical: 'top',
       horizontal: 'left',
     },
-    elevation = 8,
-    marginThreshold = 16,
-    getContentAnchorEl,
-    PaperProps = {},
-    TransitionComponent = Grow,
-    TransitionProps = {},
     transformOrigin = {
       vertical: 'top',
       horizontal: 'left',
     },
+    getContentAnchorEl,
+    PaperProps = {},
+    TransitionProps = {},
+    TransitionComponent = Grow,
     onEnter,
     onExit,
+    elevation = 8,
+    marginThreshold = 16,
     ...other
   } = props;
+
   const paperRef = React.useRef();
   const classes = useClasses(styles);
 
+  // 获取点击元素的偏移位置
   const getAnchorOffset = React.useCallback(
     contentAnchorOffset => {
       if (anchorReference === 'anchorPosition') {
@@ -127,6 +88,7 @@ const Popover = props => {
     ],
   );
 
+  // 获取自定义方法的偏移位置
   const getContentAnchorOffset = React.useCallback(
     element => {
       let contentAnchorOffset = 0;
@@ -263,19 +225,22 @@ const Popover = props => {
     updatePosition,
   ]);
 
-  React.useEffect(() => {
-    if (!updatePosition) {
-      return undefined;
+  const container = containerProp || getAnchorEl(anchorEl);
+
+  const handleEnter = element => {
+    // if (onEnter) {
+    //   onEnter(element);
+    // }
+    // debugger;
+    // setPositioningStyles(paperRef.current);
+    // console.log(
+    //   '====================================> paperRef.current',
+    //   paperRef.current,
+    // );
+    if (paperRef.current) {
+      setPositioningStyles(paperRef.current);
     }
-
-    window.addEventListener('resize', updatePosition);
-    return () => {
-      window.removeEventListener('resize', updatePosition);
-      updatePosition.clear();
-    };
-  }, [updatePosition]);
-
-  const container = containerProp || getAnchorEl(anchorEl).body;
+  };
 
   return (
     <Modal
@@ -285,9 +250,8 @@ const Popover = props => {
       {...other}
     >
       <TransitionComponent
-        appear
         in={open}
-        onEnter={onEnter}
+        onEnter={handleEnter}
         onExit={onExit}
         {...TransitionProps}
       >
@@ -304,51 +268,6 @@ const Popover = props => {
   );
 };
 
-Popover.propTypes = {
-  action: PropTypes.node,
-  anchorEl: PropTypes.node,
-  anchorOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
-    ]).isRequired,
-    vertical: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['top', 'center', 'bottom']),
-    ]).isRequired,
-  }),
-  anchorPosition: PropTypes.shape({
-    left: PropTypes.number.isRequired,
-    top: PropTypes.number.isRequired,
-  }),
-  anchorReference: PropTypes.oneOf(['anchorEl', 'anchorPosition', 'none']),
-  children: PropTypes.node,
-  container: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  elevation: PropTypes.number,
-  getContentAnchorEl: PropTypes.func,
-  marginThreshold: PropTypes.number,
-  ModalClasses: PropTypes.object,
-  onClose: PropTypes.func,
-  onEnter: PropTypes.func,
-  onExit: PropTypes.func,
-  open: PropTypes.bool.isRequired,
-  transformOrigin: PropTypes.shape({
-    horizontal: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['left', 'center', 'right']),
-    ]).isRequired,
-    vertical: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.oneOf(['top', 'center', 'bottom']),
-    ]).isRequired,
-  }),
-  TransitionComponent: PropTypes.elementType,
-  transitionDuration: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
-    PropTypes.oneOf(['auto']),
-  ]),
-  TransitionProps: PropTypes.object,
-};
+Popover.propTypes = propTypes;
 
 export default Popover;
