@@ -21,7 +21,8 @@
 | getContentAnchorEl  | `func`                                                        |                                              |             |
 
 ## Event
-| Name            | Type                                                          | Default                                      | Description |
-| onClose         | `func`                                                        |                                              |             |
-| onEnter         | `func`                                                        |                                              |             |
-| onExit         | `func`                                                        |                                              |             |
+| Name    | Type   | Default | Description |
+| :------ | :----- | :------ | :---------- |
+| onClose | `func` |         |             |
+| onEnter | `func` |         |             |
+| onExit  | `func` |         |             |
