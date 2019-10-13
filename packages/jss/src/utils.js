@@ -67,7 +67,9 @@ export function memoize(fn) {
   const cache = {};
 
   return arg => {
-    if (cache[arg] === undefined) cache[arg] = fn(arg);
+    if (cache[arg] === undefined) {
+      cache[arg] = fn(arg);
+    }
     return cache[arg];
   };
 }
@@ -82,4 +84,40 @@ export function weakMemoize(func) {
     cache.set(arg, ret);
     return ret;
   };
+}
+
+export function classnames(args) {
+  let cls = '';
+  for (let i = 0; i < args.length; i++) {
+    let arg = args[i];
+    if (arg == null) continue;
+
+    let toAdd;
+    switch (typeof arg) {
+      case 'boolean':
+        break;
+      case 'object': {
+        if (Array.isArray(arg)) {
+          toAdd = classnames(arg);
+        } else {
+          toAdd = '';
+          for (const k in arg) {
+            if (arg[k] && k) {
+              toAdd && (toAdd += ' ');
+              toAdd += k;
+            }
+          }
+        }
+        break;
+      }
+      default: {
+        toAdd = arg;
+      }
+    }
+    if (toAdd) {
+      cls && (cls += ' ');
+      cls += toAdd;
+    }
+  }
+  return cls;
 }
