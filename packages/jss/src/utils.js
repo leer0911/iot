@@ -13,18 +13,20 @@ export function getRegisteredStyles(registered, registeredStyles, classNames) {
   return rawClassName;
 }
 
-export const insertStyles = (cache, serialized, isStringTag) => {
+export function insertStyles(cache, serialized, isStringTag = false) {
   let className = `${cache.key}-${serialized.name}`;
-  if (
-    (isStringTag === false ||
-      (isBrowser === false && cache.compat !== undefined)) &&
-    cache.registered[className] === undefined
-  ) {
+
+  const isSSR = isBrowser === false && cache.compat !== undefined;
+  const hasRegisteredCache = cache.registered[className] !== undefined;
+
+  if ((!isStringTag || isSSR) && !hasRegisteredCache) {
     cache.registered[className] = serialized.styles;
   }
+
   if (cache.inserted[serialized.name] === undefined) {
     let stylesForSSR = '';
     let current = serialized;
+
     do {
       let maybeStyles = cache.insert(
         `.${className}`,
@@ -37,11 +39,12 @@ export const insertStyles = (cache, serialized, isStringTag) => {
       }
       current = current.next;
     } while (current !== undefined);
+
     if (!isBrowser && stylesForSSR.length !== 0) {
       return stylesForSSR;
     }
   }
-};
+}
 
 export function insertWithoutScoping(cache, serialized) {
   if (cache.inserted[serialized.name] === undefined) {
@@ -60,6 +63,7 @@ export function merge(registered, css, className) {
   if (registeredStyles.length < 2) {
     return className;
   }
+
   return rawClassName + css(registeredStyles);
 }
 
@@ -76,48 +80,47 @@ export function memoize(fn) {
 
 export function weakMemoize(func) {
   const cache = new WeakMap();
+
   return arg => {
     if (cache.has(arg)) {
       return cache.get(arg);
     }
     const ret = func(arg);
     cache.set(arg, ret);
+
     return ret;
   };
 }
 
 export function classnames(args) {
   let cls = '';
-  for (let i = 0; i < args.length; i++) {
-    let arg = args[i];
-    if (arg == null) continue;
 
-    let toAdd;
-    switch (typeof arg) {
-      case 'boolean':
-        break;
-      case 'object': {
-        if (Array.isArray(arg)) {
-          toAdd = classnames(arg);
-        } else {
-          toAdd = '';
-          for (const k in arg) {
-            if (arg[k] && k) {
-              toAdd && (toAdd += ' ');
-              toAdd += k;
-            }
+  args.forEach(arg => {
+    const type = typeof arg;
+    if (arg == null || type === 'boolean') {
+      return;
+    }
+
+    let reduce = arg;
+    if (type === 'object') {
+      if (Array.isArray(arg)) {
+        reduce = classnames(arg);
+      } else {
+        reduce = '';
+        for (const k in arg) {
+          if (arg[k] && k) {
+            reduce && (reduce += ' ');
+            reduce += k;
           }
         }
-        break;
-      }
-      default: {
-        toAdd = arg;
       }
     }
-    if (toAdd) {
+
+    if (reduce) {
       cls && (cls += ' ');
-      cls += toAdd;
+      cls += reduce;
     }
-  }
+  });
+
   return cls;
 }
