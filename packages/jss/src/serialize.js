@@ -37,7 +37,7 @@ const handleStyleValue = (key, value) => {
       return p1;
     });
 
-    return typeof value === 'string' ? handleString() : '';
+    return typeof value === 'string' ? handleString : '';
   }
 
   if (shouldAddUnit) {

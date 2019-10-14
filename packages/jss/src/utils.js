@@ -75,12 +75,12 @@ export function memoize(fn) {
 }
 
 export function weakMemoize(func) {
-  let cache = new WeakMap();
+  const cache = new WeakMap();
   return arg => {
     if (cache.has(arg)) {
       return cache.get(arg);
     }
-    let ret = func(arg);
+    const ret = func(arg);
     cache.set(arg, ret);
     return ret;
   };
