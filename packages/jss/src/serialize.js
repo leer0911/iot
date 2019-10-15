@@ -142,6 +142,7 @@ function createStringFromObject(mergedProps, registered, interpolated) {
       } else {
         string += `${handleStyleName(key)}:${handleStyleValue(key, value)};`;
       }
+      continue
     }
 
     if (
@@ -152,6 +153,7 @@ function createStringFromObject(mergedProps, registered, interpolated) {
       for (let i = 0; i < value.length; i++) {
         string += `${handleStyleName(key)}:${handleStyleValue(key, value[i])};`;
       }
+      continue
     }
 
     const final = handleInterpolation(mergedProps, registered, value, false);
@@ -163,7 +165,7 @@ function createStringFromObject(mergedProps, registered, interpolated) {
         break;
       }
       default: {
-        string += `${key}{${interpolated}}`;
+        string += `${key}{${final}}`;
       }
     }
   }
