@@ -6,7 +6,7 @@ type Style = ThemeStyle | 'srOnly';
 
 export interface TypographyProps {
   component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
-  color?: 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
+  color?: 'initial' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error';
   display?: 'initial' | 'block' | 'inline';
   gutterBottom?: boolean;
   noWrap?: boolean;
