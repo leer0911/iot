@@ -21,7 +21,7 @@ const Knobs = () => {
           indeterminate={boolean('indeterminate')}
           disabled={boolean('disabled')}
           disableRipple={boolean('disableRipple')}
-        ></Checkbox>
+        />
       </Box>
     </>
   );

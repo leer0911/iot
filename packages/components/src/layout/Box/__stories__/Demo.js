@@ -1,24 +1,26 @@
 import React from 'react';
-import { Box, Typography } from '../../../';
+import { Box } from '../../../';
 
 const Demo = props => {
   return (
     <Box p={2}>
-      <Typography variant="h6">border</Typography>
-      <Box border={1} p={1} mb={1} />
-      <Box borderTop={1} p={1} mb={1} />
-      <Box borderBottom={1} p={1} mb={1} />
-      <Box borderLeft={1} p={1} mb={1} />
-      <Box borderRight={1} p={1} mb={1} />
-      <Box border={1} p={1} borderColor="blue" mb={1} />
-      <Box border={1} p={1} borderRadius={5} />
+      <h3>基本用法</h3>
+      <Box
+        display="flex"
+        border={1}
+        borderColor="#eee"
+        height={100}
+        bgcolor="#eee"
+        borderRadius="5px"
+        p={2}
+      >
+        <img
+          src="https://fallbacks.carbonads.com/nosvn/fallbacks/f1942942caa6a76bc03b04f9aadd6e0d.png"
+          alt="material ui"
+          height="100%"
+        />
 
-      <Box mb={2} />
-      <Typography variant="h6">display & flexbox</Typography>
-      <Box display="flex" justifyContent="space-between">
-        <Box bgcolor="#333" p={1} />
-        <Box bgcolor="#333" p={1} />
-        <Box bgcolor="#333" p={1} />
+        <Box ml={2}>well meaning and kindly.</Box>
       </Box>
     </Box>
   );

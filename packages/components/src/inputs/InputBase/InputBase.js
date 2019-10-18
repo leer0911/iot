@@ -78,6 +78,8 @@ export const styles = theme => {
     inputMarginDense: {
       paddingTop: 4 - 1,
     },
+    error: {},
+    focused: {},
     multilineDense: {},
     inputHiddenLabel: {},
     inputHiddenLabelDense: {},

@@ -34,7 +34,7 @@ const Knobs = () => {
           titleAccess={text('titleAccess')}
           htmlColor={text('htmlColor')}
           viewBox={text('viewBox')}
-        ></Favorite>
+        />
       </Box>
     </>
   );

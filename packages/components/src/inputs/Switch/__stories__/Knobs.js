@@ -29,7 +29,7 @@ const Knobs = () => {
           checked={boolean('checked', true)}
           disabled={boolean('disabled')}
           disableRipple={boolean('disableRipple')}
-        ></Switch>
+        />
       </Box>
     </>
   );

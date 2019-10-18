@@ -13,27 +13,31 @@ const Demo = () => {
     <Box p={2}>
       <Knobs />
       <h3>基础用法</h3>
-      <Slider
-        defaultValue={30}
-        step={1}
-        min={0}
-        max={100}
-        valueLabelDisplay="on"
-      />
+      <Box bgcolor="#f5f5f5" p={2}>
+        <Slider
+          defaultValue={30}
+          step={1}
+          min={0}
+          max={100}
+          valueLabelDisplay="on"
+        />
 
-      <Slider
-        value={value}
-        onChange={handleChange}
-        step={1}
-        min={0}
-        max={100}
-      />
+        <Box p={1} />
 
-      <h3>禁用状态</h3>
-      <Slider defaultValue={30} step={1} min={0} max={100} disabled />
+        <Slider
+          value={value}
+          onChange={handleChange}
+          step={1}
+          min={0}
+          max={100}
+        />
+
+        <Box p={1} />
+        <Slider defaultValue={30} step={1} min={0} max={100} disabled />
+      </Box>
 
       <h3>垂直方向</h3>
-      <Box height="100px">
+      <Box bgcolor="#f5f5f5" height="100px" p={2}>
         <Slider step={1} min={0} max={100} orientation="vertical" />
       </Box>
     </Box>

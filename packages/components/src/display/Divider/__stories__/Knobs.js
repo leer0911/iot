@@ -27,7 +27,7 @@ const Knobs = () => {
           )}
           light={boolean('light')}
           absolute={boolean('absolute')}
-        ></Divider>
+         />
       </Box>
     </>
   );

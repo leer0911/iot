@@ -29,7 +29,7 @@ const Knobs = () => {
           size={number('size')}
           thickness={number('thickness')}
           disableShrink={boolean('disableShrink')}
-        ></CircularProgress>
+        />
       </Box>
     </>
   );

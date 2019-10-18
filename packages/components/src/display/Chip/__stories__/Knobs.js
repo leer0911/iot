@@ -10,7 +10,7 @@ const Knobs = () => {
         <Chip
           label={text('label', 'test')}
           avatar={
-            <Avatar src="https://material-ui.com/static/images/avatar/1.jpg"></Avatar>
+            <Avatar src="https://material-ui.com/static/images/avatar/1.jpg" />
           }
           variant={select(
             'variant',
@@ -30,7 +30,7 @@ const Knobs = () => {
             'default',
           )}
           clickable={boolean('clickable', false)}
-        ></Chip>
+        />
       </Box>
     </>
   );
