@@ -11,7 +11,6 @@ export const styles = {
     margin: '-24px -16px',
     boxSizing: 'content-box',
   },
-  horizontal: {},
   vertical: {
     justifyContent: 'flex-start',
     padding: '8px',

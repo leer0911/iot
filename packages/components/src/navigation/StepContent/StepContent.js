@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useClasses, cx } from '../../styles';
-import Collapse from '../Collapse';
+import Collapse from '../../other/Collapse';
 
 export const styles = theme => ({
   root: {
@@ -18,7 +18,6 @@ export const styles = theme => ({
   last: {
     borderLeft: 'none',
   },
-  transition: {},
 });
 
 const StepContent = props => {

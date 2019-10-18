@@ -3,3 +3,8 @@ export { default as BottomNavigationAction } from './BottomNavigationAction';
 export { default as Tabs } from './Tabs';
 export { default as Tab } from './Tab';
 export { default as Drawer } from './Drawer';
+export { default as Stepper } from './Stepper';
+export { default as Step } from './Step';
+export { default as StepLabel } from './StepLabel';
+export { default as StepContent } from './StepContent';
+export { default as StepButton } from './StepButton';

@@ -1,0 +1,17 @@
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import DemoRaw from '!raw-loader!./Demo';
+
+import README from './README.md';
+import Demo from './Demo';
+
+storiesOf('Navigation', module)
+  .addParameters({
+    notes: README,
+  })
+  .add('Stepper', () => <Demo />, {
+    jsx: {
+      onBeforeRender: () => DemoRaw,
+    },
+  });
