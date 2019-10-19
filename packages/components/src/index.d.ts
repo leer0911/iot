@@ -48,6 +48,11 @@ export { default as BottomNavigationAction } from './navigation/BottomNavigation
 export { default as Tab } from './navigation/Tab';
 export { default as Tabs } from './navigation/Tabs';
 export { default as Drawer } from './navigation/Drawer';
+export { default as Stepper } from './navigation/Stepper';
+export { default as Step } from './navigation/Step';
+export { default as StepLabel } from './navigation/StepLabel';
+export { default as StepContent } from './navigation/StepContent';
+export { default as StepButton } from './navigation/StepButton';
 
 export { default as CircularProgress } from './feedback/CircularProgress';
 export { default as Modal } from './feedback/Modal';

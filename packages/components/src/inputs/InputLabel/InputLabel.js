@@ -89,10 +89,12 @@ const InputLabel = React.forwardRef((props, ref) => {
           [classes.animated]: !disableAnimation,
           [classes.marginDense]: fcs.margin === 'dense',
           [classes.shrink]: shrink,
+
           [classes.filled]: fcs.variant === 'filled',
           [classes.filledShrink]: fcs.variant === 'filled' && shrink,
           [classes.filledShrinkDense]:
             fcs.variant === 'filled' && shrink && fcs.margin === 'dense',
+
           [classes.outlined]: fcs.variant === 'outlined',
           [classes.outlinedShrink]: fcs.variant === 'outlined' && shrink,
         },

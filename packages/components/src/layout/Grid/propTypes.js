@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { SPACINGS, GRID_SIZES, ALIGNCONTENT, ALIGNITEMS, DIRECTION, JUSTIFY, WRAP } from './constants';
+import { SPACINGS, GRID_SIZES, ALIGN_CONTENT, ALIGN_ITEMS, DIRECTION, JUSTIFY, WRAP } from './constants';
 
 export const gridPropTypes = {
   children: PropTypes.node,
@@ -8,8 +8,8 @@ export const gridPropTypes = {
   item: PropTypes.bool, // If `true`, the component will have the flex *item* behavior.
 
   direction: PropTypes.oneOf(DIRECTION),
-  alignContent: PropTypes.oneOf(ALIGNCONTENT),
-  alignItems: PropTypes.oneOf(ALIGNITEMS),
+  align_Content: PropTypes.oneOf(ALIGN_CONTENT),
+  align_Items: PropTypes.oneOf(ALIGN_ITEMS),
   justify: PropTypes.oneOf(JUSTIFY),
   wrap: PropTypes.oneOf(WRAP),
 

@@ -6,7 +6,6 @@ export const styles = theme => ({
   root: {
     flex: '1 1 auto',
   },
-  horizontal: {},
   vertical: {
     marginLeft: 12, // half icon
     padding: '0 0 8px',
@@ -17,9 +16,6 @@ export const styles = theme => ({
     left: 'calc(-50% + 20px)',
     right: 'calc(50% + 20px)',
   },
-  active: {},
-  completed: {},
-  disabled: {},
   line: {
     display: 'block',
     borderColor:

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 
-const Fade = props => {
+const Grow = props => {
   const { in: open, children, onEnter, onExit, ...other } = props;
   const style = useSpring({
     from: { opacity: 0 },
@@ -26,11 +26,11 @@ const Fade = props => {
   );
 };
 
-Fade.propTypes = {
+Grow.propTypes = {
   in: PropTypes.bool,
   onEnter: PropTypes.func,
   onExit: PropTypes.func,
   style: PropTypes.object,
 };
 
-export default Fade;
+export default Grow;

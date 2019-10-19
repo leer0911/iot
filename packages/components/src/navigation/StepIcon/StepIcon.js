@@ -1,32 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useClasses, cx } from '../../styles';
-import CheckCircle from '../internal/svg-icons/CheckCircle';
-import Warning from '../internal/svg-icons/Warning';
-import SvgIcon from '../SvgIcon';
+import CheckCircle from '../../icon/CheckCircle';
+import Warning from '../../icon/Warning';
+import SvgIcon from '../../display/SvgIcon';
 
 export const styles = theme => ({
   root: {
     display: 'block',
     color: theme.palette.text.disabled,
-    '&$active': {
-      color: theme.palette.primary.main,
-    },
-    '&$completed': {
-      color: theme.palette.primary.main,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
   },
   text: {
     fill: theme.palette.primary.contrastText,
     fontSize: theme.typography.caption.fontSize,
     fontFamily: theme.typography.fontFamily,
   },
-  active: {},
-  completed: {},
-  error: {},
+  active: {
+    color: theme.palette.primary.main,
+  },
+  completed: {
+    color: theme.palette.primary.main,
+  },
+  error: {
+    color: theme.palette.error.main,
+  },
 });
 
 const StepIcon = props => {

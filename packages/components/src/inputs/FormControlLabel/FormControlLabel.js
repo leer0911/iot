@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useClasses, cx } from '../../styles';
 import { useFormControl } from '../FormControl';
-import Typography from '../../display/Typography';
 import { capitalize } from '../../utils/helpers';
+import Typography from '../../display/Typography';
 
 export const styles = theme => ({
   root: {

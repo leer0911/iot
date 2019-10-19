@@ -1,53 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useClasses, cx } from '../../styles';
-import Typography from '../Typography';
+import Typography from '../../display/Typography';
 import StepIcon from '../StepIcon';
 
 export const styles = theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    '&$alternativeLabel': {
-      flexDirection: 'column',
-    },
-    '&$disabled': {
-      cursor: 'default',
-    },
   },
-  horizontal: {},
-  vertical: {},
+  alternativeLabel: {
+    flexDirection: 'column',
+  },
   label: {
     color: theme.palette.text.secondary,
-    '&$active': {
-      color: theme.palette.text.primary,
-      fontWeight: 500,
-    },
-    '&$completed': {
-      color: theme.palette.text.primary,
-      fontWeight: 500,
-    },
-    '&$alternativeLabel': {
-      textAlign: 'center',
-      marginTop: 16,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
   },
-  active: {},
-  completed: {},
-  error: {},
-  disabled: {},
+  labelActive: {
+    color: theme.palette.text.primary,
+    fontWeight: 500,
+  },
+  labelCompleted: {
+    color: theme.palette.text.primary,
+    fontWeight: 500,
+  },
+  labelAlternativeLabel: {
+    textAlign: 'center',
+    marginTop: 16,
+  },
+  labelError: {
+    color: theme.palette.error.main,
+  },
   iconContainer: {
     flexShrink: 0,
     display: 'flex',
     paddingRight: 8,
-    '&$alternativeLabel': {
-      paddingRight: 0,
-    },
   },
-  alternativeLabel: {},
+  iconContainerAlternativeLabel: {
+    paddingRight: 0,
+  },
   labelContainer: {
     width: '100%',
   },
@@ -96,7 +86,7 @@ const StepLabel = props => {
       {icon || StepIconComponent ? (
         <span
           className={cx(classes.iconContainer, {
-            [classes.alternativeLabel]: alternativeLabel,
+            [classes.iconContainerAlternativeLabel]: alternativeLabel,
           })}
         >
           <StepIconComponent
@@ -113,10 +103,10 @@ const StepLabel = props => {
           variant="body2"
           component="span"
           className={cx(classes.label, {
-            [classes.alternativeLabel]: alternativeLabel,
-            [classes.completed]: completed,
-            [classes.active]: active,
-            [classes.error]: error,
+            [classes.labelAlternativeLabel]: alternativeLabel,
+            [classes.labelCompleted]: completed,
+            [classes.labelActive]: active,
+            [classes.labelError]: error,
           })}
           display="block"
         >

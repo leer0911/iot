@@ -12,7 +12,7 @@ const Knobs = () => {
   return (
     <>
       <h3>knobs</h3>
-      <Box p={2} bgcolor="#eee" borderRadius={5}>
+      <Box p={2} bgcolor="#f5f5f5" borderRadius={5}>
         <Button onClick={toggleDrawer}>Open</Button>
         <Drawer
           open={open}

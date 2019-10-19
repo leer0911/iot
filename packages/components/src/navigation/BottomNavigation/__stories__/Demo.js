@@ -17,7 +17,7 @@ const Demo = () => {
       bottom="0"
       display="flex"
       flexDirection="column"
-      bgcolor="#eee"
+      bgcolor="#f5f5f5"
     >
       <Box flex="1" />
       <BottomNavigation value={value} onChange={handleChange} showLabels>

@@ -6,11 +6,11 @@ const Knobs = () => {
   return (
     <>
       <h3>knobs</h3>
-      <Box p={2} bgcolor="#eee" borderRadius={5}>
+      <Box p={2} bgcolor="#f5f5f5" borderRadius={5}>
         <Chip
           label={text('label', 'test')}
           avatar={
-            <Avatar src="https://material-ui.com/static/images/avatar/1.jpg"></Avatar>
+            <Avatar src="https://material-ui.com/static/images/avatar/1.jpg" />
           }
           variant={select(
             'variant',
@@ -30,7 +30,7 @@ const Knobs = () => {
             'default',
           )}
           clickable={boolean('clickable', false)}
-        ></Chip>
+        />
       </Box>
     </>
   );

@@ -1,27 +1,46 @@
 import React from 'react';
-import { Box, Grid } from '../../../';
+import { Box, Paper, Grid } from '../../../';
 
 const Demo = () => {
   const item = (
-    <Box height={20} bgcolor="#0ff" p="10px">
-      11111
-    </Box>
+    <Paper height={20} bgcolor="#0ff" p="10px">
+      <Box p={1} textAlign="center">
+        Item
+      </Box>
+    </Paper>
   );
   return (
-    <Grid container spacing={1}>
-      <Grid item spacing={1} grid={3}>
-        {item}
-      </Grid>
-      <Grid item spacing={1} grid={3}>
-        {item}
-      </Grid>
-      <Grid item spacing={1} grid={3}>
-        {item}
-      </Grid>
-      <Grid item spacing={1} grid={3}>
-        {item}
-      </Grid>
-    </Grid>
+    <Box p={2}>
+      <h3>基本用法</h3>
+      <Box p={2} bgcolor="#f5f5f5">
+        <Grid container spacing={1}>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+          <Grid item spacing={1} grid={3}>
+            {item}
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 
