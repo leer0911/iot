@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '../../..';
-import { select, boolean, number } from '@storybook/addon-knobs';
+import { select, boolean } from '@storybook/addon-knobs';
 
 const Knobs = () => {
   return (
