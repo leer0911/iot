@@ -123,3 +123,11 @@ export { default as LockOpen } from './LockOpen';
 
 export { default as Settings } from './Settings';
 export { default as SettingsApplications } from './SettingsApplications';
+
+export { default as ArrowForwardIos } from './ArrowForwardIos';
+export { default as ArrowBackIos } from './ArrowBackIos';
+
+export { default as LocalMall } from './LocalMall';
+
+export { default as ExpandLess } from './ExpandLess';
+export { default as ExpandMore } from './ExpandMore';
