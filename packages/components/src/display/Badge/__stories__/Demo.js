@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Badge,
-  Button,
-  Box,
-  IconButton,
-  useClasses,
-  Typography,
-} from '../../../';
+import { Badge, Button, Box, IconButton, useClasses } from '../../../';
 import Knobs from './Knobs.js';
 import { Mail as MailIcon } from '../../../icon';
 

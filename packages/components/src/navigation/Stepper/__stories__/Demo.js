@@ -2,12 +2,6 @@ import React from 'react';
 import { Stepper, Step, StepLabel, StepContent, Box } from '../../../';
 
 const Demo = () => {
-  const [value, setValue] = React.useState('');
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
   return (
     <Box p={2}>
       <h3>水平步骤条</h3>

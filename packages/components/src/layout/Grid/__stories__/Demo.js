@@ -13,29 +13,29 @@ const Demo = () => {
     <Box p={2}>
       <h3>基本用法</h3>
       <Box p={2} bgcolor="#f5f5f5">
-        <Grid container spacing={1}>
-          <Grid item spacing={1} grid={3}>
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
-          <Grid item spacing={1} grid={3}>
+          <Grid item xs={3}>
             {item}
           </Grid>
         </Grid>
