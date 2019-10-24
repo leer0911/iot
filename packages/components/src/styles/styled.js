@@ -1,4 +1,4 @@
-import emotionStyled from '@emotion/styled';
+import emotionStyled from '@iot/jss/src/styled';
 import isPropValid from '@emotion/is-prop-valid';
 
 const styled = (tagName, styleFunction) => {
@@ -7,7 +7,7 @@ const styled = (tagName, styleFunction) => {
   // shouldForwardProp 用于 过滤 ui system 中已设置为 prop 的属性
   return emotionStyled(tagName, {
     shouldForwardProp: prop =>
-      filterProps.indexOf(prop) === -1 && isPropValid(prop)
+      filterProps.indexOf(prop) === -1 && isPropValid(prop),
   })(styleFunction);
 };
 
