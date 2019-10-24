@@ -1,4 +1,5 @@
-let isBrowser = typeof document !== 'undefined';
+import isPropValid from './is-prop-valid';
+export let isBrowser = typeof document !== 'undefined';
 
 export function getRegisteredStyles(registered, registeredStyles, classNames) {
   let rawClassName = '';
@@ -124,3 +125,11 @@ export function classnames(args) {
 
   return cls;
 }
+
+const testOmitPropsOnStringTag = isPropValid;
+const testOmitPropsOnComponent = key => key !== 'theme' && key !== 'innerRef';
+
+export const getDefaultShouldForwardProp = tag =>
+  typeof tag === 'string' && tag.charCodeAt(0) > 96
+    ? testOmitPropsOnStringTag
+    : testOmitPropsOnComponent;

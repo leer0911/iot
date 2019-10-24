@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Global } from '@emotion/core';
+import { Global } from '@iot/jss';
 import { useTheme } from '../../theme';
 
 function CssBaseline(props) {

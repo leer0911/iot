@@ -1,4 +1,4 @@
-export const tags = [
+const tags = [
   'a',
   'abbr',
   'address',
@@ -136,3 +136,5 @@ export const tags = [
   'text',
   'tspan',
 ];
+
+export default tags;

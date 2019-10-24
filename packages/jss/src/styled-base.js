@@ -1,8 +1,8 @@
 import * as React from 'react';
-import serializeStyles from '../serialize';
+import serializeStyles from './serialize';
 import { getDefaultShouldForwardProp } from './utils';
-import { withEmotionCache, ThemeContext } from '../core';
-import { getRegisteredStyles, insertStyles } from '../utils';
+import { withEmotionCache, ThemeContext } from './context';
+import { getRegisteredStyles, insertStyles } from './utils';
 
 let isBrowser = typeof document !== 'undefined';
 

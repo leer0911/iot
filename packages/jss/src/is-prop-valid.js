@@ -1,5 +1,5 @@
-import { memoize } from '../utils';
 import regexString from './props';
+import { memoize } from './utils';
 
 const reactPropsRegex = new RegExp(regexString);
 

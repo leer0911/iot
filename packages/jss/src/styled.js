@@ -1,5 +1,5 @@
-import styled from '../styled-base/index';
-import { tags } from './tags';
+import styled from './styled-base';
+import tags from './tags';
 
 // bind it to avoid mutating the original function
 const newStyled = styled.bind();

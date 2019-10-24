@@ -1,5 +1,5 @@
 import * as React from 'react';
-import createCache from '../cache';
+import createCache from './cache';
 import { isBrowser } from './utils';
 
 let EmotionCacheContext = React.createContext(isBrowser ? createCache() : null);
