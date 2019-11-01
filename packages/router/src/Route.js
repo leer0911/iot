@@ -14,23 +14,22 @@ const Route = props => {
   const match = props.path ? matchPath(pathname, props) : context.match;
 
   const value = { ...context, location, match };
-
   let renderChildren = () => {
-    if (!props.match) {
+    if (!value.match) {
       return null;
     }
 
     // 注意：children | component | render 不能同时使用
     if (children) {
-      return typeof children === 'function' ? children(props) : children;
+      return typeof children === 'function' ? children(value) : children;
     }
 
     if (component) {
-      return React.createElement(component, props);
+      return React.createElement(component, value);
     }
 
     if (render) {
-      render(props);
+      render(value);
     }
 
     return null;

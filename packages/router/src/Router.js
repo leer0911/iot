@@ -7,7 +7,7 @@ const computeRootMatch = pathname => {
 };
 
 const Router = ({ children, history }) => {
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState(history.location);
 
   const match = computeRootMatch(location.pathname);
   const value = { history, location, match };
